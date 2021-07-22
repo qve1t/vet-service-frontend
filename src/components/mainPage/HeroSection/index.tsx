@@ -13,7 +13,9 @@ const HeroSection = () => {
     <HeroSectionWrapper>
       <HeroImage src={backgroundImage} alt="main page hero img" />
       <HeaderAndButtonWrapper>
-        <Header>Keep your patients in one place</Header>
+        <Header>
+          Keep your patients in <br /> one place
+        </Header>
         <MainPageButton label="Start now" />
       </HeaderAndButtonWrapper>
     </HeroSectionWrapper>

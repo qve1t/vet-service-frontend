@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { transitions } from "../../mainStyles/transitions";
-import { colors } from "../../mainStyles/colors";
+import { typography } from "../../mainStyles/typography";
 
 export const MainPageButtonStyled = styled.button<{
   primaryColor: string;
@@ -8,14 +8,14 @@ export const MainPageButtonStyled = styled.button<{
 }>`
   width: 200px;
   height: 50px;
-  font-size: 25px;
+  font-size: ${typography.large};
   font-weight: 700;
   border-style: solid;
   border-width: 2px;
   border-color: ${({ primaryColor }) =>
     primaryColor ? primaryColor : "#ffffff"};
   border-radius: 100px;
-  background: ${colors.backgroundSecondary};
+  background: #ffffff;
   color: ${({ primaryColor }) => (primaryColor ? primaryColor : "#ffffff")};
   transition: ${transitions.standardTransition};
 

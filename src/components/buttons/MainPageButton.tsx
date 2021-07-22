@@ -10,7 +10,7 @@ interface ButtonProps {
 
 const MainPageButton = ({
   primaryColor = colors.themeGreen,
-  secondaryColor = colors.fontSecondary,
+  secondaryColor = colors.backgroundMain,
   label,
   onClick,
 }: ButtonProps) => {
