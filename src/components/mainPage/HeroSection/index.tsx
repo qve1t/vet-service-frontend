@@ -4,7 +4,7 @@ import {
   Header,
   HeaderAndButtonWrapper,
 } from "./styledComponents";
-import MainPageButton from "../../buttons/MainPageButton";
+import MainPageButton from "../../Buttons/MainPageButton";
 
 import backgroundImage from "../../../images/vet-stock-photo.webp";
 

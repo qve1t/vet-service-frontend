@@ -1,5 +1,7 @@
+import Layout from "../components/loginRegisterPage/Layout";
+
 const LoginPage = () => {
-  return <div>This is a LoginPage</div>;
+  return <Layout label="Login">This is a LoginPage</Layout>;
 };
 
 export default LoginPage;

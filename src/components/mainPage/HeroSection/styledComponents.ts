@@ -29,7 +29,7 @@ export const HeaderAndButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(34% - 50px);
+  top: calc(25% + 50px);
   left: 50%;
   text-align: center;
   align-items: center;

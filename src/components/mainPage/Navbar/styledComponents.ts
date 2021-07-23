@@ -53,20 +53,6 @@ export const NavbarLink = styled(Link)`
   }
 `;
 
-export const LogoText = styled.p`
-  font-family: "Lato", sans-serif;
-  font-size: ${typography.veryLarge};
-  font-weight: 700;
-  color: ${colors.fontMain};
-  border-bottom: 3px solid ${colors.themeGreen};
-  text-align: start;
-  margin-left: 15px;
-
-  span {
-    color: ${colors.themeGreen};
-  }
-`;
-
 export const NavbarHamburgerWrapper = styled.div`
   display: none;
   margin-right: 15px;
