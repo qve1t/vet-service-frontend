@@ -7,7 +7,7 @@ export interface socialLinkProps {
 
 const SingleSocialLink = ({ link, icon }: socialLinkProps) => {
   return (
-    <IconLinkWrapper href={link}>
+    <IconLinkWrapper href={link} target="_blank">
       <SingleIcon src={icon} alt="social icon" />
     </IconLinkWrapper>
   );

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { colors } from "../../../../mainStyles/colors";
 import { transitions } from "../../../../mainStyles/transitions";
 import { typography } from "../../../../mainStyles/typography";
+import { mediaQuery } from "../../../../mainStyles/madiaQuery";
 
 export const VerticalMenuWrapper = styled.nav<{ showMenu: boolean }>`
   position: fixed;
@@ -23,6 +24,10 @@ export const VerticalMenuWrapper = styled.nav<{ showMenu: boolean }>`
       opacity: 1;
       transform: translateX(0vw);
     `}
+
+  @media (min-width: ${mediaQuery.standard}) {
+    display: none;
+  }
 `;
 
 export const VerticalMenuLink = styled(Link)`

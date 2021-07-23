@@ -16,7 +16,7 @@ export const HeroSectionWrapper = styled.section`
 `;
 
 export const HeroImage = styled.img`
-  opacity: 0.4;
+  opacity: 0.5;
   width: auto;
   height: auto;
   min-height: 650px;
@@ -29,7 +29,7 @@ export const HeaderAndButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(50% - 50px);
+  top: calc(34% - 50px);
   left: 50%;
   text-align: center;
   align-items: center;
@@ -53,8 +53,13 @@ export const Header = styled.h2`
   flex-direction: column;
   font-family: "Lato", sans-serif;
   font-size: ${typography.header};
+  font-weight: 700;
   margin-bottom: 20px;
   @media (max-width: ${mediaQuery.standard}) {
     font-size: ${typography.smallHeader};
+  }
+
+  span {
+    color: ${colors.themeGreen};
   }
 `;

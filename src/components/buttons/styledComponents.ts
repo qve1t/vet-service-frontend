@@ -7,7 +7,7 @@ export const MainPageButtonStyled = styled.button<{
   secondaryColor: string;
 }>`
   width: 200px;
-  height: 50px;
+  height: 70px;
   font-size: ${typography.large};
   font-weight: 700;
   border-style: solid;
@@ -17,6 +17,7 @@ export const MainPageButtonStyled = styled.button<{
   border-radius: 100px;
   background: #ffffff;
   color: ${({ primaryColor }) => (primaryColor ? primaryColor : "#ffffff")};
+  cursor: pointer;
   transition: ${transitions.standardTransition};
 
   &:hover {

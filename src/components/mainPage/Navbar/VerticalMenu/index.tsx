@@ -4,10 +4,9 @@ import { VerticalMenuWrapper, VerticalMenuLink } from "./styledComponents";
 
 interface verticalMenuProps {
   showMenu: boolean;
-  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const VerticalMenu = ({ showMenu, setShowMenu }: verticalMenuProps) => {
+const VerticalMenu = ({ showMenu }: verticalMenuProps) => {
   useEffect(() => {
     if (showMenu) {
       document.body.style.overflow = "hidden";
