@@ -5,9 +5,9 @@ import Profile from "../../../../icons/profile.svg";
 import Wallet from "../../../../icons/wallet.svg";
 import Notes from "../../../../icons/notes.svg";
 
-import SingleInfo, { singleElementProps } from "./SingleInfo";
+import SingleInfo, { SingleElementProps } from "./SingleInfo";
 
-const elementsToShow: singleElementProps[] = [
+const elementsToShow: SingleElementProps[] = [
   {
     name: "Animals",
     description:

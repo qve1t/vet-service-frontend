@@ -27,3 +27,27 @@ export const MainPageButtonStyled = styled.button<{
       secondaryColor ? secondaryColor : "#ffffff"};
   }
 `;
+
+export const StandardButtonStyled = styled.button<{
+  width: string;
+  primaryColor: string;
+}>`
+  width: ${({ width }) => (width ? width : "100px")};
+  font-size: ${typography.standard};
+  border-style: solid;
+  border-width: 2px;
+  border-color: ${({ primaryColor }) =>
+    primaryColor ? primaryColor : "#ffffff"};
+  border-radius: 100px;
+  background: transparent;
+  color: ${({ primaryColor }) => (primaryColor ? primaryColor : "#ffffff")};
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: ${transitions.standardTransition};
+
+  &:hover {
+    background: ${({ primaryColor }) =>
+      primaryColor ? primaryColor : "#ffffff"};
+    color: #ffffff;
+  }
+`;

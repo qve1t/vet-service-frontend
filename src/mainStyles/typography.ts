@@ -4,4 +4,6 @@ export const typography = {
   veryLarge: "30px",
   large: "24px",
   standard: "16px",
+  small: "12px",
+  verySmall: "8px",
 };

@@ -40,4 +40,5 @@ export const MidSectionParagraph = styled.p`
   font-size: ${typography.large};
   margin-top: 45px;
   margin-bottom: 45px;
+  font-style: italic;
 `;

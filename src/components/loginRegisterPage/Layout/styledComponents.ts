@@ -24,5 +24,5 @@ export const Container = styled.div`
 export const LoginRegisterHeader = styled.h4`
   font-family: "Lato", sans-serif;
   font-size: ${typography.large};
-  margin: 5px 0;
+  margin: 15px auto;
 `;

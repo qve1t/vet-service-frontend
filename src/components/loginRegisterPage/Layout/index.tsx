@@ -4,18 +4,18 @@ import {
   LoginRegisterHeader,
 } from "./styledComponents";
 
-import Logo from "../../Logo";
+import { LogoWithLink } from "../../Logo";
 
-interface layoutProps {
+interface LayoutProps {
   children: React.ReactNode;
   label: string;
 }
 
-const Layout = ({ children, label }: layoutProps) => {
+const Layout = ({ children, label }: LayoutProps) => {
   return (
     <LayoutWrapper>
       <Container>
-        <Logo textAlign="center" />
+        <LogoWithLink />
         <LoginRegisterHeader>{label}</LoginRegisterHeader>
         {children}
       </Container>

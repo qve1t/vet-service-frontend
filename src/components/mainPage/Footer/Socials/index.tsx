@@ -1,10 +1,10 @@
 import { SocialsWrapper } from "./styledComponents";
-import SingleSocialLink, { socialLinkProps } from "./SingleSocialLink";
+import SingleSocialLink, { SocialLinkProps } from "./SingleSocialLink";
 
 import Github from "../../../../icons/github.svg";
 import Linkedin from "../../../../icons/linkedin.svg";
 
-const socialLinks: socialLinkProps[] = [
+const socialLinks: SocialLinkProps[] = [
   {
     icon: Github,
     link: "https://github.com/qve1t",

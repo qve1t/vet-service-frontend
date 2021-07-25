@@ -8,7 +8,7 @@ import {
   NavbarHamburger,
 } from "./styledComponents";
 import VerticalMenu from "./VerticalMenu";
-import Logo from "../../Logo";
+import { Logo } from "../../Logo";
 
 import Menu from "../../../icons/menu.svg";
 import Cancel from "../../../icons/cancel.svg";

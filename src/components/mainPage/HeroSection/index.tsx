@@ -1,3 +1,5 @@
+import { useHistory } from "react-router";
+
 import {
   HeroSectionWrapper,
   HeroImage,
@@ -9,6 +11,12 @@ import MainPageButton from "../../Buttons/MainPageButton";
 import backgroundImage from "../../../images/vet-stock-photo.webp";
 
 const HeroSection = () => {
+  const history = useHistory();
+
+  const buttonClickHandle = (): void => {
+    history.push("/login");
+  };
+
   return (
     <HeroSectionWrapper>
       <HeroImage src={backgroundImage} alt="main page hero img" />
@@ -16,7 +24,7 @@ const HeroSection = () => {
         <Header>
           Keep your patients in <br /> <span>one place</span>
         </Header>
-        <MainPageButton label="Start now" />
+        <MainPageButton label="Start now" onClick={buttonClickHandle} />
       </HeaderAndButtonWrapper>
     </HeroSectionWrapper>
   );

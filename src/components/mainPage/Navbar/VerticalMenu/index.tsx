@@ -2,11 +2,11 @@ import { useEffect } from "react";
 
 import { VerticalMenuWrapper, VerticalMenuLink } from "./styledComponents";
 
-interface verticalMenuProps {
+interface VerticalMenuProps {
   showMenu: boolean;
 }
 
-const VerticalMenu = ({ showMenu }: verticalMenuProps) => {
+const VerticalMenu = ({ showMenu }: VerticalMenuProps) => {
   useEffect(() => {
     if (showMenu) {
       document.body.style.overflow = "hidden";

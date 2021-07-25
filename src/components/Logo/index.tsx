@@ -1,16 +1,21 @@
-import { LogoText } from "./styledComponents";
+import { LogoText, LogoLink } from "./styledComponents";
 
-interface logoProps {
-  textAlign?: string;
+interface LogoProps {
   margin?: string;
 }
 
-const Logo = ({ textAlign, margin }: logoProps) => {
+export const Logo = ({ margin }: LogoProps) => {
   return (
-    <LogoText textAlign={textAlign} margin={margin}>
+    <LogoText margin={margin}>
       VET<span>-</span>SERVICE
     </LogoText>
   );
 };
 
-export default Logo;
+export const LogoWithLink = () => {
+  return (
+    <LogoLink to="/">
+      VET<span>-</span>SERVICE
+    </LogoLink>
+  );
+};

@@ -5,4 +5,6 @@ export const colors = {
   backgroundSecondary: "#f3f3f3",
   themeGreen: "#62ba51",
   themeGreenDark: "#09401c",
+  inputGrey: "#c8c8c8",
+  errorRed: "#eb3b3b",
 };
