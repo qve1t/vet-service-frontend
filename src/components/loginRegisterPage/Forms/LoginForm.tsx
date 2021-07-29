@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import StandardButton from "../../../components/Buttons/StandardButton";
+import StandardButton from "../../Buttons/StandardButton";
 import {
   LoginRegisterInputBase,
   FormBase,

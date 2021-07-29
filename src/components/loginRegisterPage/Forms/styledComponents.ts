@@ -11,7 +11,7 @@ export const FormBase = styled.form`
 `;
 
 export const FormError = styled.p`
-  align-self: flex-start;
+  font-family: "Lato", sans-serif;
   font-family: "Lato";
   font-size: ${typography.small};
   margin-bottom: 10px;
@@ -19,7 +19,7 @@ export const FormError = styled.p`
 `;
 
 export const LoginRegisterInputBase = styled.input<{ error?: string }>`
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
   width: 100%;
   padding: 5px 10px;
   outline: none;

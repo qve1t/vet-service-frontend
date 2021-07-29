@@ -1,4 +1,4 @@
-import { LogoText, LogoLink } from "./styledComponents";
+import { LogoText, LogoLink, LogoTextLight } from "./styledComponents";
 
 interface LogoProps {
   margin?: string;
@@ -9,6 +9,14 @@ export const Logo = ({ margin }: LogoProps) => {
     <LogoText margin={margin}>
       VET<span>-</span>SERVICE
     </LogoText>
+  );
+};
+
+export const LogoLight = ({ margin }: LogoProps) => {
+  return (
+    <LogoTextLight margin={margin}>
+      VET<span>-</span>SERVICE
+    </LogoTextLight>
   );
 };
 

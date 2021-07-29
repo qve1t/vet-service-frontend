@@ -17,6 +17,10 @@ export const LogoText = styled.p<{ textAlign?: string; margin?: string }>`
   }
 `;
 
+export const LogoTextLight = styled(LogoText)`
+  color: ${colors.backgroundMain};
+`;
+
 export const LogoLink = styled(Link)<{ textAlign?: string; margin?: string }>`
   font-family: "Lato", sans-serif;
   font-size: ${typography.veryLarge};
