@@ -1,19 +1,19 @@
 import { Switch, Route } from "react-router";
 import { DashboardMainAreaWrapper } from "./styledComponents";
 
-const SectionA = () => <div>Section A</div>;
-const SectionB = () => <div>Section B</div>;
-const SectionC = () => <div>Section C</div>;
-const SectionD = () => <div>Section D</div>;
+const Visits = () => <div>Section VISITs</div>;
+const Pets = () => <div>Section PETS</div>;
+const Owners = () => <div>Section OWNERS</div>;
+const Notes = () => <div>Section NOTES</div>;
 
 const DashboardMainArea = () => {
   return (
     <DashboardMainAreaWrapper>
       <Switch>
-        <Route path="/dashboard/A" component={SectionA} />
-        <Route path="/dashboard/B" component={SectionB} />
-        <Route path="/dashboard/C" component={SectionC} />
-        <Route path="/dashboard/D" component={SectionD} />
+        <Route path="/dashboard/visits" component={Visits} />
+        <Route path="/dashboard/pets" component={Pets} />
+        <Route path="/dashboard/owners" component={Owners} />
+        <Route path="/dashboard/notes" component={Notes} />
       </Switch>
     </DashboardMainAreaWrapper>
   );

@@ -11,6 +11,7 @@ export const LogoText = styled.p<{ textAlign?: string; margin?: string }>`
   border-bottom: 3px solid ${colors.themeGreen};
   text-align: ${({ textAlign }) => (textAlign ? textAlign : "start")};
   margin: ${({ margin }) => (margin ? margin : 0)};
+  user-select: none;
 
   span {
     color: ${colors.themeGreen};
@@ -29,6 +30,7 @@ export const LogoLink = styled(Link)<{ textAlign?: string; margin?: string }>`
   color: ${colors.fontMain};
   border-bottom: 3px solid ${colors.themeGreen};
   text-align: center;
+  user-select: none;
 
   span {
     color: ${colors.themeGreen};
