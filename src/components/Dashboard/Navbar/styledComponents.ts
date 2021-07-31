@@ -19,8 +19,10 @@ export const LogoutButton = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 50px;
+  border: none;
   color: ${colors.fontMain};
   background-color: transparent;
+  cursor: pointer;
   transition: ${transitions.standardTransition};
 
   &:hover {
