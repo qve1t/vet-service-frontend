@@ -1,4 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useHistory } from "react-router";
+import { loginUserAPI } from "../../../api/auth";
 
 import StandardButton from "../../Buttons/StandardButton";
 import {
@@ -7,21 +9,34 @@ import {
   FormError,
 } from "./styledComponents";
 
+import { UseLoggedUserActions } from "../../../modules/LoggedUserModule";
+
 type Inputs = {
   email: string;
   password: string;
 };
 
 const LoginForm = () => {
+  const history = useHistory();
+  const { logUser } = UseLoggedUserActions();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
     event?.preventDefault();
-    console.log(data);
+    const loginResponse = await loginUserAPI({
+      email: data.email,
+      password: data.password,
+    });
+    if (loginResponse.response) {
+      logUser(loginResponse.response.isLogged, loginResponse.response.email);
+      history.push("/dashboard");
+    } else {
+      console.log(loginResponse.error);
+    }
   };
 
   return (

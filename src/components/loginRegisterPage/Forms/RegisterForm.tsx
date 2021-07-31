@@ -1,4 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useHistory } from "react-router";
+import { registerUserAPI } from "../../../api/user";
 
 import StandardButton from "../../Buttons/StandardButton";
 import {
@@ -14,6 +16,7 @@ type Inputs = {
 };
 
 const RegisterForm = () => {
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -21,9 +24,17 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
     event?.preventDefault();
-    console.log(data);
+    const registerResponse = await registerUserAPI({
+      email: data.email,
+      password: data.password,
+    });
+    if (registerResponse.response) {
+      history.push("/login");
+    } else {
+      console.log(registerResponse.error);
+    }
   };
 
   return (

@@ -25,7 +25,7 @@ export const SectionDivider = styled.div`
   background: ${colors.backgroundSecondary};
 `;
 
-export const DashboardLinkStyled = styled(Link)<{ isSelected: boolean }>`
+export const DashboardLinkStyled = styled(Link)<{ $isSelected: boolean }>`
   display: flex;
   width: 100%;
   height: 30px;
@@ -37,11 +37,11 @@ export const DashboardLinkStyled = styled(Link)<{ isSelected: boolean }>`
   border-radius: 50px;
   color: ${colors.fontSecondary};
   transition: ${transitions.standardTransition};
-  background-color: ${({ isSelected }) =>
-    isSelected ? "rgba(98, 186, 81, 0.7)" : "transparent"};
+  background-color: ${({ $isSelected }) =>
+    $isSelected ? "rgba(98, 186, 81, 0.7)" : "transparent"};
 
   &:hover {
-    background-color: ${({ isSelected }) =>
-      isSelected ? "rgba(98, 186, 81, 0.7)" : "rgba(98, 186, 81, 0.5)"};
+    background-color: ${({ $isSelected }) =>
+      $isSelected ? "rgba(98, 186, 81, 0.7)" : "rgba(98, 186, 81, 0.5)"};
   }
 `;

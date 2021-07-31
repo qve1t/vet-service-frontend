@@ -49,7 +49,7 @@ export const LoggedUserModule = ({ children }: LoggedUserContextProps) => {
         });
       },
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <LoggedUserContext.Provider value={{ state, actions }}>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { transitions } from "../../../mainStyles/transitions";
 import { colors } from "../../../mainStyles/colors";
 
@@ -11,7 +10,7 @@ export const DashboardNavbarWrapper = styled.section`
   padding: 0 15px;
 `;
 
-export const LogoutLinkStyled = styled(Link)`
+export const LogoutButton = styled.button`
   display: flex;
   width: 100px;
   height: 30px;

@@ -16,7 +16,7 @@ const SingleSectionLink = ({
   return (
     <DashboardLinkStyled
       to={linkTo}
-      isSelected={selectedPath === linkTo}
+      $isSelected={selectedPath === linkTo}
       onClick={() => linkClickHandler(linkTo)}
     >
       {label}
