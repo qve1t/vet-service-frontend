@@ -1,6 +1,7 @@
 import { API_ADDRESS } from "../consts";
 import { IsUserLoggedResponse, LoginUserInterface } from "./interfaces/auth";
 import { FetchResponse } from "./interfaces/fetch";
+import { apiResponse } from "../utils/apiResponse";
 
 export const isUserLoggedAPI = async (): Promise<
   FetchResponse<IsUserLoggedResponse | null>
@@ -11,17 +12,7 @@ export const isUserLoggedAPI = async (): Promise<
   });
   const jsonResponse = await response.json();
 
-  if (!response.ok) {
-    return {
-      error: jsonResponse.message,
-      response: null,
-    };
-  }
-
-  return {
-    error: null,
-    response: jsonResponse,
-  };
+  return apiResponse(jsonResponse);
 };
 
 export const loginUserAPI = async ({
@@ -41,17 +32,7 @@ export const loginUserAPI = async ({
   });
   const jsonResponse = await response.json();
 
-  if (!response.ok) {
-    return {
-      error: jsonResponse.message,
-      response: null,
-    };
-  }
-
-  return {
-    error: null,
-    response: jsonResponse,
-  };
+  return apiResponse(jsonResponse);
 };
 
 export const logoutUserAPI = async (): Promise<
@@ -63,15 +44,5 @@ export const logoutUserAPI = async (): Promise<
   });
   const jsonResponse = await response.json();
 
-  if (!response.ok) {
-    return {
-      error: jsonResponse.message,
-      response: null,
-    };
-  }
-
-  return {
-    error: null,
-    response: jsonResponse,
-  };
+  return apiResponse(jsonResponse);
 };
