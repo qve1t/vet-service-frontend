@@ -52,16 +52,3 @@ export const NavbarLink = styled(Link)`
     }
   }
 `;
-
-export const NavbarHamburgerWrapper = styled.div`
-  display: none;
-  margin-right: 15px;
-  @media (max-width: ${mediaQuery.standard}) {
-    display: block;
-  }
-`;
-
-export const NavbarHamburger = styled.img`
-  width: 30px;
-  height: 30px;
-`;

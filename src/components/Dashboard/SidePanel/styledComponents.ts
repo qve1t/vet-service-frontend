@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "../../../mainStyles/colors";
 import { transitions } from "../../../mainStyles/transitions";
+import { mediaQuery } from "../../../mainStyles/madiaQuery";
 
 export const DashboardSidepanelWrapper = styled.section`
   grid-area: sidepanel;
@@ -10,6 +11,10 @@ export const DashboardSidepanelWrapper = styled.section`
   align-items: center;
   padding: 0 15px;
   background: ${colors.themeGreenDark};
+
+  @media (max-width: ${mediaQuery.standard}) {
+    display: none;
+  }
 `;
 
 export const LogoWrapper = styled.div`

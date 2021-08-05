@@ -12,7 +12,6 @@ export const FormBase = styled.form`
 
 export const FormError = styled.p`
   font-family: "Lato", sans-serif;
-  font-family: "Lato";
   font-size: ${typography.small};
   margin-bottom: 10px;
   color: ${colors.errorRed};

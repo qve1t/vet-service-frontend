@@ -1,17 +1,20 @@
 import { useState } from "react";
 
-import {
-  NavbarWrapper,
-  NavbarLink,
-  LinksWrapper,
-  NavbarHamburgerWrapper,
-  NavbarHamburger,
-} from "./styledComponents";
-import VerticalMenu from "./VerticalMenu";
+import { NavbarWrapper, NavbarLink, LinksWrapper } from "./styledComponents";
+import VerticalMenu, { VerticalMenuLinkInterface } from "../../VerticalNavbar";
 import { Logo } from "../../Logo";
+import HamburgetButton from "../../VerticalNavbar/HamburgerButton";
 
-import Menu from "../../../icons/menu.svg";
-import Cancel from "../../../icons/cancel.svg";
+const NAVBAR_LINKS: VerticalMenuLinkInterface[] = [
+  {
+    label: "Login",
+    linkTo: "/login",
+  },
+  {
+    label: "Register",
+    linkTo: "/register",
+  },
+];
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -28,11 +31,12 @@ const Navbar = () => {
           <NavbarLink to="/login">Login</NavbarLink>
           <NavbarLink to="/register">Register</NavbarLink>
         </LinksWrapper>
-        <NavbarHamburgerWrapper onClick={hamburgerMenuClick}>
-          <NavbarHamburger src={showMenu ? Cancel : Menu} />
-        </NavbarHamburgerWrapper>
+        <HamburgetButton
+          showMenu={showMenu}
+          onClickFunction={hamburgerMenuClick}
+        />
       </NavbarWrapper>
-      <VerticalMenu showMenu={showMenu} />
+      <VerticalMenu showMenu={showMenu} links={NAVBAR_LINKS} />
     </>
   );
 };

@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import { colors } from "../../../../mainStyles/colors";
-import { transitions } from "../../../../mainStyles/transitions";
-import { typography } from "../../../../mainStyles/typography";
-import { mediaQuery } from "../../../../mainStyles/madiaQuery";
+import { colors } from "../../mainStyles/colors";
+import { transitions } from "../../mainStyles/transitions";
+import { typography } from "../../mainStyles/typography";
+import { mediaQuery } from "../../mainStyles/madiaQuery";
 
 export const VerticalMenuWrapper = styled.nav<{ showMenu: boolean }>`
   position: fixed;
@@ -40,4 +40,17 @@ export const VerticalMenuLink = styled(Link)`
   width: 100%;
   margin: 20px 0;
   border-bottom: 1px solid ${colors.themeGreen};
+`;
+
+export const NavbarHamburgerWrapper = styled.div`
+  display: none;
+  margin-right: 15px;
+  @media (max-width: ${mediaQuery.standard}) {
+    display: block;
+  }
+`;
+
+export const NavbarHamburger = styled.img`
+  width: 30px;
+  height: 30px;
 `;

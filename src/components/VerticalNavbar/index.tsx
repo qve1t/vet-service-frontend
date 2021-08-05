@@ -2,11 +2,17 @@ import { useEffect } from "react";
 
 import { VerticalMenuWrapper, VerticalMenuLink } from "./styledComponents";
 
-interface VerticalMenuProps {
-  showMenu: boolean;
+export interface VerticalMenuLinkInterface {
+  linkTo: string;
+  label: string;
 }
 
-const VerticalMenu = ({ showMenu }: VerticalMenuProps) => {
+interface VerticalMenuProps {
+  showMenu: boolean;
+  links: VerticalMenuLinkInterface[];
+}
+
+const VerticalMenu = ({ showMenu, links }: VerticalMenuProps) => {
   useEffect(() => {
     if (showMenu) {
       document.body.style.overflow = "hidden";
@@ -17,8 +23,11 @@ const VerticalMenu = ({ showMenu }: VerticalMenuProps) => {
 
   return (
     <VerticalMenuWrapper showMenu={showMenu}>
-      <VerticalMenuLink to="/login">Login</VerticalMenuLink>
-      <VerticalMenuLink to="/register">Register</VerticalMenuLink>
+      {links.map((elem, index) => (
+        <VerticalMenuLink key={elem.label + index} to={elem.linkTo}>
+          {elem.label}
+        </VerticalMenuLink>
+      ))}
     </VerticalMenuWrapper>
   );
 };

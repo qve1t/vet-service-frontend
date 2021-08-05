@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { transitions } from "../../../mainStyles/transitions";
 import { colors } from "../../../mainStyles/colors";
+import { typography } from "../../../mainStyles/typography";
+import { mediaQuery } from "../../../mainStyles/madiaQuery";
 
 export const DashboardNavbarWrapper = styled.section`
   grid-area: nav;
@@ -16,6 +19,8 @@ export const LogoutButton = styled.button`
   height: 30px;
   text-decoration: none;
   font-weight: 700;
+  font-family: "Lato", sans-serif;
+  font-size: ${typography.standard};
   align-items: center;
   justify-content: center;
   border-radius: 50px;
@@ -28,5 +33,49 @@ export const LogoutButton = styled.button`
   &:hover {
     background-color: ${colors.errorRed};
     color: ${colors.fontSecondary};
+  }
+
+  @media (max-width: ${mediaQuery.standard}) {
+    display: none;
+  }
+`;
+
+export const SectionSeparator = styled.div`
+  flex: 1;
+`;
+
+export const NavbarSectionWrapper = styled.div`
+  @media (max-width: ${mediaQuery.standard}) {
+    display: none;
+  }
+`;
+
+export const NavbarSectionLink = styled(Link)`
+  position: relative;
+  font-family: "Lato", sans-serif;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: ${typography.standard};
+  color: ${colors.fontMain};
+  margin-left: 20px;
+  margin-right: 20px;
+
+  transition: ${transitions.standardTransition};
+  &:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    left: 50%;
+    bottom: -8px;
+    height: 3px;
+    z-index: -1;
+    background: ${colors.themeGreen};
+    transition: ${transitions.standardTransition};
+  }
+  &:hover {
+    &:before {
+      width: 100%;
+      left: 0;
+    }
   }
 `;

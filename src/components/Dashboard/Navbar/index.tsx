@@ -1,6 +1,17 @@
 import { useHistory } from "react-router";
+import { Switch, Route } from "react-router";
 import { logoutUserAPI } from "../../../api/auth";
-import { DashboardNavbarWrapper, LogoutButton } from "./styledComponents";
+import {
+  DashboardNavbarWrapper,
+  LogoutButton,
+  SectionSeparator,
+} from "./styledComponents";
+import {
+  OwnersSection,
+  PetsSection,
+  VisitsSection,
+  NotesSection,
+} from "./LinksSections";
 
 import { UseLoggedUserActions } from "../../../modules/LoggedUserModule";
 
@@ -23,6 +34,13 @@ const DashboardNavbar = () => {
 
   return (
     <DashboardNavbarWrapper>
+      <Switch>
+        <Route path="/dashboard/visits" component={VisitsSection} />
+        <Route path="/dashboard/pets" component={PetsSection} />
+        <Route path="/dashboard/owners" component={OwnersSection} />
+        <Route path="/dashboard/notes" component={NotesSection} />
+      </Switch>
+      <SectionSeparator />
       <LogoutButton onClick={() => logoutHandler()}>Logout</LogoutButton>
     </DashboardNavbarWrapper>
   );
