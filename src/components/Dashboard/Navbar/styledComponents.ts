@@ -11,6 +11,10 @@ export const DashboardNavbarWrapper = styled.section`
   align-items: center;
   justify-content: flex-end;
   padding: 0 15px;
+
+  @media (max-width: ${mediaQuery.standard}) {
+    z-index: 5;
+  }
 `;
 
 export const LogoutButton = styled.button`

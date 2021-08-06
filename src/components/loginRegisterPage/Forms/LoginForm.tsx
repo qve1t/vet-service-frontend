@@ -3,11 +3,8 @@ import { useHistory } from "react-router";
 import { loginUserAPI } from "../../../api/auth";
 
 import StandardButton from "../../Buttons/StandardButton";
-import {
-  LoginRegisterInputBase,
-  FormBase,
-  FormError,
-} from "./styledComponents";
+import { FormBase } from "./styledComponents";
+import { BaseInput, FormError } from "../../Inputs";
 
 import { UseLoggedUserActions } from "../../../modules/LoggedUserModule";
 
@@ -41,9 +38,10 @@ const LoginForm = () => {
 
   return (
     <FormBase onSubmit={handleSubmit(onSubmit)}>
-      <LoginRegisterInputBase
+      <BaseInput
         placeholder="Email"
         error={errors.email?.message}
+        autoComplete="off"
         {...register("email", {
           required: "Email is required",
           pattern: {
@@ -53,7 +51,7 @@ const LoginForm = () => {
         })}
       />
       {errors.email && <FormError>{errors.email.message}</FormError>}
-      <LoginRegisterInputBase
+      <BaseInput
         placeholder="Password"
         type="password"
         error={errors.password?.message}

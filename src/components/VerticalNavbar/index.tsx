@@ -9,10 +9,11 @@ export interface VerticalMenuLinkInterface {
 
 interface VerticalMenuProps {
   showMenu: boolean;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
   links: VerticalMenuLinkInterface[];
 }
 
-const VerticalMenu = ({ showMenu, links }: VerticalMenuProps) => {
+const VerticalMenu = ({ showMenu, setShowMenu, links }: VerticalMenuProps) => {
   useEffect(() => {
     if (showMenu) {
       document.body.style.overflow = "hidden";
@@ -24,7 +25,11 @@ const VerticalMenu = ({ showMenu, links }: VerticalMenuProps) => {
   return (
     <VerticalMenuWrapper showMenu={showMenu}>
       {links.map((elem, index) => (
-        <VerticalMenuLink key={elem.label + index} to={elem.linkTo}>
+        <VerticalMenuLink
+          key={elem.label + index}
+          to={elem.linkTo}
+          onClick={() => setShowMenu(false)}
+        >
           {elem.label}
         </VerticalMenuLink>
       ))}

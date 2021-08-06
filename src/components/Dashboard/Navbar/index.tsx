@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { Switch, Route } from "react-router";
 import { logoutUserAPI } from "../../../api/auth";
@@ -12,12 +13,21 @@ import {
   VisitsSection,
   NotesSection,
 } from "./LinksSections";
+import VerticalMenu from "../../VerticalNavbar";
+import HamburgetButton from "../../VerticalNavbar/HamburgerButton";
 
 import { UseLoggedUserActions } from "../../../modules/LoggedUserModule";
 
+import { DASHBOARD_NAVBAR_LINKS } from "./dashboardNavbarLinks";
+
 const DashboardNavbar = () => {
+  const [showMenu, setShowMenu] = useState<boolean>(false);
   const history = useHistory();
   const { logoutUser } = UseLoggedUserActions();
+
+  const hamburgerMenuClick = (): void => {
+    setShowMenu(!showMenu);
+  };
 
   const logoutHandler = async (): Promise<void> => {
     const logoutResponse = await logoutUserAPI();
@@ -33,16 +43,27 @@ const DashboardNavbar = () => {
   };
 
   return (
-    <DashboardNavbarWrapper>
-      <Switch>
-        <Route path="/dashboard/visits" component={VisitsSection} />
-        <Route path="/dashboard/pets" component={PetsSection} />
-        <Route path="/dashboard/owners" component={OwnersSection} />
-        <Route path="/dashboard/notes" component={NotesSection} />
-      </Switch>
-      <SectionSeparator />
-      <LogoutButton onClick={() => logoutHandler()}>Logout</LogoutButton>
-    </DashboardNavbarWrapper>
+    <>
+      <DashboardNavbarWrapper>
+        <Switch>
+          <Route path="/dashboard/visits" component={VisitsSection} />
+          <Route path="/dashboard/pets" component={PetsSection} />
+          <Route path="/dashboard/owners" component={OwnersSection} />
+          <Route path="/dashboard/notes" component={NotesSection} />
+        </Switch>
+        <SectionSeparator />
+        <LogoutButton onClick={() => logoutHandler()}>Logout</LogoutButton>
+        <HamburgetButton
+          showMenu={showMenu}
+          onClickFunction={hamburgerMenuClick}
+        />
+      </DashboardNavbarWrapper>
+      <VerticalMenu
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+        links={DASHBOARD_NAVBAR_LINKS}
+      />
+    </>
   );
 };
 

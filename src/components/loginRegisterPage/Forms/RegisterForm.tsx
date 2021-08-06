@@ -2,12 +2,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useHistory } from "react-router";
 import { registerUserAPI } from "../../../api/user";
 
+import { FormBase } from "./styledComponents";
 import StandardButton from "../../Buttons/StandardButton";
-import {
-  LoginRegisterInputBase,
-  FormBase,
-  FormError,
-} from "./styledComponents";
+import { BaseInput, FormError } from "../../Inputs";
 
 type Inputs = {
   email: string;
@@ -39,7 +36,7 @@ const RegisterForm = () => {
 
   return (
     <FormBase onSubmit={handleSubmit(onSubmit)}>
-      <LoginRegisterInputBase
+      <BaseInput
         placeholder="Email"
         error={errors.email?.message}
         {...register("email", {
@@ -51,7 +48,7 @@ const RegisterForm = () => {
         })}
       />
       {errors.email && <FormError>{errors.email.message}</FormError>}
-      <LoginRegisterInputBase
+      <BaseInput
         placeholder="Password"
         type="password"
         error={errors.password?.message}
@@ -68,7 +65,7 @@ const RegisterForm = () => {
         })}
       />
       {errors.password && <FormError>{errors.password.message}</FormError>}
-      <LoginRegisterInputBase
+      <BaseInput
         placeholder="Confirm password"
         type="password"
         error={errors.passwordConfirm?.message}

@@ -12,7 +12,7 @@ export const DashboardWrapper = styled.div`
 
   @media (max-width: ${mediaQuery.standard}) {
     grid-template-columns: 1fr;
-    grid-template-rows: 0.2fr 3fr;
+    grid-template-rows: 50px 1fr;
     grid-template-areas:
       "nav"
       "main";

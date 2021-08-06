@@ -1,20 +1,11 @@
 import { useState } from "react";
 
 import { NavbarWrapper, NavbarLink, LinksWrapper } from "./styledComponents";
-import VerticalMenu, { VerticalMenuLinkInterface } from "../../VerticalNavbar";
-import { Logo } from "../../Logo";
+import VerticalMenu from "../../VerticalNavbar";
 import HamburgetButton from "../../VerticalNavbar/HamburgerButton";
+import { Logo } from "../../Logo";
 
-const NAVBAR_LINKS: VerticalMenuLinkInterface[] = [
-  {
-    label: "Login",
-    linkTo: "/login",
-  },
-  {
-    label: "Register",
-    linkTo: "/register",
-  },
-];
+import { NAVBAR_LINKS } from "./navbarLinks";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -36,7 +27,11 @@ const Navbar = () => {
           onClickFunction={hamburgerMenuClick}
         />
       </NavbarWrapper>
-      <VerticalMenu showMenu={showMenu} links={NAVBAR_LINKS} />
+      <VerticalMenu
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+        links={NAVBAR_LINKS}
+      />
     </>
   );
 };
