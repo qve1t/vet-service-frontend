@@ -1,3 +1,3 @@
-import { BaseInput, FormError } from "./styledComponents";
+import { BaseInput, FormError, BaseTextArea } from "./styledComponents";
 
-export { BaseInput, FormError };
+export { BaseInput, FormError, BaseTextArea };
