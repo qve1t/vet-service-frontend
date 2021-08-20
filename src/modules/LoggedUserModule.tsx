@@ -5,6 +5,7 @@ import { useImmer } from "use-immer";
 interface State {
   isLogged: boolean;
   email: string;
+  itemsPerPage: number;
 }
 
 interface Actions {
@@ -26,6 +27,7 @@ export const LoggedUserModule = ({ children }: LoggedUserContextProps) => {
   const [state, setState] = useImmer<State>({
     isLogged: false,
     email: "",
+    itemsPerPage: 20,
   });
 
   const actions = useMemo<Actions>(() => {

@@ -1,10 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { VisitRegisterInterface } from "../../../api/interfaces/visit";
+import { VisitRegisterInterface } from "../../api/interfaces/visit";
 
-import { BaseInput, FormError } from "../../Inputs";
-import StandardButton from "../../Buttons/StandardButton";
-import { MainAreaHeader } from "../../Dashboard/MainArea/styledComponents";
-import { FormsWrapper } from "../styledComponents";
+import { BaseInput, FormError } from "../Inputs";
+import StandardButton from "../Buttons/StandardButton";
+import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
+import { FormsWrapper } from "./styledComponents";
 
 const NewVisitPanel = () => {
   const {
@@ -19,7 +19,7 @@ const NewVisitPanel = () => {
   };
 
   return (
-    <div>
+    <>
       <MainAreaHeader>Register new owner</MainAreaHeader>
       <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
         <BaseInput
@@ -64,7 +64,7 @@ const NewVisitPanel = () => {
 
         <StandardButton label="Register" />
       </FormsWrapper>
-    </div>
+    </>
   );
 };
 

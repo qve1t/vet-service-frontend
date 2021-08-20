@@ -1,14 +1,14 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { RegisterOwnerInterface } from "../../../api/interfaces/owner";
+import { RegisterOwnerInterface } from "../../api/interfaces/owner";
 
-import { BaseInput, FormError } from "../../Inputs";
-import StandardButton from "../../Buttons/StandardButton";
-import { MainAreaHeader } from "../../Dashboard/MainArea/styledComponents";
+import { BaseInput, FormError } from "../Inputs";
+import StandardButton from "../Buttons/StandardButton";
+import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import {
   FormsWrapper,
   MultipleInputsWrapper,
   SingleInputWrapper,
-} from "../styledComponents";
+} from "./styledComponents";
 
 const NewOwnerPanel = () => {
   const {
@@ -23,7 +23,7 @@ const NewOwnerPanel = () => {
   };
 
   return (
-    <div>
+    <>
       <MainAreaHeader>Register new owner</MainAreaHeader>
       <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
         <MultipleInputsWrapper>
@@ -86,7 +86,7 @@ const NewOwnerPanel = () => {
 
         <StandardButton label="Register" />
       </FormsWrapper>
-    </div>
+    </>
   );
 };
 

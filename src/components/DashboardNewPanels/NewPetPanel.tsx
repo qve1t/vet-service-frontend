@@ -1,14 +1,14 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { PetSexes, PetRegisterInterface } from "../../../api/interfaces/pet";
+import { PetSexes, PetRegisterInterface } from "../../api/interfaces/pet";
 
-import { BaseInput, FormError, BaseTextArea } from "../../Inputs";
-import StandardButton from "../../Buttons/StandardButton";
-import { MainAreaHeader } from "../../Dashboard/MainArea/styledComponents";
+import { BaseInput, FormError, BaseTextArea } from "../Inputs";
+import StandardButton from "../Buttons/StandardButton";
+import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import {
   FormsWrapper,
   MultipleInputsWrapper,
   SingleInputWrapper,
-} from "../styledComponents";
+} from "./styledComponents";
 
 const NewPetPanel = () => {
   const {
@@ -23,7 +23,7 @@ const NewPetPanel = () => {
   };
 
   return (
-    <div>
+    <>
       <MainAreaHeader>Register new pet</MainAreaHeader>
       <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
         <BaseInput
@@ -143,7 +143,7 @@ const NewPetPanel = () => {
         <BaseTextArea placeholder="Others" {...register("others")} />
         <StandardButton label="Register" />
       </FormsWrapper>
-    </div>
+    </>
   );
 };
 
