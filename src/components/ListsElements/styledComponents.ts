@@ -44,6 +44,7 @@ export const ListElementSecondaryText = styled.p``;
 export const ListElementLink = styled(Link)`
   color: ${colors.fontMain};
   font-weight: 300;
+  font-style: italic;
   text-decoration: none;
 
   transition: ${transitions.standardTransition};
