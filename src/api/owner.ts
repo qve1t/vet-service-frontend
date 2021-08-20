@@ -1,6 +1,6 @@
 import { API_ADDRESS } from "../consts";
 import { FetchResponse } from "./interfaces/fetch";
-import { apiResponse } from "../utils/apiResponse";
+import { apiResponse, fetchError } from "../utils/apiResponse";
 import {
   AssignPetToOwnerInterface,
   AssignPetToOwnerResponse,
@@ -19,76 +19,101 @@ export const getOwnersListAPI = async ({
   limit,
   nameSurname,
 }: OwnerQueryInterface): Promise<FetchResponse<OwnerListResponse | null>> => {
-  const response = await fetch(
-    `${API_ADDRESS}/owner/?page=${page}&limit=${limit}&nameSurname=${nameSurname}`,
-    {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
+  try {
+    const response = await fetch(
+      `${API_ADDRESS}/owner/?page=${page}&limit=${limit}&nameSurname=${nameSurname}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
       },
-    },
-  );
-  const jsonResponse = await response.json();
+    );
+    const jsonResponse = await response.json();
 
-  return apiResponse(jsonResponse);
+    return apiResponse(response.ok, jsonResponse);
+  } catch (error) {
+    return fetchError(error);
+  }
 };
 
 export const getOwnerDetailsAPI = async (
   ownerId: string,
 ): Promise<FetchResponse<OwnerInterface | null>> => {
-  const response = await fetch(`${API_ADDRESS}/owner/${ownerId}`, {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const jsonResponse = await response.json();
+  try {
+    const response = await fetch(`${API_ADDRESS}/owner/${ownerId}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const jsonResponse = await response.json();
 
-  return apiResponse(jsonResponse);
+    return apiResponse(response.ok, jsonResponse);
+  } catch (error) {
+    return fetchError(error);
+  }
 };
 
 export const registerNewOwnerAPI = async (
   registerData: RegisterOwnerInterface,
 ): Promise<FetchResponse<OwnerRegisterResponse | null>> => {
-  const response = await fetch(`${API_ADDRESS}/owner/register`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ...registerData }),
-  });
-  const jsonResponse = await response.json();
+  try {
+    const response = await fetch(`${API_ADDRESS}/owner/register`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ ...registerData }),
+    });
+    const jsonResponse = await response.json();
 
-  return apiResponse(jsonResponse);
+    return apiResponse(response.ok, jsonResponse);
+  } catch (error) {
+    return fetchError(error);
+  }
 };
 
 export const updateOwnerInfoAPI = async (
   updateData: OwnerInfoToUpdateInterface,
 ): Promise<FetchResponse<OwnerUpdateResponse | null>> => {
-  const response = await fetch(`${API_ADDRESS}/owner/update`, {
-    method: "patch",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ...updateData }),
-  });
-  const jsonResponse = await response.json();
+  try {
+    const response = await fetch(`${API_ADDRESS}/owner/update`, {
+      method: "patch",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ ...updateData }),
+    });
+    const jsonResponse = await response.json();
 
-  return apiResponse(jsonResponse);
+    return apiResponse(response.ok, jsonResponse);
+  } catch (error) {
+    return fetchError(error);
+  }
 };
 
 export const deleteOwnerAPI = async (
   ownerId: string,
 ): Promise<FetchResponse<OwnerDeleteResponse | null>> => {
-  const response = await fetch(`${API_ADDRESS}/pet/delete/${ownerId}`, {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const jsonResponse = await response.json();
+  try {
+    const response = await fetch(`${API_ADDRESS}/pet/delete/${ownerId}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const jsonResponse = await response.json();
 
-  return apiResponse(jsonResponse);
+    return apiResponse(response.ok, jsonResponse);
+  } catch (error) {
+    return fetchError(error);
+  }
 };
 
 export const assingPetToOwnerAPI = async ({
@@ -97,14 +122,19 @@ export const assingPetToOwnerAPI = async ({
 }: AssignPetToOwnerInterface): Promise<
   FetchResponse<AssignPetToOwnerResponse | null>
 > => {
-  const response = await fetch(`${API_ADDRESS}/pet/assign-pet`, {
-    method: "put",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ownerId, petId }),
-  });
-  const jsonResponse = await response.json();
+  try {
+    const response = await fetch(`${API_ADDRESS}/pet/assign-pet`, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ ownerId, petId }),
+    });
+    const jsonResponse = await response.json();
 
-  return apiResponse(jsonResponse);
+    return apiResponse(response.ok, jsonResponse);
+  } catch (error) {
+    return fetchError(error);
+  }
 };
