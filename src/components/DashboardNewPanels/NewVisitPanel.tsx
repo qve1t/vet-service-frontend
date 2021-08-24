@@ -52,6 +52,7 @@ const NewVisitPanel = () => {
           placeholder="Name"
           width="40%"
           error={errors.name?.message}
+          autoComplete="off"
           {...register("name", {
             required: "Name is required",
           })}
@@ -62,6 +63,7 @@ const NewVisitPanel = () => {
           placeholder="Pet"
           width="40%"
           error={errors.petId?.message}
+          autoComplete="off"
           {...register("petId", {
             required: "Pet is required",
           })}
@@ -72,6 +74,7 @@ const NewVisitPanel = () => {
           placeholder="Owner"
           width="40%"
           error={errors.ownerId?.message}
+          autoComplete="off"
           {...register("ownerId", {
             required: "Owner is required",
           })}

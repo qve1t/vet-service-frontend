@@ -39,6 +39,7 @@ const NewPetPanel = () => {
           placeholder="Pet name"
           width="40%"
           error={errors.name?.message}
+          autoComplete="off"
           {...register("name", {
             required: "Name is required",
           })}
@@ -50,6 +51,7 @@ const NewPetPanel = () => {
               placeholder="Type"
               width="80%"
               error={errors.type?.message}
+              autoComplete="off"
               {...register("type", {
                 required: "Type is required",
               })}
@@ -61,6 +63,7 @@ const NewPetPanel = () => {
               placeholder="Race"
               width="80%"
               error={errors.race?.message}
+              autoComplete="off"
               {...register("race")}
             />
             {errors.race && <FormError>{errors.race.message}</FormError>}
@@ -72,6 +75,7 @@ const NewPetPanel = () => {
               placeholder="Chip number"
               width="80%"
               error={errors.chipId?.message}
+              autoComplete="off"
               {...register("chipId")}
             />
             {errors.chipId && <FormError>{errors.chipId.message}</FormError>}
@@ -81,6 +85,7 @@ const NewPetPanel = () => {
               placeholder="Tattoo number"
               width="80%"
               error={errors.tatooId?.message}
+              autoComplete="off"
               {...register("tatooId")}
             />
             {errors.tatooId && <FormError>{errors.tatooId.message}</FormError>}
@@ -116,21 +121,6 @@ const NewPetPanel = () => {
                 />
               )}
             />
-            {/* <BaseInput
-              placeholder="Sex"
-              list="sexes"
-              width="80%"
-              error={errors.sex?.message}
-              {...register("sex", {
-                required: "Sex is required",
-              })}
-            />
-            <datalist id="sexes">
-              <option value={PetSexes.MALE} />
-              <option value={PetSexes.MALE_CASTRATED} />
-              <option value={PetSexes.FEMALE} />
-              <option value={PetSexes.FEMALE_CASTRATED} />
-            </datalist> */}
             {errors.sex && <FormError>{errors.sex.message}</FormError>}
           </SingleInputWrapper>
           <SingleInputWrapper>
@@ -139,6 +129,7 @@ const NewPetPanel = () => {
               type="number"
               width="80%"
               error={errors.age?.message}
+              autoComplete="off"
               {...register("age", {
                 pattern: {
                   value: /^[0-9]+$/,
@@ -156,6 +147,7 @@ const NewPetPanel = () => {
               type="number"
               width="70%"
               error={errors.weight?.message}
+              autoComplete="off"
               {...register("weight", {
                 pattern: {
                   value: /^[0-9]+$/,
@@ -171,6 +163,7 @@ const NewPetPanel = () => {
               type="number"
               width="70%"
               error={errors.height?.message}
+              autoComplete="off"
               {...register("height", {
                 pattern: {
                   value: /^[0-9]+$/,
@@ -186,6 +179,7 @@ const NewPetPanel = () => {
               type="number"
               width="70%"
               error={errors.length?.message}
+              autoComplete="off"
               {...register("length", {
                 pattern: {
                   value: /^[0-9]+$/,

@@ -41,6 +41,7 @@ const RegisterForm = () => {
     <FormBase onSubmit={handleSubmit(onSubmit)}>
       <BaseInput
         placeholder="Email"
+        autoComplete="off"
         error={errors.email?.message || registerError}
         noMargin={registerError}
         {...register("email", {

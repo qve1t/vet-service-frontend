@@ -32,6 +32,7 @@ const NewOwnerPanel = () => {
               placeholder="Name"
               width="80%"
               error={errors.name?.message}
+              autoComplete="off"
               {...register("name", {
                 required: "Name is required",
               })}
@@ -43,6 +44,7 @@ const NewOwnerPanel = () => {
               placeholder="Surname"
               width="80%"
               error={errors.surname?.message}
+              autoComplete="off"
               {...register("surname", {
                 required: "Surname is required",
               })}
@@ -57,6 +59,7 @@ const NewOwnerPanel = () => {
               width="50%"
               type="number"
               error={errors.phone?.message}
+              autoComplete="off"
               {...register("phone")}
             />
             {errors.phone && <FormError>{errors.phone.message}</FormError>}
@@ -66,6 +69,7 @@ const NewOwnerPanel = () => {
               placeholder="Email address"
               width="50%"
               error={errors.email?.message}
+              autoComplete="off"
               {...register("email", {
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -80,6 +84,7 @@ const NewOwnerPanel = () => {
           placeholder="Address"
           width="40%"
           error={errors.address?.message}
+          autoComplete="off"
           {...register("address")}
         />
         {errors.address && <FormError>{errors.address.message}</FormError>}
