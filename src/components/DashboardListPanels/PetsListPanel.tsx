@@ -3,6 +3,7 @@ import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { PetListInterface } from "../../api/interfaces/pet";
 import { getPetsListAPI } from "../../api/pet";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
+import ErrorComponent from "../ErrorComponent";
 import { PetsListElement } from "../ListsElements";
 import LoadingComponent from "../LoadingComponent";
 
@@ -39,7 +40,7 @@ const PetsListPanel = () => {
         {loadingState.loading ? (
           <LoadingComponent />
         ) : loadingState.error ? (
-          <div>{loadingState.error}</div>
+          <ErrorComponent errorMessage={loadingState.error} />
         ) : (
           petsList.map((elem) => (
             <PetsListElement listElement={elem} key={elem.id} />

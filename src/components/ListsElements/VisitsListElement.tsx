@@ -1,4 +1,5 @@
 import { VisitListInterface } from "../../api/interfaces/visit";
+import { UseLoggedUserActions } from "../../modules/LoggedUserModule";
 
 import {
   ListElementWrapperLink,
@@ -11,8 +12,12 @@ interface VisitsListElementInterface {
 }
 
 const VisitsListElement = ({ listElement }: VisitsListElementInterface) => {
+  const { setSelectedPage } = UseLoggedUserActions();
   return (
-    <ListElementWrapperLink to={`/dashboard/visits/${listElement.id}`}>
+    <ListElementWrapperLink
+      to={`/dashboard/visits/${listElement.id}`}
+      onClick={() => setSelectedPage("/dashboard/visits")}
+    >
       <ListElementMainText>{listElement.dateTime}</ListElementMainText>
       <ListElementSecondaryText>{listElement.name}</ListElementSecondaryText>
     </ListElementWrapperLink>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useHistory } from "react-router";
 import { loginUserAPI } from "../../../api/auth";
@@ -14,6 +15,7 @@ type Inputs = {
 };
 
 const LoginForm = () => {
+  const [loginError, setLoginError] = useState<string>("");
   const history = useHistory();
   const { logUser } = UseLoggedUserActions();
   const {
@@ -24,6 +26,7 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
     event?.preventDefault();
+    setLoginError("");
     const loginResponse = await loginUserAPI({
       email: data.email,
       password: data.password,
@@ -32,7 +35,7 @@ const LoginForm = () => {
       logUser(loginResponse.response.isLogged, loginResponse.response.email);
       history.push("/dashboard");
     } else {
-      console.log(loginResponse.error);
+      loginResponse.error && setLoginError(loginResponse.error);
     }
   };
 
@@ -40,7 +43,8 @@ const LoginForm = () => {
     <FormBase onSubmit={handleSubmit(onSubmit)}>
       <BaseInput
         placeholder="Email"
-        error={errors.email?.message}
+        error={errors.email?.message || loginError}
+        noMargin={loginError}
         autoComplete="off"
         {...register("email", {
           required: "Email is required",
@@ -54,12 +58,13 @@ const LoginForm = () => {
       <BaseInput
         placeholder="Password"
         type="password"
-        error={errors.password?.message}
+        error={errors.password?.message || loginError}
         {...register("password", {
           required: "Password is required",
         })}
       />
       {errors.password && <FormError>{errors.password.message}</FormError>}
+      {loginError && <FormError>{loginError}</FormError>}
 
       <StandardButton label="Login" />
     </FormBase>

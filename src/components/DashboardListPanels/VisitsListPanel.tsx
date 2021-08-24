@@ -7,6 +7,7 @@ import {
   getCurrentDayEnd,
 } from "../../utils/getCurrentDate";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
+import ErrorComponent from "../ErrorComponent";
 import { VisitsListElement } from "../ListsElements";
 import LoadingComponent from "../LoadingComponent";
 
@@ -42,7 +43,7 @@ const VisitsListPanel = () => {
         {loadingState.loading ? (
           <LoadingComponent />
         ) : loadingState.error ? (
-          <div>{loadingState.error}</div>
+          <ErrorComponent errorMessage={loadingState.error} />
         ) : (
           visitsList.map((elem) => (
             <VisitsListElement listElement={elem} key={elem.id} />

@@ -1,23 +1,23 @@
+import {
+  UseLoggedUserState,
+  UseLoggedUserActions,
+} from "../../../modules/LoggedUserModule";
 import { DashboardLinkStyled } from "./styledComponents";
 
 interface singleSectionItemProps {
   label: string;
   linkTo: string;
-  selectedPath: string;
-  linkClickHandler: (linkTo: string) => void;
 }
 
-const SingleSectionLink = ({
-  label,
-  linkTo,
-  selectedPath,
-  linkClickHandler,
-}: singleSectionItemProps) => {
+const SingleSectionLink = ({ label, linkTo }: singleSectionItemProps) => {
+  const { selectedPage } = UseLoggedUserState();
+  const { setSelectedPage } = UseLoggedUserActions();
+
   return (
     <DashboardLinkStyled
       to={linkTo}
-      $isSelected={selectedPath === linkTo}
-      onClick={() => linkClickHandler(linkTo)}
+      $isSelected={selectedPage === linkTo}
+      onClick={() => setSelectedPage(linkTo)}
     >
       {label}
     </DashboardLinkStyled>

@@ -6,6 +6,7 @@ import {
   DashboardNavbarWrapper,
   LogoutButton,
   SectionSeparator,
+  NavbarEmail,
 } from "./styledComponents";
 import {
   OwnersSection,
@@ -16,13 +17,17 @@ import {
 import VerticalMenu from "../../VerticalNavbar";
 import HamburgetButton from "../../VerticalNavbar/HamburgerButton";
 
-import { UseLoggedUserActions } from "../../../modules/LoggedUserModule";
+import {
+  UseLoggedUserActions,
+  UseLoggedUserState,
+} from "../../../modules/LoggedUserModule";
 
 import { DASHBOARD_NAVBAR_LINKS } from "./dashboardNavbarLinks";
 
 const DashboardNavbar = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const history = useHistory();
+  const { email } = UseLoggedUserState();
   const { logoutUser } = UseLoggedUserActions();
 
   const hamburgerMenuClick = (): void => {
@@ -52,6 +57,7 @@ const DashboardNavbar = () => {
           <Route path="/dashboard/notes" component={NotesSection} />
         </Switch>
         <SectionSeparator />
+        <NavbarEmail>{email}</NavbarEmail>
         <LogoutButton onClick={() => logoutHandler()}>Logout</LogoutButton>
         <HamburgetButton
           showMenu={showMenu}

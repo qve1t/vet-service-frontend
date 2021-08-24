@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import Select from "react-select";
 import { colors } from "../../mainStyles/colors";
 import { mediaQuery } from "../../mainStyles/madiaQuery";
 import { transitions } from "../../mainStyles/transitions";
@@ -13,6 +14,10 @@ const baseStyle = css`
   border: 1px solid ${colors.inputGrey};
   margin-bottom: 30px;
   transition: border-color ${transitions.standardTransition};
+
+  &:hover {
+    border-color: ${colors.themeGreen};
+  }
 
   &:focus {
     border-color: ${colors.themeGreen};
@@ -31,7 +36,11 @@ export const FormError = styled.p`
   align-self: flex-start;
 `;
 
-export const BaseInput = styled.input<{ error?: string; width?: string }>`
+export const BaseInput = styled.input<{
+  error?: string;
+  width?: string;
+  noMargin?: string;
+}>`
   width: ${({ width }) => (width ? width : "100%")};
   ${baseStyle}
 
@@ -41,6 +50,12 @@ export const BaseInput = styled.input<{ error?: string; width?: string }>`
       border-color: ${colors.errorRed};
       margin-bottom: 5px;
     `}
+  
+  ${({ noMargin }) =>
+    noMargin &&
+    css`
+      margin-bottom: 30px;
+    `}
 `;
 
 export const BaseTextArea = styled.textarea`
@@ -48,4 +63,40 @@ export const BaseTextArea = styled.textarea`
   height: 150px;
   resize: none;
   ${baseStyle}
+`;
+
+export const DatePickerWrapper = styled.div<{ error?: string; width?: string }>`
+  input {
+    width: ${({ width }) => (width ? width : "100%")};
+    ${baseStyle}
+    padding-top: -30px;
+
+    ${({ error }) =>
+      error &&
+      css`
+        border-color: ${colors.errorRed};
+        margin-bottom: 5px;
+      `}
+  }
+`;
+
+export const SelectCustom = styled(Select)<{ error?: string; width?: string }>`
+  & .react-select__control {
+    width: ${({ width }) => (width ? width : "100%")};
+    ${baseStyle}
+    padding: 0px 12px;
+    border-radius: 0;
+    box-shadow: none;
+
+    ${({ error }) =>
+      error &&
+      css`
+        border-color: ${colors.errorRed};
+        margin-bottom: 5px;
+      `};
+  }
+  & .react-select__menu {
+    border-radius: 0;
+    margin-top: -30px;
+  }
 `;

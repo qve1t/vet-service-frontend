@@ -1,4 +1,5 @@
 import { PetListInterface } from "../../api/interfaces/pet";
+import { UseLoggedUserActions } from "../../modules/LoggedUserModule";
 
 import {
   ListElementWrapperLink,
@@ -12,7 +13,7 @@ interface PetListElementInterface {
 }
 
 const PetListElement = ({ listElement }: PetListElementInterface) => {
-  console.log(listElement);
+  const { setSelectedPage } = UseLoggedUserActions();
   return (
     <ListElementWrapperLink to={`/dashboard/pets/${listElement.id}`}>
       <ListElementMainText>{listElement.name}</ListElementMainText>
@@ -20,6 +21,7 @@ const PetListElement = ({ listElement }: PetListElementInterface) => {
       {listElement.owner && (
         <ListElementLink
           to={`/dashboard/owners/${listElement.owner?.id}`}
+          onClick={() => setSelectedPage("/dashboard/owners")}
         >{`${listElement.owner?.name} ${listElement.owner?.surname}`}</ListElementLink>
       )}
     </ListElementWrapperLink>

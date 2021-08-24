@@ -14,6 +14,7 @@ export const DashboardNavbarWrapper = styled.section`
 
   @media (max-width: ${mediaQuery.standard}) {
     z-index: 5;
+    justify-content: space-between;
   }
 `;
 
@@ -46,6 +47,10 @@ export const LogoutButton = styled.button`
 
 export const SectionSeparator = styled.div`
   flex: 1;
+
+  @media (max-width: ${mediaQuery.standard}) {
+    display: none;
+  }
 `;
 
 export const NavbarSectionWrapper = styled.div`
@@ -82,4 +87,8 @@ export const NavbarSectionLink = styled(Link)`
       left: 0;
     }
   }
+`;
+
+export const NavbarEmail = styled.p`
+  margin-right: 15px;
 `;

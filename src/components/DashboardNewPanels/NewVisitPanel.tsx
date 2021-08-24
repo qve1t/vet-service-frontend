@@ -1,15 +1,19 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import DatePicker from "react-datepicker";
 import { VisitRegisterInterface } from "../../api/interfaces/visit";
 
-import { BaseInput, FormError } from "../Inputs";
+import { BaseInput, FormError, DatePickerWrapper } from "../Inputs";
 import StandardButton from "../Buttons/StandardButton";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import { FormsWrapper } from "./styledComponents";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const NewVisitPanel = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<VisitRegisterInterface>();
 
@@ -20,16 +24,28 @@ const NewVisitPanel = () => {
 
   return (
     <>
-      <MainAreaHeader>Register new owner</MainAreaHeader>
+      <MainAreaHeader>Register new visit</MainAreaHeader>
+
       <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
-        <BaseInput
-          placeholder="Date"
-          width="40%"
-          type="datetime-local"
-          error={errors.dateTime?.message}
-          {...register("dateTime", {
-            required: "Date and time are required",
-          })}
+        <Controller
+          name="dateTime"
+          control={control}
+          rules={{
+            required: { value: true, message: "Date and time are required" },
+          }}
+          render={({ field }) => (
+            <DatePickerWrapper width="40%" error={errors.dateTime?.message}>
+              <DatePicker
+                placeholderText="Date"
+                showTimeSelect
+                timeIntervals={15}
+                timeFormat="HH:mm"
+                selected={field.value}
+                onChange={(date: any) => field.onChange(date)}
+                dateFormat="dd-MM-yyyy, HH:mm"
+              />
+            </DatePickerWrapper>
+          )}
         />
         {errors.dateTime && <FormError>{errors.dateTime.message}</FormError>}
         <BaseInput

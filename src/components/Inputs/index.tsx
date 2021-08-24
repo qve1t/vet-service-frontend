@@ -1,3 +1,9 @@
-import { BaseInput, FormError, BaseTextArea } from "./styledComponents";
+import {
+  BaseInput,
+  FormError,
+  BaseTextArea,
+  DatePickerWrapper,
+  SelectCustom,
+} from "./styledComponents";
 
-export { BaseInput, FormError, BaseTextArea };
+export { BaseInput, FormError, BaseTextArea, DatePickerWrapper, SelectCustom };

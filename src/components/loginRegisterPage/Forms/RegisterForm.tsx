@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useHistory } from "react-router";
 import { registerUserAPI } from "../../../api/user";
@@ -13,6 +14,7 @@ type Inputs = {
 };
 
 const RegisterForm = () => {
+  const [registerError, setRegisterError] = useState<string>("");
   const history = useHistory();
   const {
     register,
@@ -23,6 +25,7 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
     event?.preventDefault();
+    setRegisterError("");
     const registerResponse = await registerUserAPI({
       email: data.email,
       password: data.password,
@@ -30,7 +33,7 @@ const RegisterForm = () => {
     if (registerResponse.response) {
       history.push("/login");
     } else {
-      console.log(registerResponse.error);
+      registerResponse.error && setRegisterError(registerResponse.error);
     }
   };
 
@@ -38,7 +41,8 @@ const RegisterForm = () => {
     <FormBase onSubmit={handleSubmit(onSubmit)}>
       <BaseInput
         placeholder="Email"
-        error={errors.email?.message}
+        error={errors.email?.message || registerError}
+        noMargin={registerError}
         {...register("email", {
           required: "Email is required",
           pattern: {
@@ -51,7 +55,8 @@ const RegisterForm = () => {
       <BaseInput
         placeholder="Password"
         type="password"
-        error={errors.password?.message}
+        error={errors.password?.message || registerError}
+        noMargin={registerError}
         {...register("password", {
           required: "Password is required",
           minLength: {
@@ -68,7 +73,7 @@ const RegisterForm = () => {
       <BaseInput
         placeholder="Confirm password"
         type="password"
-        error={errors.passwordConfirm?.message}
+        error={errors.passwordConfirm?.message || registerError}
         {...register("passwordConfirm", {
           validate: (value) =>
             value === watch("password") || "Passwords do not match",
@@ -77,6 +82,7 @@ const RegisterForm = () => {
       {errors.passwordConfirm && (
         <FormError>{errors.passwordConfirm.message}</FormError>
       )}
+      {registerError && <FormError>{registerError}</FormError>}
       <StandardButton label="Register" />
     </FormBase>
   );

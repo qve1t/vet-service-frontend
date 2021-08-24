@@ -11,6 +11,13 @@ export const apiResponse = (
     };
   }
 
+  if (jsonResponse.error) {
+    return {
+      error: jsonResponse.error,
+      response: null,
+    };
+  }
+
   return {
     error: null,
     response: jsonResponse,

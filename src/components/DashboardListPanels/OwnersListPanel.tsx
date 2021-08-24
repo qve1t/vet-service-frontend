@@ -3,6 +3,7 @@ import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { OwnerListInterface } from "../../api/interfaces/owner";
 import { getOwnersListAPI } from "../../api/owner";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
+import ErrorComponent from "../ErrorComponent";
 import { OwnersListElement } from "../ListsElements";
 import LoadingComponent from "../LoadingComponent";
 
@@ -39,7 +40,7 @@ const OwnersListPanel = () => {
         {loadingState.loading ? (
           <LoadingComponent />
         ) : loadingState.error ? (
-          <div>{loadingState.error}</div>
+          <ErrorComponent errorMessage={loadingState.error} />
         ) : (
           ownersList.map((elem) => (
             <OwnersListElement listElement={elem} key={elem.id} />
