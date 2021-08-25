@@ -6,7 +6,13 @@ export interface OwnerInterface {
   address: string | null;
 }
 
-export type RegisterOwnerInterface = OwnerInterface;
+export interface RegisterOwnerInterface {
+  name: string;
+  surname: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+}
 
 export interface OwnerInfoToUpdateInterface {
   id: string;

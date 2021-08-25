@@ -4,6 +4,7 @@ export const FormsWrapper = styled.form`
   display: flex;
   flex-direction: column;
   margin-top: 15px;
+  margin-bottom: 15px;
 `;
 
 export const MultipleInputsWrapper = styled.div`

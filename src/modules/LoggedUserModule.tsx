@@ -30,7 +30,7 @@ export const LoggedUserModule = ({ children }: LoggedUserContextProps) => {
     isLogged: false,
     email: "",
     selectedPage: "/dashboard",
-    itemsPerPage: 20,
+    itemsPerPage: 10,
   });
 
   const actions = useMemo<Actions>(() => {

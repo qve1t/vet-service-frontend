@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { useHistory } from "react-router";
+import { pickBy } from "lodash";
 import { PetSexes, PetRegisterInterface } from "../../api/interfaces/pet";
 
 import { BaseInput, FormError, BaseTextArea, SelectCustom } from "../Inputs";
@@ -10,6 +13,8 @@ import {
   SingleInputWrapper,
 } from "./styledComponents";
 import { colors } from "../../mainStyles/colors";
+import ErrorComponent from "../ErrorComponent";
+import { registerNewPetAPI } from "../../api/pet";
 
 const SEX_OPTIONS = [
   { value: PetSexes.MALE, label: "Male" },
@@ -19,6 +24,8 @@ const SEX_OPTIONS = [
 ];
 
 const NewPetPanel = () => {
+  const [error, setError] = useState<string | null>("");
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -26,9 +33,21 @@ const NewPetPanel = () => {
     formState: { errors },
   } = useForm<PetRegisterInterface>();
 
-  const onSubmit: SubmitHandler<PetRegisterInterface> = (data, event) => {
+  const onSubmit: SubmitHandler<PetRegisterInterface> = async (data, event) => {
     event?.preventDefault();
-    console.log(data);
+    setError("");
+    const filteredValues = pickBy(
+      data,
+      (value: string | undefined) => value && value.length > 0,
+    );
+    const registerResponse = await registerNewPetAPI(
+      filteredValues as PetRegisterInterface,
+    );
+    if (registerResponse.response) {
+      history.push(`/dashboard/pets/${registerResponse.response.id}`);
+    } else {
+      setError(registerResponse.error);
+    }
   };
 
   return (
@@ -194,6 +213,7 @@ const NewPetPanel = () => {
         <BaseTextArea placeholder="Others" {...register("others")} />
         <StandardButton label="Register" />
       </FormsWrapper>
+      {error && <ErrorComponent errorMessage={error} />}
     </>
   );
 };

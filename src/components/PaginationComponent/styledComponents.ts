@@ -5,9 +5,11 @@ import { typography } from "../../mainStyles/typography";
 
 export const PaginationWrapper = styled.div`
   display: flex;
+  width: 100%;
   gap: 15px;
   margin-top: 15px;
   align-items: center;
+  justify-content: center;
 `;
 
 export const PaginationButton = styled.button`

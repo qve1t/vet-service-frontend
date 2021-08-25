@@ -64,6 +64,7 @@ const PetsListPanel = () => {
     setPageState({
       ...pageState,
       searchText: text,
+      currentPage: 0,
     });
   };
 

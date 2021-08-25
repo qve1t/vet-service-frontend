@@ -1,8 +1,8 @@
 export enum PetSexes {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
-  MALE_CASTRATED = 'MALE_CASTRATED',
-  FEMALE_CASTRATED = 'FEMALE_CASTRATED',
+  MALE = "MALE",
+  FEMALE = "FEMALE",
+  MALE_CASTRATED = "MALE_CASTRATED",
+  FEMALE_CASTRATED = "FEMALE_CASTRATED",
 }
 
 export interface PetInterface {
@@ -20,7 +20,20 @@ export interface PetInterface {
   others: string | null;
 }
 
-export type PetRegisterInterface = PetInterface;
+export interface PetRegisterInterface {
+  name: string;
+  chipId?: string;
+  tatooId?: string;
+  type: string;
+  race?: string;
+  age?: string;
+  sex: PetSexes;
+  weight?: string;
+  height?: string;
+  length?: string;
+  diseases?: string;
+  others?: string;
+}
 
 export interface PetInfoToUpdateInterface {
   id: string;

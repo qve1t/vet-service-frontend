@@ -28,10 +28,10 @@ const PaginationComponent = ({
       >
         {"<"}
       </PaginationButton>
-      <PaginationCount>{currentPage}</PaginationCount>
+      <PaginationCount>{currentPage + 1}</PaginationCount>
       <PaginationButton
         disabled={currentPage === pagesNumber}
-        onClick={() => setPage(currentPage - 1)}
+        onClick={() => setPage(currentPage + 1)}
       >
         {">"}
       </PaginationButton>

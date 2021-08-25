@@ -64,6 +64,7 @@ const OwnersListPanel = () => {
     setPageState({
       ...pageState,
       searchText: text,
+      currentPage: 0,
     });
   };
 

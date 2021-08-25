@@ -7,7 +7,13 @@ export interface VisitInterface {
   healing: string | null;
 }
 
-export interface VisitRegisterInterface extends VisitInterface {
+export interface VisitRegisterInterface {
+  dateTime: Date;
+  name: string;
+  note?: string;
+  interview?: string;
+  description?: string;
+  healing?: string;
   ownerId: string;
   petId: string;
 }
