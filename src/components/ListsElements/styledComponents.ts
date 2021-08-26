@@ -37,15 +37,19 @@ export const ListElementWrapperLink = styled(Link)`
 export const ListElementMainText = styled.h4`
   font-size: ${typography.large};
   font-weight: 700;
+  text-transform: capitalize;
 `;
 
-export const ListElementSecondaryText = styled.p``;
+export const ListElementSecondaryText = styled.p`
+  text-transform: capitalize;
+`;
 
 export const ListElementLink = styled(Link)`
   color: ${colors.fontMain};
   font-weight: 300;
   font-style: italic;
   text-decoration: none;
+  text-transform: capitalize;
 
   transition: ${transitions.standardTransition};
   &:hover {

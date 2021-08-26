@@ -51,7 +51,7 @@ const NewOwnerPanel = () => {
         <MultipleInputsWrapper>
           <SingleInputWrapper>
             <BaseInput
-              placeholder="Name"
+              placeholder="Name (Required)"
               width="80%"
               error={errors.name?.message}
               autoComplete="off"
@@ -63,7 +63,7 @@ const NewOwnerPanel = () => {
           </SingleInputWrapper>
           <SingleInputWrapper>
             <BaseInput
-              placeholder="Surname"
+              placeholder="Surname (Required)"
               width="80%"
               error={errors.surname?.message}
               autoComplete="off"

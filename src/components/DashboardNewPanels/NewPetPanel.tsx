@@ -55,7 +55,7 @@ const NewPetPanel = () => {
       <MainAreaHeader>Register new pet</MainAreaHeader>
       <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
         <BaseInput
-          placeholder="Pet name"
+          placeholder="Pet name (Required)"
           width="40%"
           error={errors.name?.message}
           autoComplete="off"
@@ -67,7 +67,7 @@ const NewPetPanel = () => {
         <MultipleInputsWrapper>
           <SingleInputWrapper>
             <BaseInput
-              placeholder="Type"
+              placeholder="Type (Required)"
               width="80%"
               error={errors.type?.message}
               autoComplete="off"
@@ -121,7 +121,7 @@ const NewPetPanel = () => {
               render={({ field }) => (
                 <SelectCustom
                   classNamePrefix="react-select"
-                  placeholder="Sex"
+                  placeholder="Sex (Required)"
                   options={SEX_OPTIONS}
                   onChange={(option: any) => field.onChange(option.value)}
                   width="80%"

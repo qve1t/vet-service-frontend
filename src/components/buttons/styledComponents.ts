@@ -31,6 +31,7 @@ export const MainPageButtonStyled = styled.button<{
 export const StandardButtonStyled = styled.button<{
   width: string;
   primaryColor: string;
+  background?: string;
 }>`
   width: ${({ width }) => (width ? width : "100px")};
   font-size: ${typography.standard};
@@ -39,7 +40,7 @@ export const StandardButtonStyled = styled.button<{
   border-color: ${({ primaryColor }) =>
     primaryColor ? primaryColor : "#ffffff"};
   border-radius: 100px;
-  background: transparent;
+  background: ${({ background }) => (background ? background : "#ffffff")};
   color: ${({ primaryColor }) => (primaryColor ? primaryColor : "#ffffff")};
   padding: 5px 10px;
   cursor: pointer;

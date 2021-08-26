@@ -125,7 +125,7 @@ const NewVisitPanel = () => {
           render={({ field }) => (
             <DatePickerWrapper width="40%" error={errors.dateTime?.message}>
               <DatePicker
-                placeholderText="Date"
+                placeholderText="Date (Required)"
                 showTimeSelect
                 timeIntervals={15}
                 timeFormat="HH:mm"
@@ -138,7 +138,7 @@ const NewVisitPanel = () => {
         />
         {errors.dateTime && <FormError>{errors.dateTime.message}</FormError>}
         <BaseInput
-          placeholder="Name"
+          placeholder="Name (Required)"
           width="40%"
           error={errors.name?.message}
           autoComplete="off"
@@ -157,7 +157,7 @@ const NewVisitPanel = () => {
           render={({ field }) => (
             <SelectCustomAsync
               classNamePrefix="react-select"
-              placeholder="Pet"
+              placeholder="Pet (Required)"
               width="40%"
               cacheOptions
               loadOptions={loadPets}
@@ -185,7 +185,7 @@ const NewVisitPanel = () => {
           render={({ field }) => (
             <SelectCustomAsync
               classNamePrefix="react-select"
-              placeholder="Owner"
+              placeholder="Owner (Required)"
               width="40%"
               cacheOptions
               loadOptions={loadOwners}

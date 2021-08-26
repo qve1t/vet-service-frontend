@@ -22,6 +22,7 @@ export const LogoWrapper = styled.div`
   width: 100%;
   height: 50px;
   align-items: center;
+  justify-content: center;
 `;
 
 export const SectionDivider = styled.div`
