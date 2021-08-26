@@ -10,7 +10,7 @@ const VisitsDetailsPanel = () => {
   const { id } = useParams<PathParamsInterface>();
   return (
     <>
-      <MainAreaHeader>Pet details</MainAreaHeader>
+      <MainAreaHeader>Visit details</MainAreaHeader>
       <div>{id}</div>
     </>
   );

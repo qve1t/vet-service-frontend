@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import { colors } from "../../mainStyles/colors";
 import { mediaQuery } from "../../mainStyles/madiaQuery";
 import { transitions } from "../../mainStyles/transitions";
@@ -98,5 +99,31 @@ export const SelectCustom = styled(Select)<{ error?: string; width?: string }>`
   & .react-select__menu {
     border-radius: 0;
     margin-top: -30px;
+    width: ${({ width }) => (width ? width : "100%")};
+  }
+`;
+
+export const SelectCustomAsync = styled(AsyncSelect)<{
+  error?: string;
+  width?: string;
+}>`
+  & .react-select__control {
+    width: ${({ width }) => (width ? width : "100%")};
+    ${baseStyle}
+    padding: 0px 12px;
+    border-radius: 0;
+    box-shadow: none;
+
+    ${({ error }) =>
+      error &&
+      css`
+        border-color: ${colors.errorRed};
+        margin-bottom: 5px;
+      `};
+  }
+  & .react-select__menu {
+    border-radius: 0;
+    margin-top: -30px;
+    width: ${({ width }) => (width ? width : "100%")};
   }
 `;

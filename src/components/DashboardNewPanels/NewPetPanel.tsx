@@ -12,7 +12,7 @@ import {
   MultipleInputsWrapper,
   SingleInputWrapper,
 } from "./styledComponents";
-import { colors } from "../../mainStyles/colors";
+import { selectTheme } from "../../mainStyles/reactSelectTheme";
 import ErrorComponent from "../ErrorComponent";
 import { registerNewPetAPI } from "../../api/pet";
 
@@ -124,19 +124,9 @@ const NewPetPanel = () => {
                   placeholder="Sex"
                   options={SEX_OPTIONS}
                   onChange={(option: any) => field.onChange(option.value)}
-                  value={SEX_OPTIONS.find((c) => c.value === field.value)}
                   width="80%"
                   error={errors.sex?.message}
-                  theme={(theme: any) => ({
-                    ...theme,
-                    colors: {
-                      ...theme.colors,
-                      primary: colors.themeGreen,
-                      primary25: colors.themeGreen25,
-                      primary50: colors.themeGreen50,
-                      primary75: colors.themeGreen75,
-                    },
-                  })}
+                  theme={selectTheme}
                 />
               )}
             />
