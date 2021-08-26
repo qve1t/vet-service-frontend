@@ -18,7 +18,11 @@ const VisitsListElement = ({ listElement }: VisitsListElementInterface) => {
       to={`/dashboard/visits/${listElement.id}`}
       onClick={() => setSelectedPage("/dashboard/visits")}
     >
-      <ListElementMainText>{listElement.dateTime}</ListElementMainText>
+      <ListElementMainText>
+        {new Date(listElement.dateTime).toLocaleTimeString([], {
+          timeStyle: "short",
+        })}
+      </ListElementMainText>
       <ListElementSecondaryText>{listElement.name}</ListElementSecondaryText>
     </ListElementWrapperLink>
   );

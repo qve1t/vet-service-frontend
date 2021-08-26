@@ -27,7 +27,12 @@ const VisitsListPanel = () => {
 
       if (fetchedData.response) {
         setLoadingState({ loading: false, error: "" });
-        setVisitsList(fetchedData.response);
+        setVisitsList(
+          fetchedData.response.sort(
+            (a, b) =>
+              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime(),
+          ),
+        );
       } else {
         setLoadingState({ loading: false, error: fetchedData.error });
       }
