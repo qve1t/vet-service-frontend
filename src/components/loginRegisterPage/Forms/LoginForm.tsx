@@ -17,7 +17,7 @@ type Inputs = {
 const LoginForm = () => {
   const [loginError, setLoginError] = useState<string>("");
   const history = useHistory();
-  const { logUser, setSelectedPage } = UseLoggedUserActions();
+  const { logUser } = UseLoggedUserActions();
   const {
     register,
     handleSubmit,
@@ -32,7 +32,6 @@ const LoginForm = () => {
       password: data.password,
     });
     if (loginResponse.response) {
-      setSelectedPage("/dashboard");
       logUser(loginResponse.response.isLogged, loginResponse.response.email);
       history.push("/dashboard");
     } else {

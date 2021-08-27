@@ -6,7 +6,15 @@ import { getOwnerDetailsAPI } from "../../api/owner";
 
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import ErrorComponent from "../ErrorComponent";
+import { FormLabel } from "../Inputs";
+import { PetsDetailsListElement } from "../ListsElements";
 import LoadingComponent from "../LoadingComponent";
+import DataElement from "./Components/DataElement";
+import {
+  MultipleElementsWrapper,
+  Wrapper,
+  ListElementsWrapper,
+} from "./styledComponents";
 
 interface PathParamsInterface {
   id: string;
@@ -44,7 +52,43 @@ const OwnerDetailsPanel = () => {
         ) : loadingState.error ? (
           <ErrorComponent errorMessage={loadingState.error} />
         ) : (
-          <>{JSON.stringify(data)}</>
+          <Wrapper>
+            <MultipleElementsWrapper>
+              <DataElement label="Name" displayData={data?.name} width="80%" />
+              <DataElement
+                label="Surname"
+                displayData={data?.surname}
+                width="80%"
+              />
+            </MultipleElementsWrapper>
+            <MultipleElementsWrapper>
+              <DataElement
+                label="Phone number"
+                displayData={data?.phone}
+                width="50%"
+              />
+              <DataElement
+                label="Email address"
+                displayData={data?.email}
+                width="50%"
+              />
+            </MultipleElementsWrapper>
+            <DataElement
+              label="Address"
+              displayData={data?.address}
+              width="40%"
+            />
+            <FormLabel>Pets</FormLabel>
+            <ListElementsWrapper>
+              {data?.pets.map((elem) => (
+                <PetsDetailsListElement
+                  listElement={elem}
+                  width="20%"
+                  key={elem.id}
+                />
+              ))}
+            </ListElementsWrapper>
+          </Wrapper>
         )}
       </div>
     </>

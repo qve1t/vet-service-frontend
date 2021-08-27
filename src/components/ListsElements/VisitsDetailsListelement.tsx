@@ -19,7 +19,11 @@ const VisitsListElement = ({
     <ListElementWrapperLink
       to={`/dashboard/visits/${listElement?.id}`}
       width={width}
+      column={true}
     >
+      <ListElementMainText>
+        {new Date(listElement?.dateTime).toLocaleDateString()}
+      </ListElementMainText>
       <ListElementMainText>
         {new Date(listElement?.dateTime).toLocaleTimeString([], {
           timeStyle: "short",

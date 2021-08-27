@@ -6,7 +6,19 @@ import { getVisitDetailsAPI } from "../../api/visit";
 
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import ErrorComponent from "../ErrorComponent";
+import { FormLabel } from "../Inputs";
+import {
+  OwnersDetailsListElement,
+  PetsDetailsListElement,
+} from "../ListsElements";
 import LoadingComponent from "../LoadingComponent";
+import DataElement from "./Components/DataElement";
+import {
+  ElementDataParagraph,
+  MultipleElementsWrapper,
+  SingleElementWrapper,
+  Wrapper,
+} from "./styledComponents";
 
 interface PathParamsInterface {
   id: string;
@@ -44,7 +56,59 @@ const VisitsDetailsPanel = () => {
         ) : loadingState.error ? (
           <ErrorComponent errorMessage={loadingState.error} />
         ) : (
-          <>{JSON.stringify(data)}</>
+          <Wrapper>
+            <SingleElementWrapper>
+              <FormLabel>Date</FormLabel>
+              <ElementDataParagraph
+                width="40%"
+                hasData={data?.dateTime !== null}
+              >
+                {`${
+                  data?.dateTime &&
+                  new Date(data?.dateTime as Date).toLocaleDateString()
+                } ${
+                  data?.dateTime &&
+                  new Date(data?.dateTime as Date).toLocaleTimeString([], {
+                    timeStyle: "short",
+                  })
+                }`}
+              </ElementDataParagraph>
+            </SingleElementWrapper>
+            <DataElement label="Name" displayData={data?.name} width="40%" />
+            <MultipleElementsWrapper>
+              <SingleElementWrapper>
+                <FormLabel>Pet</FormLabel>
+                <PetsDetailsListElement
+                  listElement={data?.petOnVisit as any}
+                  width="40%"
+                />
+              </SingleElementWrapper>
+
+              <SingleElementWrapper>
+                <FormLabel>Owner</FormLabel>
+                <OwnersDetailsListElement
+                  listElement={data?.ownerOnVisit as any}
+                  width="40%"
+                />
+              </SingleElementWrapper>
+            </MultipleElementsWrapper>
+            <DataElement
+              label="Description"
+              displayData={data?.description}
+              width="100%"
+            />
+            <DataElement
+              label="Interview"
+              displayData={data?.interview}
+              width="100%"
+            />
+            <DataElement
+              label="Healing"
+              displayData={data?.healing}
+              width="100%"
+            />
+            <DataElement label="Note" displayData={data?.note} width="100%" />
+          </Wrapper>
         )}
       </div>
     </>

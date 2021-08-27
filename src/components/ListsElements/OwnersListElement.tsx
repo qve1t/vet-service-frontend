@@ -8,13 +8,20 @@ import {
 
 interface OwnersListElementInterface {
   listElement: OwnerListInterface;
+  width?: string;
 }
 
-const OwnersListElement = ({ listElement }: OwnersListElementInterface) => {
+const OwnersListElement = ({
+  listElement,
+  width,
+}: OwnersListElementInterface) => {
   return (
-    <ListElementWrapperLink to={`/dashboard/owners/${listElement.id}`}>
-      <ListElementMainText>{listElement.surname}</ListElementMainText>
-      <ListElementSecondaryText>{listElement.name}</ListElementSecondaryText>
+    <ListElementWrapperLink
+      to={`/dashboard/owners/${listElement?.id}`}
+      width={width}
+    >
+      <ListElementMainText>{listElement?.surname}</ListElementMainText>
+      <ListElementSecondaryText>{listElement?.name}</ListElementSecondaryText>
     </ListElementWrapperLink>
   );
 };

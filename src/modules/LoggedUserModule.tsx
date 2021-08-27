@@ -5,7 +5,6 @@ import { useImmer } from "use-immer";
 interface State {
   isLogged: boolean;
   email: string;
-  selectedPage: string;
   itemsPerPage: number;
 }
 
@@ -13,7 +12,6 @@ interface Actions {
   logUser: (isLogged: boolean, email: string) => void;
   logoutUser: (isLogged: boolean, email: string) => void;
   checkIsLogged: (isLogged: boolean, email: string) => void;
-  setSelectedPage: (page: string) => void;
 }
 
 const LoggedUserContext = createContext<{
@@ -29,7 +27,6 @@ export const LoggedUserModule = ({ children }: LoggedUserContextProps) => {
   const [state, setState] = useImmer<State>({
     isLogged: false,
     email: "",
-    selectedPage: "/dashboard",
     itemsPerPage: 10,
   });
 
@@ -51,11 +48,6 @@ export const LoggedUserModule = ({ children }: LoggedUserContextProps) => {
         setState((draft) => {
           draft.isLogged = isLogged;
           draft.email = email;
-        });
-      },
-      setSelectedPage: (page) => {
-        setState((draft) => {
-          draft.selectedPage = page;
         });
       },
     };

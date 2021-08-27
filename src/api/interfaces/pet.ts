@@ -18,6 +18,8 @@ export interface PetInterface {
   length: number | null;
   diseases: string | null;
   others: string | null;
+  owner: { id: string; name: string; surname: string } | null;
+  visits: { id: string; dateTime: Date; name: string }[];
 }
 
 export interface PetRegisterInterface {

@@ -1,7 +1,4 @@
-import {
-  UseLoggedUserState,
-  UseLoggedUserActions,
-} from "../../../modules/LoggedUserModule";
+import { useLocation } from "react-router";
 import { DashboardLinkStyled } from "./styledComponents";
 
 interface singleSectionItemProps {
@@ -10,15 +7,10 @@ interface singleSectionItemProps {
 }
 
 const SingleSectionLink = ({ label, linkTo }: singleSectionItemProps) => {
-  const { selectedPage } = UseLoggedUserState();
-  const { setSelectedPage } = UseLoggedUserActions();
-
+  const location = useLocation();
+  const locationToCheck = location.pathname.split("/").slice(0, 3).join("/");
   return (
-    <DashboardLinkStyled
-      to={linkTo}
-      $isSelected={selectedPage === linkTo}
-      onClick={() => setSelectedPage(linkTo)}
-    >
+    <DashboardLinkStyled to={linkTo} $isSelected={locationToCheck === linkTo}>
       {label}
     </DashboardLinkStyled>
   );

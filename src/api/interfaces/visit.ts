@@ -5,6 +5,8 @@ export interface VisitInterface {
   interview: string | null;
   description: string | null;
   healing: string | null;
+  petOnVisit: { id: string; name: string; type: string };
+  ownerOnVisit: { id: string; name: string; surname: string };
 }
 
 export interface VisitRegisterInterface {

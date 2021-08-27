@@ -4,7 +4,7 @@ import { mediaQuery } from "../../mainStyles/madiaQuery";
 export const DashboardWrapper = styled.div`
   display: grid;
   height: 100vh;
-  grid-template-columns: minmax(220px, 0.18fr) 1fr;
+  grid-template-columns: 250px 1fr;
   grid-template-rows: 50px 1fr;
   grid-template-areas:
     "sidepanel nav"

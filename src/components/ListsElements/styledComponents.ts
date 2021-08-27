@@ -28,10 +28,21 @@ export const ListElementWrapper = styled.div`
   ${wrapperStyle}
 `;
 
-export const ListElementWrapperLink = styled(Link)`
+export const ListElementWrapperLink = styled(Link)<{
+  width?: string;
+  column?: boolean;
+}>`
   ${wrapperStyle}
+  width: ${({ width }) => (width ? width : "100%")};
   color: ${colors.fontMain};
   text-decoration: none;
+
+  ${({ column }) =>
+    column &&
+    css`
+      flex-direction: column;
+      gap: 5px;
+    `}
 `;
 
 export const ListElementMainText = styled.h4`
