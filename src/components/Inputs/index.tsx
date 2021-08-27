@@ -5,6 +5,7 @@ import {
   DatePickerWrapper,
   SelectCustom,
   SelectCustomAsync,
+  FormLabel,
 } from "./styledComponents";
 
 export {
@@ -14,4 +15,5 @@ export {
   DatePickerWrapper,
   SelectCustom,
   SelectCustomAsync,
+  FormLabel,
 };

@@ -37,6 +37,14 @@ export const FormError = styled.p`
   align-self: flex-start;
 `;
 
+export const FormLabel = styled.label`
+  font-family: "Lato", sans-serif;
+  font-size: ${typography.small};
+  margin-bottom: 5px;
+  color: ${colors.fontMain};
+  align-self: flex-start;
+`;
+
 export const BaseInput = styled.input<{
   error?: string;
   width?: string;
