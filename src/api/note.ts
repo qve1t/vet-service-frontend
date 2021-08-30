@@ -1,24 +1,24 @@
 import { API_ADDRESS } from "../consts";
-import { FetchResponse } from "./interfaces/fetch";
 import { apiResponse, fetchError } from "../utils/apiResponse";
+import { FetchResponse } from "./interfaces/fetch";
 import {
-  VisitDeleteResponse,
-  VisitGetQuery,
-  VisitInterface,
-  VisitListReponse,
-  VisitRegisterInterface,
-  VisitRegisterResponse,
-  VisitUPdateInterface,
-  VisitUpdateResponse,
-} from "./interfaces/visit";
+  NoteDayQuery,
+  NoteDeleteResponse,
+  NoteListResponse,
+  NoteQueryInterface,
+  NoteRegisterInterface,
+  NoteRegisterResponse,
+  NoteUpdateInterface,
+} from "./interfaces/note";
 
-export const getVisitsListAPI = async ({
-  startDate,
-  endDate,
-}: VisitGetQuery): Promise<FetchResponse<VisitListReponse | null>> => {
+export const getNotesListApi = async ({
+  page,
+  limit,
+  text,
+}: NoteQueryInterface): Promise<FetchResponse<NoteListResponse | null>> => {
   try {
     const response = await fetch(
-      `${API_ADDRESS}/visit/?startDate=${startDate}&endDate=${endDate}`,
+      `${API_ADDRESS}/note/?page=${page}&limit=${limit}&text=${text}`,
       {
         method: "get",
         headers: {
@@ -27,6 +27,7 @@ export const getVisitsListAPI = async ({
         credentials: "include",
       },
     );
+
     const jsonResponse = await response.json();
 
     return apiResponse(response.ok, jsonResponse);
@@ -35,17 +36,22 @@ export const getVisitsListAPI = async ({
   }
 };
 
-export const getVisitDetailsAPI = async (
-  visitId: string,
-): Promise<FetchResponse<VisitInterface | null>> => {
+export const getDayNotesApi = async ({
+  startDate,
+  endDate,
+}: NoteDayQuery): Promise<FetchResponse<NoteListResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/visit/${visitId}`, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `${API_ADDRESS}/note/day?startDate=${startDate}&endDate=${endDate}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
       },
-      credentials: "include",
-    });
+    );
+
     const jsonResponse = await response.json();
 
     return apiResponse(response.ok, jsonResponse);
@@ -54,11 +60,11 @@ export const getVisitDetailsAPI = async (
   }
 };
 
-export const registerNewVisitAPI = async (
-  registerData: VisitRegisterInterface,
-): Promise<FetchResponse<VisitRegisterResponse | null>> => {
+export const registerNewNoteApi = async (
+  registerData: NoteRegisterInterface,
+): Promise<FetchResponse<NoteRegisterResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/visit/register`, {
+    const response = await fetch(`${API_ADDRESS}/note/register`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -74,11 +80,11 @@ export const registerNewVisitAPI = async (
   }
 };
 
-export const updateVisitAPI = async (
-  updateData: VisitUPdateInterface,
-): Promise<FetchResponse<VisitUpdateResponse | null>> => {
+export const updateNoteApi = async (
+  updateData: NoteUpdateInterface,
+): Promise<FetchResponse<NoteUpdateInterface | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/visit/update`, {
+    const response = await fetch(`${API_ADDRESS}/note/update`, {
       method: "patch",
       headers: {
         "Content-Type": "application/json",
@@ -94,11 +100,11 @@ export const updateVisitAPI = async (
   }
 };
 
-export const deleteVisitAPI = async (
-  visitId: string,
-): Promise<FetchResponse<VisitDeleteResponse | null>> => {
+export const deleteNoteApu = async (
+  noteId: string,
+): Promise<FetchResponse<NoteDeleteResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/visit/delete/${visitId}`, {
+    const response = await fetch(`${API_ADDRESS}/pet/delete/${noteId}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

@@ -35,19 +35,21 @@ export interface PetRegisterInterface {
   length?: string;
   diseases?: string;
   others?: string;
+  ownerId?: string;
 }
 
 export interface PetInfoToUpdateInterface {
   id: string;
-  chipId: string | null;
-  tatooId: string | null;
-  race: string | null;
-  age: number | null;
-  weight: number | null;
-  height: number | null;
-  length: number | null;
-  diseases: string | null;
-  others: string | null;
+  chipId?: string;
+  tatooId?: string;
+  race?: string;
+  age?: string;
+  weight?: string;
+  height?: string;
+  length?: string;
+  diseases?: string;
+  others?: string;
+  ownerId?: string;
 }
 
 export interface PetListInterface {

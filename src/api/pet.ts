@@ -103,7 +103,7 @@ export const deletePetAPI = async (
 ): Promise<FetchResponse<PetDeleteResponse | null>> => {
   try {
     const response = await fetch(`${API_ADDRESS}/pet/delete/${petId}`, {
-      method: "get",
+      method: "delete",
       headers: {
         "Content-Type": "application/json",
       },

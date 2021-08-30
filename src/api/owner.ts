@@ -102,7 +102,7 @@ export const deleteOwnerAPI = async (
 ): Promise<FetchResponse<OwnerDeleteResponse | null>> => {
   try {
     const response = await fetch(`${API_ADDRESS}/pet/delete/${ownerId}`, {
-      method: "get",
+      method: "delete",
       headers: {
         "Content-Type": "application/json",
       },
