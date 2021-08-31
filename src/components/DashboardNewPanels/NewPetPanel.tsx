@@ -18,9 +18,10 @@ const NewPetPanel = () => {
     event?.preventDefault();
     setError("");
     const filteredValues = pickBy(
-      data,
+      { ...data, ownerId: (data.ownerId as any).id },
       (value: string | undefined) => value && value.length > 0,
     );
+
     const registerResponse = await registerNewPetAPI(
       filteredValues as PetRegisterInterface,
     );

@@ -7,6 +7,7 @@ import {
   BaseTextArea,
   SelectCustom,
   FormLabel,
+  SelectCustomAsync,
 } from "../../Inputs";
 import StandardButton from "../../Buttons/StandardButton";
 import {
@@ -15,6 +16,8 @@ import {
   SingleInputWrapper,
 } from "../styledComponents";
 import { selectTheme } from "../../../mainStyles/reactSelectTheme";
+import { getOwnersListAPI } from "../../../api/owner";
+import { OwnerListInterface } from "../../../api/interfaces/owner";
 
 interface NewPetFormInterface {
   onSubmit: SubmitHandler<PetRegisterInterface>;
@@ -27,6 +30,11 @@ const SEX_OPTIONS = [
   { value: PetSexes.FEMALE_CASTRATED, label: "Female castrated" },
 ];
 
+interface OwnersOptionsInterface {
+  value: OwnerListInterface;
+  label: string;
+}
+
 const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
   const {
     register,
@@ -34,6 +42,23 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
     control,
     formState: { errors },
   } = useForm<PetRegisterInterface>();
+
+  const loadOwners = async (inputValue: string) => {
+    const loadOptions = await getOwnersListAPI({
+      page: 0,
+      limit: 50,
+      nameSurname: inputValue,
+    });
+    if (loadOptions.response) {
+      const newArray: OwnersOptionsInterface[] = [];
+      loadOptions.response.results.map((elem) =>
+        newArray.push({ value: elem, label: `${elem.name} ${elem.surname}` }),
+      );
+      return newArray;
+    } else {
+      return [];
+    }
+  };
 
   return (
     <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -48,6 +73,32 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
         })}
       />
       {errors.name && <FormError>{errors.name.message}</FormError>}
+      <FormLabel>Owner (Required)</FormLabel>
+      <Controller
+        name="ownerId"
+        control={control}
+        render={({ field }) => (
+          <SelectCustomAsync
+            classNamePrefix="react-select"
+            placeholder="Type an owner name..."
+            width="40%"
+            cacheOptions
+            loadOptions={loadOwners}
+            onChange={(option: any) => field.onChange(option.value)}
+            value={
+              field.value && {
+                value: field.value,
+                label: `${(field.value as any).name} ${
+                  (field.value as any).surname
+                }`,
+              }
+            }
+            error={errors.ownerId?.message}
+            theme={selectTheme}
+          />
+        )}
+      />
+      {errors.ownerId && <FormError>{errors.ownerId.message}</FormError>}
       <MultipleInputsWrapper>
         <SingleInputWrapper>
           <FormLabel>Type (Required)</FormLabel>
