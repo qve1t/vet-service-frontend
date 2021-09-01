@@ -9,6 +9,7 @@ export interface OwnerInterface {
     name: string;
     type: string;
   }[];
+  notes: { id: string; text: string; dateTime: Date }[];
 }
 
 export interface RegisterOwnerInterface {

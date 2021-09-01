@@ -20,6 +20,7 @@ export interface PetInterface {
   others: string | null;
   owner: { id: string; name: string; surname: string } | null;
   visits: { id: string; dateTime: Date; name: string }[];
+  notes: { id: string; text: string; dateTime: Date }[];
 }
 
 export interface PetRegisterInterface {

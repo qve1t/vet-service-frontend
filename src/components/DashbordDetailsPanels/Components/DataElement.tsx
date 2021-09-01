@@ -8,12 +8,18 @@ interface DataElementInterface {
   label: string;
   displayData: any;
   width?: string;
+  marginTop?: string;
 }
 
-const DataElement = ({ label, displayData, width }: DataElementInterface) => {
+const DataElement = ({
+  label,
+  displayData,
+  width,
+  marginTop,
+}: DataElementInterface) => {
   return (
     <SingleElementWrapper>
-      <FormLabel>{label}</FormLabel>
+      <FormLabel marginTop={marginTop}>{label}</FormLabel>
       <ElementDataParagraph width={width} hasData={displayData !== null}>
         {displayData}
       </ElementDataParagraph>

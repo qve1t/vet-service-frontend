@@ -1,5 +1,6 @@
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import { PetSexes, PetRegisterInterface } from "../../../api/interfaces/pet";
+import { loadOwners } from "../../../api/selectListCalls/loadOwners";
 
 import {
   BaseInput,
@@ -16,8 +17,6 @@ import {
   SingleInputWrapper,
 } from "../styledComponents";
 import { selectTheme } from "../../../mainStyles/reactSelectTheme";
-import { getOwnersListAPI } from "../../../api/owner";
-import { OwnerListInterface } from "../../../api/interfaces/owner";
 
 interface NewPetFormInterface {
   onSubmit: SubmitHandler<PetRegisterInterface>;
@@ -30,11 +29,6 @@ const SEX_OPTIONS = [
   { value: PetSexes.FEMALE_CASTRATED, label: "Female castrated" },
 ];
 
-interface OwnersOptionsInterface {
-  value: OwnerListInterface;
-  label: string;
-}
-
 const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
   const {
     register,
@@ -42,23 +36,6 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
     control,
     formState: { errors },
   } = useForm<PetRegisterInterface>();
-
-  const loadOwners = async (inputValue: string) => {
-    const loadOptions = await getOwnersListAPI({
-      page: 0,
-      limit: 50,
-      nameSurname: inputValue,
-    });
-    if (loadOptions.response) {
-      const newArray: OwnersOptionsInterface[] = [];
-      loadOptions.response.results.map((elem) =>
-        newArray.push({ value: elem, label: `${elem.name} ${elem.surname}` }),
-      );
-      return newArray;
-    } else {
-      return [];
-    }
-  };
 
   return (
     <FormsWrapper onSubmit={handleSubmit(onSubmit)}>

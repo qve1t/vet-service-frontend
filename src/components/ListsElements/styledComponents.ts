@@ -28,6 +28,19 @@ export const ListElementWrapper = styled.div`
   ${wrapperStyle}
 `;
 
+export const NoteElementWrapper = styled.div`
+  ${wrapperStyle}
+  max-width: 20%;
+  flex-direction: column;
+  cursor: default;
+`;
+
+export const NoteSectionDivider = styled.div`
+  width: 100%;
+  height: 1px;
+  background: ${colors.themeGreen};
+`;
+
 export const ListElementWrapperLink = styled(Link)<{
   width?: string;
   column?: boolean;

@@ -37,9 +37,10 @@ export const FormError = styled.p`
   align-self: flex-start;
 `;
 
-export const FormLabel = styled.label`
+export const FormLabel = styled.label<{ marginTop?: string }>`
   font-family: "Lato", sans-serif;
   font-size: ${typography.small};
+  margin-top: ${({ marginTop }) => (marginTop ? marginTop : "0px")};
   margin-bottom: 5px;
   color: ${colors.fontMain};
   align-self: flex-start;

@@ -7,7 +7,10 @@ import { getOwnerDetailsAPI } from "../../api/owner";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import ErrorComponent from "../ErrorComponent";
 import { FormLabel } from "../Inputs";
-import { PetsDetailsListElement } from "../ListsElements";
+import {
+  NotesDetailsListElement,
+  PetsDetailsListElement,
+} from "../ListsElements";
 import LoadingComponent from "../LoadingComponent";
 import DataElement from "./Components/DataElement";
 import {
@@ -86,6 +89,12 @@ const OwnerDetailsPanel = () => {
                   width="20%"
                   key={elem.id}
                 />
+              ))}
+            </ListElementsWrapper>
+            <FormLabel marginTop="30px">Notes</FormLabel>
+            <ListElementsWrapper>
+              {data?.notes.map((elem) => (
+                <NotesDetailsListElement listElement={elem} key={elem.id} />
               ))}
             </ListElementsWrapper>
           </Wrapper>

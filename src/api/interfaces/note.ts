@@ -33,6 +33,8 @@ export interface NoteListInterface {
   id: string;
   text: string;
   dateTime: Date;
+  petNote: { id: string; name: string };
+  ownerNote: { id: string; name: string; surname: string };
 }
 
 export interface NoteListResponse {

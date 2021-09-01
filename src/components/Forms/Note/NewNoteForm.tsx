@@ -19,25 +19,24 @@ import { selectTheme } from "../../../mainStyles/reactSelectTheme";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-export interface FormRegisterInterface {
+export interface NoteFormRegisterInterface {
+  text: string;
   dateTime: Date;
-  name: string;
   ownerObj: OwnerListInterface;
   petObj: PetListInterface;
 }
 
-interface NewVisitFormInterface {
-  onSubmit: SubmitHandler<FormRegisterInterface>;
+interface NewNoteFormInterface {
+  onSubmit: SubmitHandler<NoteFormRegisterInterface>;
 }
 
-const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
+const NewNoteForm = ({ onSubmit }: NewNoteFormInterface) => {
   const {
-    setValue,
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<FormRegisterInterface>();
+  } = useForm<NoteFormRegisterInterface>();
 
   return (
     <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -63,24 +62,10 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
         )}
       />
       {errors.dateTime && <FormError>{errors.dateTime.message}</FormError>}
-      <FormLabel>Visit name (required)</FormLabel>
-      <BaseInput
-        placeholder="Vaccination"
-        width="40%"
-        error={errors.name?.message}
-        autoComplete="off"
-        {...register("name", {
-          required: "Name is required",
-        })}
-      />
-      {errors.name && <FormError>{errors.name.message}</FormError>}
-      <FormLabel>Pet (Required)</FormLabel>
+      <FormLabel>Pet</FormLabel>
       <Controller
         name="petObj"
         control={control}
-        rules={{
-          required: { value: true, message: "Pet is required" },
-        }}
         render={({ field }) => (
           <SelectCustomAsync
             classNamePrefix="react-select"
@@ -89,9 +74,6 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
             cacheOptions
             loadOptions={loadPets}
             onChange={(option: any) => {
-              if (option.value.owner) {
-                setValue("ownerObj", option.value.owner);
-              }
               return field.onChange(option.value);
             }}
             error={(errors.petObj as any)?.message}
@@ -100,13 +82,10 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
         )}
       />
       {errors.petObj && <FormError>{(errors.petObj as any).message}</FormError>}
-      <FormLabel>Owner (Required)</FormLabel>
+      <FormLabel>Owner</FormLabel>
       <Controller
         name="ownerObj"
         control={control}
-        rules={{
-          required: { value: true, message: "Owner is required" },
-        }}
         render={({ field }) => (
           <SelectCustomAsync
             classNamePrefix="react-select"
@@ -129,10 +108,21 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
       {errors.ownerObj && (
         <FormError>{(errors.ownerObj as any).message}</FormError>
       )}
+      <FormLabel>Text</FormLabel>
+      <BaseInput
+        placeholder="Note text..."
+        width="80%"
+        error={errors.text?.message}
+        autoComplete="off"
+        {...register("text", {
+          required: "Text is required",
+        })}
+      />
+      {errors.text && <FormError>{errors.text.message}</FormError>}
 
-      <StandardButton label="Register" />
+      <StandardButton label="Create note" width="120px" />
     </FormsWrapper>
   );
 };
 
-export default NewVisitForm;
+export default NewNoteForm;

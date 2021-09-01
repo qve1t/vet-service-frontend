@@ -8,8 +8,9 @@ import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import ErrorComponent from "../ErrorComponent";
 import { FormLabel } from "../Inputs";
 import {
+  NotesDetailsListElement,
   OwnersDetailsListElement,
-  VisitsDetailsListElem,
+  VisitsDetailsListElement,
 } from "../ListsElements";
 import LoadingComponent from "../LoadingComponent";
 import DataElement from "./Components/DataElement";
@@ -122,6 +123,7 @@ const PetsDetailsPanel = () => {
               displayData={data?.others}
               width="100%"
             />
+            <FormLabel>Visits</FormLabel>
             <ListElementsWrapper>
               {data?.visits
                 .sort(
@@ -130,12 +132,18 @@ const PetsDetailsPanel = () => {
                     new Date(b.dateTime).getTime(),
                 )
                 .map((elem) => (
-                  <VisitsDetailsListElem
+                  <VisitsDetailsListElement
                     listElement={elem}
                     width="20%"
                     key={elem.id}
                   />
                 ))}
+            </ListElementsWrapper>
+            <FormLabel marginTop="30px">Notes</FormLabel>
+            <ListElementsWrapper>
+              {data?.notes.map((elem) => (
+                <NotesDetailsListElement listElement={elem} key={elem.id} />
+              ))}
             </ListElementsWrapper>
           </Wrapper>
         )}

@@ -96,6 +96,7 @@ const VisitsDetailsPanel = () => {
               label="Description"
               displayData={data?.description}
               width="100%"
+              marginTop="30px"
             />
             <DataElement
               label="Interview"
