@@ -82,7 +82,7 @@ export const updateOwnerInfoAPI = async (
 ): Promise<FetchResponse<OwnerUpdateResponse | null>> => {
   try {
     const response = await fetch(`${API_ADDRESS}/owner/update`, {
-      method: "patch",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -101,7 +101,7 @@ export const deleteOwnerAPI = async (
   ownerId: string,
 ): Promise<FetchResponse<OwnerDeleteResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/pet/delete/${ownerId}`, {
+    const response = await fetch(`${API_ADDRESS}/owner/delete/${ownerId}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

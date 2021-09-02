@@ -83,7 +83,7 @@ export const updatePetAPI = async (
 ): Promise<FetchResponse<PetUpdateResponse | null>> => {
   try {
     const response = await fetch(`${API_ADDRESS}/pet/update`, {
-      method: "patch",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

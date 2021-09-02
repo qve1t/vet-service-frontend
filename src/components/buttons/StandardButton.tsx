@@ -5,7 +5,7 @@ interface StandardButtonProps {
   width?: string;
   primaryColor?: string;
   label: string;
-  onClick?: () => void;
+  onClick?: (event?: any) => void;
 }
 
 const StandardButton = ({

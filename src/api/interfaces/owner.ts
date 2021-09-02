@@ -22,9 +22,9 @@ export interface RegisterOwnerInterface {
 
 export interface OwnerInfoToUpdateInterface {
   id: string;
-  phone: string | null;
-  email: string | null;
-  address: string | null;
+  phone?: string;
+  email?: string;
+  address?: string;
 }
 
 export interface OwnerListInterface {

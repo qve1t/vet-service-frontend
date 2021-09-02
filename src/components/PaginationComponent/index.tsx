@@ -19,7 +19,6 @@ const PaginationComponent = ({
   const { itemsPerPage } = UseLoggedUserState();
 
   const pagesNumber = Math.ceil(count / itemsPerPage) - 1;
-
   return (
     <PaginationWrapper>
       <PaginationButton
@@ -30,7 +29,7 @@ const PaginationComponent = ({
       </PaginationButton>
       <PaginationCount>{currentPage + 1}</PaginationCount>
       <PaginationButton
-        disabled={currentPage === pagesNumber}
+        disabled={pagesNumber < 0 || currentPage === pagesNumber}
         onClick={() => setPage(currentPage + 1)}
       >
         {">"}

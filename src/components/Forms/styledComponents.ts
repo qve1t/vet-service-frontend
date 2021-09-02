@@ -17,3 +17,10 @@ export const SingleInputWrapper = styled.div`
   flex-direction: column;
   width: 100%;
 `;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+  margin-top: 30px;
+`;

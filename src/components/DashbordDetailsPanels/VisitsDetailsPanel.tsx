@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useEffect, useReducer, useState } from "react";
+import { useHistory, useParams } from "react-router";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { VisitInterface } from "../../api/interfaces/visit";
-import { getVisitDetailsAPI } from "../../api/visit";
+import { deleteVisitAPI, getVisitDetailsAPI } from "../../api/visit";
+import { colors } from "../../mainStyles/colors";
+import { UseDeletePopupActions } from "../../modules/DeletePopupModule";
+import StandardButton from "../Buttons/StandardButton";
 
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import ErrorComponent from "../ErrorComponent";
@@ -14,6 +17,7 @@ import {
 import LoadingComponent from "../LoadingComponent";
 import DataElement from "./Components/DataElement";
 import {
+  ButtonsWrapper,
   ElementDataParagraph,
   MultipleElementsWrapper,
   SingleElementWrapper,
@@ -25,12 +29,16 @@ interface PathParamsInterface {
 }
 
 const VisitsDetailsPanel = () => {
+  const history = useHistory();
   const { id } = useParams<PathParamsInterface>();
   const [data, setData] = useState<VisitInterface | null>(null);
   const [loadingState, setLoadingState] = useState<LoadingStateInterface>({
     loading: true,
     error: "",
   });
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+  const { showPopup } = UseDeletePopupActions();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,73 +53,94 @@ const VisitsDetailsPanel = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, ignored]);
+
+  if (loadingState.loading) {
+    return (
+      <>
+        <MainAreaHeader>Visit details</MainAreaHeader>
+        <LoadingComponent />
+      </>
+    );
+  }
+
+  if (loadingState.error) {
+    return (
+      <>
+        <MainAreaHeader>Visit details</MainAreaHeader>
+        <ErrorComponent errorMessage={loadingState.error} />
+      </>
+    );
+  }
 
   return (
     <>
       <MainAreaHeader>Visit details</MainAreaHeader>
-      <div>
-        {loadingState.loading ? (
-          <LoadingComponent />
-        ) : loadingState.error ? (
-          <ErrorComponent errorMessage={loadingState.error} />
-        ) : (
-          <Wrapper>
-            <SingleElementWrapper>
-              <FormLabel>Date</FormLabel>
-              <ElementDataParagraph
-                width="40%"
-                hasData={data?.dateTime !== null}
-              >
-                {`${
-                  data?.dateTime &&
-                  new Date(data?.dateTime as Date).toLocaleDateString()
-                } ${
-                  data?.dateTime &&
-                  new Date(data?.dateTime as Date).toLocaleTimeString([], {
-                    timeStyle: "short",
-                  })
-                }`}
-              </ElementDataParagraph>
-            </SingleElementWrapper>
-            <DataElement label="Name" displayData={data?.name} width="40%" />
-            <MultipleElementsWrapper>
-              <SingleElementWrapper>
-                <FormLabel>Pet</FormLabel>
-                <PetsDetailsListElement
-                  listElement={data?.petOnVisit as any}
-                  width="40%"
-                />
-              </SingleElementWrapper>
+      <Wrapper>
+        <SingleElementWrapper>
+          <FormLabel>Date</FormLabel>
+          <ElementDataParagraph width="40%" hasData={data?.dateTime !== null}>
+            {`${
+              data?.dateTime &&
+              new Date(data?.dateTime as Date).toLocaleDateString()
+            } ${
+              data?.dateTime &&
+              new Date(data?.dateTime as Date).toLocaleTimeString([], {
+                timeStyle: "short",
+              })
+            }`}
+          </ElementDataParagraph>
+        </SingleElementWrapper>
+        <DataElement label="Name" displayData={data?.name} width="40%" />
+        <MultipleElementsWrapper>
+          <SingleElementWrapper>
+            <FormLabel>Pet</FormLabel>
+            <PetsDetailsListElement
+              listElement={data?.petOnVisit as any}
+              width="40%"
+            />
+          </SingleElementWrapper>
 
-              <SingleElementWrapper>
-                <FormLabel>Owner</FormLabel>
-                <OwnersDetailsListElement
-                  listElement={data?.ownerOnVisit as any}
-                  width="40%"
-                />
-              </SingleElementWrapper>
-            </MultipleElementsWrapper>
-            <DataElement
-              label="Description"
-              displayData={data?.description}
-              width="100%"
-              marginTop="30px"
+          <SingleElementWrapper>
+            <FormLabel>Owner</FormLabel>
+            <OwnersDetailsListElement
+              listElement={data?.ownerOnVisit as any}
+              width="40%"
             />
-            <DataElement
-              label="Interview"
-              displayData={data?.interview}
-              width="100%"
-            />
-            <DataElement
-              label="Healing"
-              displayData={data?.healing}
-              width="100%"
-            />
-            <DataElement label="Note" displayData={data?.note} width="100%" />
-          </Wrapper>
-        )}
-      </div>
+          </SingleElementWrapper>
+        </MultipleElementsWrapper>
+        <DataElement
+          label="Description"
+          displayData={data?.description}
+          width="100%"
+          marginTop="30px"
+        />
+        <DataElement
+          label="Interview"
+          displayData={data?.interview}
+          width="100%"
+        />
+        <DataElement label="Healing" displayData={data?.healing} width="100%" />
+        <DataElement label="Note" displayData={data?.note} width="100%" />
+        <ButtonsWrapper>
+          <StandardButton
+            label="Edit details"
+            width="120px"
+            onClick={() => setIsEdit(true)}
+          />
+          <StandardButton
+            label="Delete visit"
+            width="120px"
+            primaryColor={colors.errorRed}
+            onClick={() =>
+              showPopup(() => {
+                deleteVisitAPI(id);
+                history.push("/dashboard/visits");
+              })
+            }
+          />
+        </ButtonsWrapper>
+      </Wrapper>
     </>
   );
 };

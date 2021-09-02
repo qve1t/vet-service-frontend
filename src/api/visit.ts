@@ -79,7 +79,7 @@ export const updateVisitAPI = async (
 ): Promise<FetchResponse<VisitUpdateResponse | null>> => {
   try {
     const response = await fetch(`${API_ADDRESS}/visit/update`, {
-      method: "patch",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

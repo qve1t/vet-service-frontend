@@ -42,3 +42,10 @@ export const ElementDataParagraph = styled.p<{
   border-bottom: 1px solid
     ${({ hasData }) => (hasData ? colors.themeGreen : colors.inputGrey)};
 `;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+  margin-top: 30px;
+`;

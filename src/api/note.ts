@@ -85,7 +85,7 @@ export const updateNoteApi = async (
 ): Promise<FetchResponse<NoteUpdateInterface | null>> => {
   try {
     const response = await fetch(`${API_ADDRESS}/note/update`, {
-      method: "patch",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
