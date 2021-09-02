@@ -100,11 +100,11 @@ export const updateNoteApi = async (
   }
 };
 
-export const deleteNoteApu = async (
+export const deleteNoteApi = async (
   noteId: string,
 ): Promise<FetchResponse<NoteDeleteResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/pet/delete/${noteId}`, {
+    const response = await fetch(`${API_ADDRESS}/note/delete/${noteId}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

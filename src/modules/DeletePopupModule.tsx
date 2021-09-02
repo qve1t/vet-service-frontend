@@ -57,7 +57,7 @@ export const DeletePopupModule = ({ children }: DeletePopupContextProps) => {
   );
 };
 
-export const UseLoggedUserState = () => {
+export const UseDeletePopupState = () => {
   const context = useContext(DeletePopupContext);
   if (!context) {
     throw new Error("LoggedUserContext is not set!");
@@ -65,7 +65,7 @@ export const UseLoggedUserState = () => {
   return context.state;
 };
 
-export const UseLoggedUserActions = () => {
+export const UseDeletePopupActions = () => {
   const context = useContext(DeletePopupContext);
   if (!context) {
     throw new Error("LoggedUserContext is not set!");

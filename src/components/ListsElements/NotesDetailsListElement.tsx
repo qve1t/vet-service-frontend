@@ -1,19 +1,40 @@
 import { NoteInterface } from "../../api/interfaces/note";
+import { deleteNoteApi } from "../../api/note";
+
+import Trash from "../../icons/trash.svg";
+
+import { UseDeletePopupActions } from "../../modules/DeletePopupModule";
 
 import {
   NoteElementWrapper,
   NoteSectionDivider,
   ListElementSecondaryText,
+  IconWrapper,
+  DeleteIcon,
 } from "./styledComponents";
 
 interface NoteListElementInterface {
   listElement: NoteInterface;
+  refreshFunction: () => void;
 }
 
-const NoteDetailsListElement = ({ listElement }: NoteListElementInterface) => {
-  console.log(listElement);
+const NoteDetailsListElement = ({
+  listElement,
+  refreshFunction,
+}: NoteListElementInterface) => {
+  const { showPopup } = UseDeletePopupActions();
   return (
     <NoteElementWrapper>
+      <IconWrapper
+        onClick={() =>
+          showPopup(() => {
+            deleteNoteApi(listElement.id);
+            refreshFunction();
+          })
+        }
+      >
+        <DeleteIcon src={Trash} />
+      </IconWrapper>
       <ListElementSecondaryText>
         {`${
           listElement.dateTime &&

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { PetInterface } from "../../api/interfaces/pet";
@@ -32,6 +32,7 @@ const PetsDetailsPanel = () => {
     loading: true,
     error: "",
   });
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +47,7 @@ const PetsDetailsPanel = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, ignored]);
 
   return (
     <>
@@ -142,7 +143,11 @@ const PetsDetailsPanel = () => {
             <FormLabel marginTop="30px">Notes</FormLabel>
             <ListElementsWrapper>
               {data?.notes.map((elem) => (
-                <NotesDetailsListElement listElement={elem} key={elem.id} />
+                <NotesDetailsListElement
+                  listElement={elem}
+                  refreshFunction={forceUpdate}
+                  key={elem.id}
+                />
               ))}
             </ListElementsWrapper>
           </Wrapper>

@@ -24,15 +24,41 @@ const wrapperStyle = css`
   }
 `;
 
+export const DeleteIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: ${transitions.standardTransition};
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0;
+  transition: ${transitions.standardTransition};
+
+  &:hover > ${DeleteIcon} {
+    opacity: 1;
+  }
+`;
+
 export const ListElementWrapper = styled.div`
   ${wrapperStyle}
 `;
 
 export const NoteElementWrapper = styled.div`
   ${wrapperStyle}
+  position: relative;
   max-width: 20%;
   flex-direction: column;
   cursor: default;
+
+  &:hover > ${IconWrapper} {
+    opacity: 1;
+  }
 `;
 
 export const NoteSectionDivider = styled.div`
@@ -64,9 +90,7 @@ export const ListElementMainText = styled.h4`
   text-transform: capitalize;
 `;
 
-export const ListElementSecondaryText = styled.p`
-  text-transform: capitalize;
-`;
+export const ListElementSecondaryText = styled.p``;
 
 export const ListElementLink = styled(Link)`
   color: ${colors.fontMain};

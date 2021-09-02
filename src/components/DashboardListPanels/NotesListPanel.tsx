@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { NoteListInterface } from "../../api/interfaces/note";
 import { getNotesListApi } from "../../api/note";
@@ -29,6 +29,7 @@ const NotesListDefault = () => {
     loading: true,
     error: "",
   });
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +53,7 @@ const NotesListDefault = () => {
     };
 
     fetchData();
-  }, [itemsPerPage, pageState.currentPage, pageState.searchText]);
+  }, [itemsPerPage, pageState.currentPage, pageState.searchText, ignored]);
 
   const setPage = (page: number) => {
     setPageState({
@@ -91,7 +92,11 @@ const NotesListDefault = () => {
           <ErrorComponent errorMessage={loadingState.error} />
         ) : (
           notesList.map((elem) => (
-            <NoteListElement listElement={elem} key={elem.id} />
+            <NoteListElement
+              listElement={elem}
+              refreshFunction={forceUpdate}
+              key={elem.id}
+            />
           ))
         )}
       </HorizontalWrapper>

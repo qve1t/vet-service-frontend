@@ -18,7 +18,6 @@ const DeleteConfirmPopup = ({
   onConfirm,
   onHide,
 }: DeleteConfirmPopupInterface) => {
-  console.log(show);
   return (
     <>
       {show && (
@@ -31,7 +30,10 @@ const DeleteConfirmPopup = ({
               <StandardButton
                 label="Delete"
                 primaryColor={colors.errorRed}
-                onClick={onConfirm}
+                onClick={() => {
+                  onConfirm();
+                  onHide();
+                }}
               />
               <StandardButton label="Cancel" onClick={onHide} />
             </DeletePopupButtonsWrapper>
