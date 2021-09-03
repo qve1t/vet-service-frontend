@@ -24,6 +24,7 @@ const NewVisitPanel = () => {
       name: data.name,
       petId: data.petObj.id,
       ownerId: data.ownerObj.id,
+      note: data.note || "",
     });
     if (registerResponse.response) {
       history.push(`/dashboard/visits/${registerResponse.response.id}`);

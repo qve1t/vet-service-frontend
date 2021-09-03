@@ -5,6 +5,13 @@ export enum PetSexes {
   FEMALE_CASTRATED = "FEMALE_CASTRATED",
 }
 
+export const SEX_OPTIONS = [
+  { value: PetSexes.MALE, label: "Male" },
+  { value: PetSexes.MALE_CASTRATED, label: "Male castrated" },
+  { value: PetSexes.FEMALE, label: "Female" },
+  { value: PetSexes.FEMALE_CASTRATED, label: "Female castrated" },
+];
+
 export interface PetInterface {
   name: string;
   chipId: string | null;
@@ -45,6 +52,7 @@ export interface PetInfoToUpdateInterface {
   tatooId?: string;
   race?: string;
   age?: string;
+  sex: PetSexes;
   weight?: string;
   height?: string;
   length?: string;

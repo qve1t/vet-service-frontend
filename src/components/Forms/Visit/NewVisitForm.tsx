@@ -11,6 +11,7 @@ import {
   DatePickerWrapper,
   SelectCustomAsync,
   FormLabel,
+  BaseTextArea,
 } from "../../Inputs";
 import StandardButton from "../../Buttons/StandardButton";
 import { FormsWrapper } from "../styledComponents";
@@ -24,6 +25,7 @@ export interface FormRegisterInterface {
   name: string;
   ownerObj: OwnerListInterface;
   petObj: PetListInterface;
+  note?: string;
 }
 
 interface NewVisitFormInterface {
@@ -129,6 +131,8 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
       {errors.ownerObj && (
         <FormError>{(errors.ownerObj as any).message}</FormError>
       )}
+      <FormLabel>Note</FormLabel>
+      <BaseTextArea placeholder="Note..." {...register("note")} />
 
       <StandardButton label="Register" />
     </FormsWrapper>

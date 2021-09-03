@@ -20,7 +20,10 @@ const DataElement = ({
   return (
     <SingleElementWrapper>
       <FormLabel marginTop={marginTop}>{label}</FormLabel>
-      <ElementDataParagraph width={width} hasData={displayData !== null}>
+      <ElementDataParagraph
+        width={width}
+        hasData={displayData !== null && displayData !== ""}
+      >
         {displayData}
       </ElementDataParagraph>
     </SingleElementWrapper>

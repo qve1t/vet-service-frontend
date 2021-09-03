@@ -2,8 +2,13 @@ import { useEffect, useReducer, useState } from "react";
 import { useHistory, useParams } from "react-router";
 
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
-import { PetInterface } from "../../api/interfaces/pet";
-import { deletePetAPI, getPetDetailsAPI } from "../../api/pet";
+import {
+  PetInfoToUpdateInterface,
+  PetInterface,
+  PetSexes,
+  SEX_OPTIONS,
+} from "../../api/interfaces/pet";
+import { deletePetAPI, getPetDetailsAPI, updatePetAPI } from "../../api/pet";
 import { UseDeletePopupActions } from "../../modules/DeletePopupModule";
 import StandardButton from "../Buttons/StandardButton";
 
@@ -25,6 +30,9 @@ import {
   Wrapper,
 } from "./styledComponents";
 import { colors } from "../../mainStyles/colors";
+import { EditPetForm } from "../Forms";
+import { SubmitHandler } from "react-hook-form";
+import { pickBy } from "lodash";
 
 interface PathParamsInterface {
   id: string;
@@ -57,6 +65,30 @@ const PetsDetailsPanel = () => {
     fetchData();
   }, [id, ignored]);
 
+  const onEditSubmit: SubmitHandler<PetInfoToUpdateInterface> = async (
+    data,
+    event,
+  ) => {
+    event?.preventDefault();
+    setLoadingState({ loading: false, error: "" });
+    const filteredValues = pickBy(
+      { ...data, ownerId: (data.ownerId as any).id },
+      (value: string | undefined) => value && value.length > 0,
+    );
+    console.log(data);
+    const registerResponse = await updatePetAPI({
+      ...filteredValues,
+      sex: filteredValues.sex as PetSexes,
+      id: id,
+    });
+    if (registerResponse.response) {
+      setIsEdit(false);
+      forceUpdate();
+    } else {
+      setLoadingState({ loading: false, error: registerResponse.error });
+    }
+  };
+
   if (loadingState.loading) {
     return (
       <>
@@ -71,6 +103,19 @@ const PetsDetailsPanel = () => {
       <>
         <MainAreaHeader>Pet details</MainAreaHeader>
         <ErrorComponent errorMessage={loadingState.error} />
+      </>
+    );
+  }
+
+  if (isEdit) {
+    return (
+      <>
+        <MainAreaHeader>Pet edit</MainAreaHeader>
+        <EditPetForm
+          data={data}
+          onCancel={() => setIsEdit(false)}
+          onSubmit={onEditSubmit}
+        />
       </>
     );
   }
@@ -107,7 +152,13 @@ const PetsDetailsPanel = () => {
           />
         </MultipleElementsWrapper>
         <MultipleElementsWrapper>
-          <DataElement label="Sex" displayData={data?.sex} width="80%" />
+          <DataElement
+            label="Sex"
+            displayData={
+              SEX_OPTIONS.find((elem) => elem.value === data?.sex)?.label
+            }
+            width="80%"
+          />
           <DataElement label="Age" displayData={data?.age} width="80%" />
         </MultipleElementsWrapper>
         <MultipleElementsWrapper>

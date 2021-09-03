@@ -20,8 +20,14 @@ export interface VisitRegisterInterface {
   petId: string;
 }
 
-export interface VisitUPdateInterface extends VisitInterface {
+export interface VisitUPdateInterface {
   id: string;
+  dateTime: Date;
+  name: string;
+  note?: string;
+  interview?: string;
+  description?: string;
+  healing?: string;
 }
 
 export interface VisitGetQuery {

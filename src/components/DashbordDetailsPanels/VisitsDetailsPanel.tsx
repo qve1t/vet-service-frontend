@@ -1,14 +1,23 @@
 import { useEffect, useReducer, useState } from "react";
+import { SubmitHandler } from "react-hook-form";
 import { useHistory, useParams } from "react-router";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
-import { VisitInterface } from "../../api/interfaces/visit";
-import { deleteVisitAPI, getVisitDetailsAPI } from "../../api/visit";
+import {
+  VisitInterface,
+  VisitUPdateInterface,
+} from "../../api/interfaces/visit";
+import {
+  deleteVisitAPI,
+  getVisitDetailsAPI,
+  updateVisitAPI,
+} from "../../api/visit";
 import { colors } from "../../mainStyles/colors";
 import { UseDeletePopupActions } from "../../modules/DeletePopupModule";
 import StandardButton from "../Buttons/StandardButton";
 
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import ErrorComponent from "../ErrorComponent";
+import { EditVisitForm } from "../Forms";
 import { FormLabel } from "../Inputs";
 import {
   OwnersDetailsListElement,
@@ -55,6 +64,24 @@ const VisitsDetailsPanel = () => {
     fetchData();
   }, [id, ignored]);
 
+  const onEditSubmit: SubmitHandler<VisitUPdateInterface> = async (
+    data,
+    event,
+  ) => {
+    event?.preventDefault();
+    setLoadingState({ loading: false, error: "" });
+    const registerResponse = await updateVisitAPI({
+      ...data,
+      id: id,
+    });
+    if (registerResponse.response) {
+      setIsEdit(false);
+      forceUpdate();
+    } else {
+      setLoadingState({ loading: false, error: registerResponse.error });
+    }
+  };
+
   if (loadingState.loading) {
     return (
       <>
@@ -69,6 +96,19 @@ const VisitsDetailsPanel = () => {
       <>
         <MainAreaHeader>Visit details</MainAreaHeader>
         <ErrorComponent errorMessage={loadingState.error} />
+      </>
+    );
+  }
+
+  if (isEdit) {
+    return (
+      <>
+        <MainAreaHeader>Visit edit</MainAreaHeader>
+        <EditVisitForm
+          data={data}
+          onCancel={() => setIsEdit(false)}
+          onSubmit={onEditSubmit}
+        />
       </>
     );
   }

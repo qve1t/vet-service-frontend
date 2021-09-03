@@ -3,3 +3,5 @@ export { default as NewPetForm } from "./Pet/NewPetForm";
 export { default as NewVisitForm } from "./Visit/NewVisitForm";
 export { default as NewNoteForm } from "./Note/NewNoteForm";
 export { default as EditOwnerForm } from "./Owner/EditOwnerForm";
+export { default as EditVisitForm } from "./Visit/EditVisitForm";
+export { default as EditPetForm } from "./Pet/EditPetForm";

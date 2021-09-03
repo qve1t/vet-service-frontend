@@ -1,5 +1,9 @@
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-import { PetRegisterInterface, SEX_OPTIONS } from "../../../api/interfaces/pet";
+import {
+  PetInfoToUpdateInterface,
+  PetInterface,
+  SEX_OPTIONS,
+} from "../../../api/interfaces/pet";
 import { loadOwners } from "../../../api/selectListCalls/loadOwners";
 
 import {
@@ -12,41 +16,36 @@ import {
 } from "../../Inputs";
 import StandardButton from "../../Buttons/StandardButton";
 import {
+  ButtonsWrapper,
   FormsWrapper,
   MultipleInputsWrapper,
   SingleInputWrapper,
 } from "../styledComponents";
 import { selectTheme } from "../../../mainStyles/reactSelectTheme";
+import DataElement from "../../DashbordDetailsPanels/Components/DataElement";
 
 interface NewPetFormInterface {
-  onSubmit: SubmitHandler<PetRegisterInterface>;
+  onSubmit: SubmitHandler<PetInfoToUpdateInterface>;
+  onCancel: () => void;
+  data: PetInterface | null;
 }
 
-const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
+const EditPetForm = ({ onSubmit, onCancel, data }: NewPetFormInterface) => {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<PetRegisterInterface>();
+  } = useForm<PetInfoToUpdateInterface>();
 
   return (
     <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
-      <FormLabel>Pet name (Required)</FormLabel>
-      <BaseInput
-        placeholder="Rex"
-        width="40%"
-        error={errors.name?.message}
-        autoComplete="off"
-        {...register("name", {
-          required: "Name is required",
-        })}
-      />
-      {errors.name && <FormError>{errors.name.message}</FormError>}
+      <DataElement label="Name" displayData={data?.name} width="40%" />
       <FormLabel>Owner (Required)</FormLabel>
       <Controller
         name="ownerId"
         control={control}
+        defaultValue={data?.owner as any}
         render={({ field }) => (
           <SelectCustomAsync
             classNamePrefix="react-select"
@@ -70,19 +69,7 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
       />
       {errors.ownerId && <FormError>{errors.ownerId.message}</FormError>}
       <MultipleInputsWrapper>
-        <SingleInputWrapper>
-          <FormLabel>Type (Required)</FormLabel>
-          <BaseInput
-            placeholder="Dog"
-            width="80%"
-            error={errors.type?.message}
-            autoComplete="off"
-            {...register("type", {
-              required: "Type is required",
-            })}
-          />
-          {errors.type && <FormError>{errors.type.message}</FormError>}
-        </SingleInputWrapper>
+        <DataElement label="Type" displayData={data?.type} width="80%" />
         <SingleInputWrapper>
           <FormLabel>Breed</FormLabel>
           <BaseInput
@@ -103,6 +90,7 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
             width="80%"
             error={errors.chipId?.message}
             autoComplete="off"
+            defaultValue={data?.chipId || ""}
             {...register("chipId")}
           />
           {errors.chipId && <FormError>{errors.chipId.message}</FormError>}
@@ -114,6 +102,7 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
             width="80%"
             error={errors.tatooId?.message}
             autoComplete="off"
+            defaultValue={data?.tatooId || ""}
             {...register("tatooId")}
           />
           {errors.tatooId && <FormError>{errors.tatooId.message}</FormError>}
@@ -125,6 +114,9 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
           <Controller
             name="sex"
             control={control}
+            defaultValue={
+              SEX_OPTIONS.find((elem) => elem.value === data?.sex)?.value
+            }
             rules={{
               required: { value: true, message: "Sex is required" },
             }}
@@ -135,6 +127,9 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
                 options={SEX_OPTIONS}
                 onChange={(option: any) => field.onChange(option.value)}
                 width="80%"
+                defaultValue={SEX_OPTIONS.find(
+                  (elem) => elem.value === data?.sex,
+                )}
                 error={errors.sex?.message}
                 theme={selectTheme}
               />
@@ -150,6 +145,7 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
             width="80%"
             error={errors.age?.message}
             autoComplete="off"
+            defaultValue={data?.age || ""}
             {...register("age", {
               pattern: {
                 value: /^[0-9]+$/,
@@ -170,6 +166,7 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
             width="70%"
             error={errors.weight?.message}
             autoComplete="off"
+            defaultValue={data?.weight || ""}
             {...register("weight", {
               pattern: {
                 value: /^[0-9]+([.][0-9]{1,2})?$/,
@@ -188,6 +185,7 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
             width="70%"
             error={errors.height?.message}
             autoComplete="off"
+            defaultValue={data?.height || ""}
             {...register("height", {
               pattern: {
                 value: /^[0-9]+([.][0-9])?$/,
@@ -206,6 +204,7 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
             width="70%"
             error={errors.length?.message}
             autoComplete="off"
+            defaultValue={data?.length || ""}
             {...register("length", {
               pattern: {
                 value: /^[0-9]+([.][0-9])?$/,
@@ -217,12 +216,29 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
         </SingleInputWrapper>
       </MultipleInputsWrapper>
       <FormLabel>Diseases</FormLabel>
-      <BaseTextArea placeholder="Diseases" {...register("diseases")} />
+      <BaseTextArea
+        placeholder="Diseases"
+        defaultValue={data?.diseases || ""}
+        {...register("diseases")}
+      />
       <FormLabel>Others</FormLabel>
-      <BaseTextArea placeholder="Others" {...register("others")} />
-      <StandardButton label="Register" />
+      <BaseTextArea
+        placeholder="Others"
+        defaultValue={data?.others || ""}
+        {...register("others")}
+      />
+      <ButtonsWrapper noMargin={true}>
+        <StandardButton label="Save" />
+        <StandardButton
+          label="Cancel"
+          onClick={(event) => {
+            event.preventDefault();
+            onCancel();
+          }}
+        />
+      </ButtonsWrapper>
     </FormsWrapper>
   );
 };
 
-export default NewPetForm;
+export default EditPetForm;

@@ -107,7 +107,7 @@ const OwnerDetailsPanel = () => {
   if (isEdit) {
     return (
       <>
-        <MainAreaHeader>Owner details</MainAreaHeader>
+        <MainAreaHeader>Owner edit</MainAreaHeader>
         <EditOwnerForm
           data={data}
           onSubmit={onEditSubmit}

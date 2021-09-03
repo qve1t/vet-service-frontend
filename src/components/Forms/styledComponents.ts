@@ -18,9 +18,9 @@ export const SingleInputWrapper = styled.div`
   width: 100%;
 `;
 
-export const ButtonsWrapper = styled.div`
+export const ButtonsWrapper = styled.div<{ noMargin?: boolean }>`
   display: flex;
   width: 250px;
   justify-content: space-between;
-  margin-top: 30px;
+  ${({ noMargin }) => !noMargin && "margin-top: 30px;"}
 `;
