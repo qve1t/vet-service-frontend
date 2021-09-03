@@ -4,10 +4,8 @@ import { NoteListInterface } from "../../api/interfaces/note";
 import { getNotesListApi } from "../../api/note";
 import { UseLoggedUserState } from "../../modules/LoggedUserModule";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
-import ErrorComponent from "../ErrorComponent";
 import { BaseInput } from "../Inputs";
-import { NoteListElement } from "../ListsElements";
-import LoadingComponent from "../LoadingComponent";
+import { NotesListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
 import { HorizontalWrapper } from "./styledComponents";
 
@@ -86,19 +84,11 @@ const NotesListDefault = () => {
         onKeyPress={(event) => setTextOnEnter(event)}
       />
       <HorizontalWrapper>
-        {loadingState.loading ? (
-          <LoadingComponent />
-        ) : loadingState.error ? (
-          <ErrorComponent errorMessage={loadingState.error} />
-        ) : (
-          notesList.map((elem) => (
-            <NoteListElement
-              listElement={elem}
-              refreshFunction={forceUpdate}
-              key={elem.id}
-            />
-          ))
-        )}
+        <NotesListComponent
+          forceUpdate={forceUpdate}
+          loadingState={loadingState}
+          notesList={notesList}
+        />
       </HorizontalWrapper>
       <PaginationComponent
         count={pageState.elementsCount}

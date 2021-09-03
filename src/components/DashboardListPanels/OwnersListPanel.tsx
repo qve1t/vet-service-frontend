@@ -4,10 +4,8 @@ import { OwnerListInterface } from "../../api/interfaces/owner";
 import { getOwnersListAPI } from "../../api/owner";
 import { UseLoggedUserState } from "../../modules/LoggedUserModule";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
-import ErrorComponent from "../ErrorComponent";
 import { BaseInput } from "../Inputs";
-import { OwnersListElement } from "../ListsElements";
-import LoadingComponent from "../LoadingComponent";
+import { OwnersListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
 
 interface PageStateInterface {
@@ -83,17 +81,10 @@ const OwnersListPanel = () => {
         onBlur={(event) => setText(event.target.value)}
         onKeyPress={(event) => setTextOnEnter(event)}
       />
-      <div>
-        {loadingState.loading ? (
-          <LoadingComponent />
-        ) : loadingState.error ? (
-          <ErrorComponent errorMessage={loadingState.error} />
-        ) : (
-          ownersList.map((elem) => (
-            <OwnersListElement listElement={elem} key={elem.id} />
-          ))
-        )}
-      </div>
+      <OwnersListComponent
+        loadingState={loadingState}
+        ownersList={ownersList}
+      />
       <PaginationComponent
         count={pageState.elementsCount}
         currentPage={pageState.currentPage}

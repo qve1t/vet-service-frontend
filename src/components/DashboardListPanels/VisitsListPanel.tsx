@@ -5,10 +5,8 @@ import { VisitListInterface } from "../../api/interfaces/visit";
 import { getVisitsListAPI } from "../../api/visit";
 import { getDayBeginning, getDayEnd } from "../../utils/getCurrentDate";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
-import ErrorComponent from "../ErrorComponent";
 import { DatePickerWrapper } from "../Inputs";
-import { VisitsListElement } from "../ListsElements";
-import LoadingComponent from "../LoadingComponent";
+import { VisitsListComponent } from "../ListDisplayComponent";
 
 const VisitsListPanel = () => {
   const [visitsList, setVisitsList] = useState<VisitListInterface[]>([]);
@@ -52,17 +50,10 @@ const VisitsListPanel = () => {
           dateFormat="dd-MM-yyyy"
         />
       </DatePickerWrapper>
-      <div>
-        {loadingState.loading ? (
-          <LoadingComponent />
-        ) : loadingState.error ? (
-          <ErrorComponent errorMessage={loadingState.error} />
-        ) : (
-          visitsList.map((elem) => (
-            <VisitsListElement listElement={elem} key={elem.id} />
-          ))
-        )}
-      </div>
+      <VisitsListComponent
+        loadingState={loadingState}
+        visitsList={visitsList}
+      />
     </>
   );
 };

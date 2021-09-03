@@ -4,10 +4,8 @@ import { PetListInterface } from "../../api/interfaces/pet";
 import { getPetsListAPI } from "../../api/pet";
 import { UseLoggedUserState } from "../../modules/LoggedUserModule";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
-import ErrorComponent from "../ErrorComponent";
 import { BaseInput } from "../Inputs";
-import { PetsListElement } from "../ListsElements";
-import LoadingComponent from "../LoadingComponent";
+import { PetsListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
 
 interface PageStateInterface {
@@ -83,17 +81,7 @@ const PetsListPanel = () => {
         onBlur={(event) => setText(event.target.value)}
         onKeyPress={(event) => setTextOnEnter(event)}
       />
-      <div>
-        {loadingState.loading ? (
-          <LoadingComponent />
-        ) : loadingState.error ? (
-          <ErrorComponent errorMessage={loadingState.error} />
-        ) : (
-          petsList.map((elem) => (
-            <PetsListElement listElement={elem} key={elem.id} />
-          ))
-        )}
-      </div>
+      <PetsListComponent loadingState={loadingState} petsList={petsList} />
       <PaginationComponent
         count={pageState.elementsCount}
         currentPage={pageState.currentPage}

@@ -25,8 +25,8 @@ interface LoggedUserContextProps {
 
 export const LoggedUserModule = ({ children }: LoggedUserContextProps) => {
   const [state, setState] = useImmer<State>({
-    isLogged: false,
-    email: "",
+    isLogged: localStorage.getItem("isLogged") === "true" || false,
+    email: localStorage.getItem("email") || "",
     itemsPerPage: 10,
   });
 
@@ -36,18 +36,23 @@ export const LoggedUserModule = ({ children }: LoggedUserContextProps) => {
         setState((draft) => {
           draft.isLogged = isLogged;
           draft.email = email;
+          localStorage.setItem("isLogged", "true");
+          localStorage.setItem("email", email);
         });
       },
       logoutUser: (isLogged, email) => {
         setState((draft) => {
           draft.isLogged = isLogged;
           draft.email = email;
+          localStorage.clear();
         });
       },
       checkIsLogged: (isLogged, email) => {
         setState((draft) => {
           draft.isLogged = isLogged;
           draft.email = email;
+          localStorage.setItem("isLogged", "true");
+          localStorage.setItem("email", email);
         });
       },
     };

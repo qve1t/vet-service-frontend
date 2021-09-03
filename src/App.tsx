@@ -5,6 +5,9 @@ import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardMain from "./pages/DashboardMain";
+import NoPage from "./pages/NoPage";
+
+import RestrictedRoute from "./routes/RestrictedRoute";
 
 const App = () => {
   return (
@@ -12,10 +15,11 @@ const App = () => {
       <GlobalStyle />
       <Router>
         <Switch>
+          <Route exact path="/" component={MainPage} />
+          <RestrictedRoute path="/dashboard" Component={DashboardMain} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
-          <Route path="/dashboard" component={DashboardMain} />
-          <Route path="/" component={MainPage} />
+          <Route path="*" component={NoPage} />
         </Switch>
       </Router>
     </div>

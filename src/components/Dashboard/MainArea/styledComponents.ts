@@ -11,3 +11,9 @@ export const DashboardMainAreaWrapper = styled.section`
 export const MainAreaHeader = styled.h3`
   font-size: ${typography.veryLarge};
 `;
+
+export const HorizontalWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 15px;
+`;

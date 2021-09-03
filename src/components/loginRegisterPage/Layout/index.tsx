@@ -8,7 +8,7 @@ import { LogoWithLink } from "../../Logo";
 
 interface LayoutProps {
   children: React.ReactNode;
-  label: string;
+  label?: string;
 }
 
 const Layout = ({ children, label }: LayoutProps) => {

@@ -19,6 +19,7 @@ import {
   OwnersDetailsPanel,
   VisitsDetailsPanel,
 } from "../../DashbordDetailsPanels";
+import DashboardMainPanel from "./DashboardMainPanel";
 
 const DashboardMainArea = () => {
   return (
@@ -36,6 +37,7 @@ const DashboardMainArea = () => {
           <Route path="/dashboard/pets" component={PetsListPanel} />
           <Route path="/dashboard/owners" component={OwnersListPanel} />
           <Route path="/dashboard/notes" component={NotesListPanel} />
+          <Route path="/dashboard" component={DashboardMainPanel} />
         </Switch>
       </DashboardMainAreaWrapper>
     </DeletePopupModule>
