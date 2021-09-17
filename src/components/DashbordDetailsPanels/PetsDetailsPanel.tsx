@@ -75,7 +75,7 @@ const PetsDetailsPanel = () => {
       { ...data, ownerId: (data.ownerId as any).id },
       (value: string | undefined) => value && value.length > 0,
     );
-    console.log(data);
+
     const registerResponse = await updatePetAPI({
       ...filteredValues,
       sex: filteredValues.sex as PetSexes,

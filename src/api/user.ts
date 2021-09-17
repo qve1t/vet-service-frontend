@@ -2,6 +2,7 @@ import { API_ADDRESS } from "../consts";
 import { FetchResponse } from "./interfaces/fetch";
 import { GetUserResponse, RegisterUserInterface } from "./interfaces/user";
 import { apiResponse, fetchError } from "../utils/apiResponse";
+import { refreshTokenWrapper } from "./refreshTokenWrapper";
 
 export const registerUserAPI = async ({
   email,
@@ -22,7 +23,7 @@ export const registerUserAPI = async ({
 
     return apiResponse(response.ok, jsonResponse);
   } catch (error) {
-    return fetchError(error);
+    return fetchError(error as Error);
   }
 };
 
@@ -30,20 +31,22 @@ export const changePasswordAPI = async (
   newPassword: string,
 ): Promise<FetchResponse<GetUserResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/user/change_password`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        newPassword,
+    const response = await refreshTokenWrapper(() =>
+      fetch(`${API_ADDRESS}/user/change_password`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          newPassword,
+        }),
       }),
-    });
+    );
     const jsonResponse = await response.json();
 
     return apiResponse(response.ok, jsonResponse);
   } catch (error) {
-    return fetchError(error);
+    return fetchError(error as Error);
   }
 };

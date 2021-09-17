@@ -2,20 +2,24 @@ import { API_ADDRESS } from "../consts";
 import { IsUserLoggedResponse, LoginUserInterface } from "./interfaces/auth";
 import { FetchResponse } from "./interfaces/fetch";
 import { apiResponse, fetchError } from "../utils/apiResponse";
+import { refreshTokenWrapper } from "./refreshTokenWrapper";
 
 export const isUserLoggedAPI = async (): Promise<
   FetchResponse<IsUserLoggedResponse | null>
 > => {
   try {
-    const response = await fetch(`${API_ADDRESS}/auth/isLogged`, {
-      method: "get",
-      credentials: "include",
-    });
+    const response = await refreshTokenWrapper(() =>
+      fetch(`${API_ADDRESS}/auth/isLogged`, {
+        method: "get",
+        credentials: "include",
+      }),
+    );
+
     const jsonResponse = await response.json();
 
     return apiResponse(response.ok, jsonResponse);
   } catch (error) {
-    return fetchError(error);
+    return fetchError(error as Error);
   }
 };
 
@@ -39,7 +43,7 @@ export const loginUserAPI = async ({
 
     return apiResponse(response.ok, jsonResponse);
   } catch (error) {
-    return fetchError(error);
+    return fetchError(error as Error);
   }
 };
 
@@ -47,14 +51,16 @@ export const logoutUserAPI = async (): Promise<
   FetchResponse<IsUserLoggedResponse | null>
 > => {
   try {
-    const response = await fetch(`${API_ADDRESS}/auth/logout`, {
-      method: "get",
-      credentials: "include",
-    });
+    const response = await refreshTokenWrapper(() =>
+      fetch(`${API_ADDRESS}/auth/logout`, {
+        method: "get",
+        credentials: "include",
+      }),
+    );
     const jsonResponse = await response.json();
 
     return apiResponse(response.ok, jsonResponse);
   } catch (error) {
-    return fetchError(error);
+    return fetchError(error as Error);
   }
 };
