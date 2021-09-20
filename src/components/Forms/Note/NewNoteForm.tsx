@@ -81,7 +81,11 @@ const NewNoteForm = ({ onSubmit }: NewNoteFormInterface) => {
           />
         )}
       />
-      {errors.petObj && <FormError>{(errors.petObj as any).message}</FormError>}
+      {errors.petObj && (
+        <FormError marginTop="-25px">
+          {(errors.petObj as any).message}
+        </FormError>
+      )}
       <FormLabel>Owner</FormLabel>
       <Controller
         name="ownerObj"
@@ -106,7 +110,9 @@ const NewNoteForm = ({ onSubmit }: NewNoteFormInterface) => {
         )}
       />
       {errors.ownerObj && (
-        <FormError>{(errors.ownerObj as any).message}</FormError>
+        <FormError marginTop="-25px">
+          {(errors.ownerObj as any).message}
+        </FormError>
       )}
       <FormLabel>Text</FormLabel>
       <BaseInput

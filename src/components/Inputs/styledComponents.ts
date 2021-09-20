@@ -29,12 +29,13 @@ const baseStyle = css`
   }
 `;
 
-export const FormError = styled.p`
+export const FormError = styled.p<{ marginTop?: string }>`
   font-family: "Lato", sans-serif;
   font-size: ${typography.small};
   margin-bottom: 10px;
   color: ${colors.errorRed};
   align-self: flex-start;
+  margin-top: ${({ marginTop }) => (marginTop ? marginTop : "0px")};
 `;
 
 export const FormLabel = styled.label<{ marginTop?: string }>`
@@ -49,7 +50,7 @@ export const FormLabel = styled.label<{ marginTop?: string }>`
 export const BaseInput = styled.input<{
   error?: string;
   width?: string;
-  noMargin?: string;
+  noMargin?: boolean;
 }>`
   width: ${({ width }) => (width ? width : "100%")};
   ${baseStyle}
@@ -58,13 +59,12 @@ export const BaseInput = styled.input<{
     error &&
     css`
       border-color: ${colors.errorRed};
-      margin-bottom: 5px;
     `}
   
   ${({ noMargin }) =>
     noMargin &&
     css`
-      margin-bottom: 30px;
+      margin-bottom: 0px;
     `}
 `;
 
@@ -75,7 +75,10 @@ export const BaseTextArea = styled.textarea`
   ${baseStyle}
 `;
 
-export const DatePickerWrapper = styled.div<{ error?: string; width?: string }>`
+export const DatePickerWrapper = styled.div<{
+  error?: string;
+  width?: string;
+}>`
   input {
     width: ${({ width }) => (width ? width : "100%")};
     ${baseStyle}
@@ -85,7 +88,6 @@ export const DatePickerWrapper = styled.div<{ error?: string; width?: string }>`
       error &&
       css`
         border-color: ${colors.errorRed};
-        margin-bottom: 5px;
       `}
   }
 `;
@@ -102,7 +104,6 @@ export const SelectCustom = styled(Select)<{ error?: string; width?: string }>`
       error &&
       css`
         border-color: ${colors.errorRed};
-        margin-bottom: 5px;
       `};
   }
   & .react-select__menu {
@@ -127,7 +128,6 @@ export const SelectCustomAsync = styled(AsyncSelect)<{
       error &&
       css`
         border-color: ${colors.errorRed};
-        margin-bottom: 5px;
       `};
   }
   & .react-select__menu {

@@ -42,8 +42,6 @@ const DashboardNavbar = () => {
         logoutResponse.response.email,
       );
       history.push("/login");
-    } else {
-      console.log(logoutResponse.error);
     }
   };
 

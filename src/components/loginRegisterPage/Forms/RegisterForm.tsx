@@ -43,7 +43,6 @@ const RegisterForm = () => {
         placeholder="Email"
         autoComplete="off"
         error={errors.email?.message || registerError}
-        noMargin={registerError}
         {...register("email", {
           required: "Email is required",
           pattern: {
@@ -52,12 +51,13 @@ const RegisterForm = () => {
           },
         })}
       />
-      {errors.email && <FormError>{errors.email.message}</FormError>}
+      {errors.email && (
+        <FormError marginTop="-25px">{errors.email.message}</FormError>
+      )}
       <BaseInput
         placeholder="Password"
         type="password"
         error={errors.password?.message || registerError}
-        noMargin={registerError}
         {...register("password", {
           required: "Password is required",
           minLength: {
@@ -70,7 +70,9 @@ const RegisterForm = () => {
           },
         })}
       />
-      {errors.password && <FormError>{errors.password.message}</FormError>}
+      {errors.password && (
+        <FormError marginTop="-25px">{errors.password.message}</FormError>
+      )}
       <BaseInput
         placeholder="Confirm password"
         type="password"
@@ -81,9 +83,13 @@ const RegisterForm = () => {
         })}
       />
       {errors.passwordConfirm && (
-        <FormError>{errors.passwordConfirm.message}</FormError>
+        <FormError marginTop="-25px">
+          {errors.passwordConfirm.message}
+        </FormError>
       )}
-      {registerError && <FormError>{registerError}</FormError>}
+      {registerError && (
+        <FormError marginTop="-25px">{registerError}</FormError>
+      )}
       <StandardButton label="Register" />
     </FormBase>
   );

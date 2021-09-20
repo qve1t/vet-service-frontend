@@ -7,6 +7,7 @@ import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import { BaseInput } from "../Inputs";
 import { OwnersListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
+import { HorizontalDivider } from "./styledComponents";
 
 interface PageStateInterface {
   currentPage: number;
@@ -78,9 +79,11 @@ const OwnersListPanel = () => {
       <BaseInput
         placeholder="Search..."
         width="40%"
+        noMargin={true}
         onBlur={(event) => setText(event.target.value)}
         onKeyPress={(event) => setTextOnEnter(event)}
       />
+      <HorizontalDivider />
       <OwnersListComponent
         loadingState={loadingState}
         ownersList={ownersList}

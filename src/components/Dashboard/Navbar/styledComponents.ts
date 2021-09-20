@@ -66,8 +66,7 @@ export const NavbarSectionLink = styled(Link)`
   font-weight: 700;
   font-size: ${typography.standard};
   color: ${colors.fontMain};
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 40px;
 
   transition: ${transitions.standardTransition};
   &:before {

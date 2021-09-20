@@ -109,7 +109,9 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
               </DatePickerWrapper>
             )}
           />
-          {errors.dateTime && <FormError>{errors.dateTime.message}</FormError>}
+          {errors.dateTime && (
+            <FormError marginTop="-25px">{errors.dateTime.message}</FormError>
+          )}
           <FormLabel>Visit name (required)</FormLabel>
           <BaseInput
             placeholder="Vaccination"
@@ -147,7 +149,9 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
             )}
           />
           {errors.petObj && (
-            <FormError>{(errors.petObj as any).message}</FormError>
+            <FormError marginTop="-25px">
+              {(errors.petObj as any).message}
+            </FormError>
           )}
           <FormLabel>Owner (Required)</FormLabel>
           <Controller
@@ -176,7 +180,9 @@ const NewVisitForm = ({ onSubmit }: NewVisitFormInterface) => {
             )}
           />
           {errors.ownerObj && (
-            <FormError>{(errors.ownerObj as any).message}</FormError>
+            <FormError marginTop="-25px">
+              {(errors.ownerObj as any).message}
+            </FormError>
           )}
         </FormHalfWidthWrapper>
         <FormHalfWidthWrapper>

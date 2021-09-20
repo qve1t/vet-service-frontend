@@ -67,7 +67,9 @@ const EditPetForm = ({ onSubmit, onCancel, data }: NewPetFormInterface) => {
           />
         )}
       />
-      {errors.ownerId && <FormError>{errors.ownerId.message}</FormError>}
+      {errors.ownerId && (
+        <FormError marginTop="-25px">{errors.ownerId.message}</FormError>
+      )}
       <MultipleInputsWrapper>
         <DataElement label="Type" displayData={data?.type} width="80%" />
         <SingleInputWrapper>
@@ -135,7 +137,9 @@ const EditPetForm = ({ onSubmit, onCancel, data }: NewPetFormInterface) => {
               />
             )}
           />
-          {errors.sex && <FormError>{errors.sex.message}</FormError>}
+          {errors.sex && (
+            <FormError marginTop="-25px">{errors.sex.message}</FormError>
+          )}
         </SingleInputWrapper>
         <SingleInputWrapper>
           <FormLabel>Age</FormLabel>

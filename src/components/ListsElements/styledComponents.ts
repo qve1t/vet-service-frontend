@@ -13,7 +13,7 @@ const wrapperStyle = css`
   gap: 15px;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid white;
+  border: 1px solid ${colors.inputGrey};
   border-radius: 5px;
   background: ${colors.backgroundMain};
   cursor: pointer;
@@ -21,6 +21,7 @@ const wrapperStyle = css`
   transition: ${transitions.standardTransition};
   &:hover {
     border-color: ${colors.themeGreen};
+    background: ${colors.themeGreen25};
   }
 `;
 
@@ -102,6 +103,6 @@ export const ListElementLink = styled(Link)`
   transition: ${transitions.standardTransition};
   &:hover {
     text-decoration: underline;
-    color: ${colors.themeGreen};
+    color: ${colors.themeGreenDark};
   }
 `;

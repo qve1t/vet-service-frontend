@@ -10,9 +10,7 @@ const InfoSection = () => {
   return (
     <Section>
       <MidSection>
-        <MidSectionHeader>
-          One place to replace all of the paperwork
-        </MidSectionHeader>
+        <MidSectionHeader>Simplicity as its best</MidSectionHeader>
         <MidSectionParagraph>
           Have you had enough papers, notebooks and calendars? Available
           commercial software is complicated to use? You are in the right place.

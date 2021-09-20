@@ -7,6 +7,7 @@ import { getDayBeginning, getDayEnd } from "../../utils/getCurrentDate";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import { DatePickerWrapper } from "../Inputs";
 import { VisitsListComponent } from "../ListDisplayComponent";
+import { HorizontalDivider } from "./styledComponents";
 
 const VisitsListPanel = () => {
   const [visitsList, setVisitsList] = useState<VisitListInterface[]>([]);
@@ -50,6 +51,7 @@ const VisitsListPanel = () => {
           dateFormat="dd-MM-yyyy"
         />
       </DatePickerWrapper>
+      <HorizontalDivider customMarginTop="0px" />
       <VisitsListComponent
         loadingState={loadingState}
         visitsList={visitsList}

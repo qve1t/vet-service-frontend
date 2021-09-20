@@ -7,7 +7,7 @@ import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
 import { BaseInput } from "../Inputs";
 import { NotesListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
-import { HorizontalWrapper } from "./styledComponents";
+import { HorizontalDivider, HorizontalWrapper } from "./styledComponents";
 
 interface PageStateInterface {
   currentPage: number;
@@ -80,9 +80,11 @@ const NotesListDefault = () => {
       <BaseInput
         placeholder="Search..."
         width="40%"
+        noMargin={true}
         onBlur={(event) => setText(event.target.value)}
         onKeyPress={(event) => setTextOnEnter(event)}
       />
+      <HorizontalDivider />
       <HorizontalWrapper>
         <NotesListComponent
           forceUpdate={forceUpdate}

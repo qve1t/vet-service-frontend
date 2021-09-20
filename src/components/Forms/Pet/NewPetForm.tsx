@@ -68,7 +68,9 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
           />
         )}
       />
-      {errors.ownerId && <FormError>{errors.ownerId.message}</FormError>}
+      {errors.ownerId && (
+        <FormError marginTop="-25px">{errors.ownerId.message}</FormError>
+      )}
       <MultipleInputsWrapper>
         <SingleInputWrapper>
           <FormLabel>Type (Required)</FormLabel>
@@ -140,7 +142,9 @@ const NewPetForm = ({ onSubmit }: NewPetFormInterface) => {
               />
             )}
           />
-          {errors.sex && <FormError>{errors.sex.message}</FormError>}
+          {errors.sex && (
+            <FormError marginTop="-25px">{errors.sex.message}</FormError>
+          )}
         </SingleInputWrapper>
         <SingleInputWrapper>
           <FormLabel>Age</FormLabel>

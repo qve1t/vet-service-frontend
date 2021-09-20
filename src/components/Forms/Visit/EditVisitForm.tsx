@@ -63,7 +63,9 @@ const EditVisitForm = ({ onSubmit, onCancel, data }: NewVisitFormInterface) => {
           </DatePickerWrapper>
         )}
       />
-      {errors.dateTime && <FormError>{errors.dateTime.message}</FormError>}
+      {errors.dateTime && (
+        <FormError marginTop="-25px">{errors.dateTime.message}</FormError>
+      )}
       <FormLabel>Visit name (required)</FormLabel>
       <BaseInput
         placeholder="Vaccination"

@@ -44,7 +44,6 @@ const LoginForm = () => {
       <BaseInput
         placeholder="Email"
         error={errors.email?.message || loginError}
-        noMargin={loginError}
         autoComplete="off"
         {...register("email", {
           required: "Email is required",
@@ -54,7 +53,9 @@ const LoginForm = () => {
           },
         })}
       />
-      {errors.email && <FormError>{errors.email.message}</FormError>}
+      {errors.email && (
+        <FormError marginTop="-25px">{errors.email.message}</FormError>
+      )}
       <BaseInput
         placeholder="Password"
         type="password"
@@ -63,8 +64,10 @@ const LoginForm = () => {
           required: "Password is required",
         })}
       />
-      {errors.password && <FormError>{errors.password.message}</FormError>}
-      {loginError && <FormError>{loginError}</FormError>}
+      {errors.password && (
+        <FormError marginTop="-25px">{errors.password.message}</FormError>
+      )}
+      {loginError && <FormError marginTop="-25px">{loginError}</FormError>}
 
       <StandardButton label="Login" />
     </FormBase>
