@@ -24,3 +24,18 @@ export const ButtonsWrapper = styled.div<{ noMargin?: boolean }>`
   justify-content: space-between;
   ${({ noMargin }) => !noMargin && "margin-top: 30px;"}
 `;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  max-height: 355px;
+`;
+
+export const FormHalfWidthWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+`;
+
+export const VisitsListWrapper = styled.div`
+  overflow: auto;
+`;

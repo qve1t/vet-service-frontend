@@ -23,7 +23,7 @@ const VisitsListComponent = ({
   }
 
   if (visitsList.length <= 0) {
-    return <EmptyDataComponent textInInfo="pets" />;
+    return <EmptyDataComponent textInInfo="visits" />;
   }
   return (
     <>
