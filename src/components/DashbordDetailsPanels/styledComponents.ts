@@ -43,9 +43,11 @@ export const ElementDataParagraph = styled.p<{
     ${({ hasData }) => (hasData ? colors.themeGreen : colors.inputGrey)};
 `;
 
-export const ButtonsWrapper = styled.div`
+export const ButtonsWrapper = styled.div<{
+  width?: string;
+}>`
   display: flex;
-  width: 250px;
+  width: ${({ width }) => (width ? width : "250px")};
   justify-content: space-between;
   margin-top: 30px;
 `;

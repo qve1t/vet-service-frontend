@@ -13,6 +13,7 @@ import {
   PetsSection,
   VisitsSection,
   NotesSection,
+  MedicinesSection,
 } from "./LinksSections";
 import VerticalMenu from "../../VerticalNavbar";
 import HamburgetButton from "../../VerticalNavbar/HamburgerButton";
@@ -53,6 +54,7 @@ const DashboardNavbar = () => {
           <Route path="/dashboard/pets" component={PetsSection} />
           <Route path="/dashboard/owners" component={OwnersSection} />
           <Route path="/dashboard/notes" component={NotesSection} />
+          <Route path="/dashboard/medicines" component={MedicinesSection} />
         </Switch>
         <SectionSeparator />
         <NavbarEmail>{email}</NavbarEmail>

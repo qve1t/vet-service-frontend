@@ -37,4 +37,12 @@ export const DASHBOARD_NAVBAR_LINKS: VerticalMenuLinkInterface[] = [
     label: "New note",
     linkTo: "/dashboard/notes/new",
   },
+  {
+    label: "Medicines",
+    linkTo: "/dashboard/medicines",
+  },
+  {
+    label: "New medicine",
+    linkTo: "/dashboard/medicines/new",
+  },
 ];

@@ -4,6 +4,7 @@ import Calendar from "../../../../icons/calendar.svg";
 import Profile from "../../../../icons/profile.svg";
 import Wallet from "../../../../icons/wallet.svg";
 import Notes from "../../../../icons/notes.svg";
+import Cross from "../../../../icons/cross.svg";
 
 import SingleInfo, { SingleElementProps } from "./SingleInfo";
 
@@ -28,6 +29,11 @@ const elementsToShow: SingleElementProps[] = [
     name: "Notes",
     description: "Your personal notes available\nfor every day",
     icon: Notes,
+  },
+  {
+    name: "Medicines",
+    description: "Easy manegement of medicines\nthat you are using",
+    icon: Cross,
   },
   {
     name: "Free to use",

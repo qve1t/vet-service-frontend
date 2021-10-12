@@ -6,3 +6,4 @@ export { default as PetsDetailsListElement } from "./PetsDetailsListElement";
 export { default as OwnersDetailsListElement } from "./OwnersListElement";
 export { default as VisitsDetailsListElement } from "./VisitsDetailsListelement";
 export { default as NotesDetailsListElement } from "./NotesDetailsListElement";
+export { default as MedicinesListElement } from "./MedicinesListElement";

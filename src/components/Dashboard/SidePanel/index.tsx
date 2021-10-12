@@ -12,6 +12,7 @@ const DashboardSidepanel = () => {
       <SingleSectionLink label="Visits" linkTo="/dashboard/visits" />
       <SingleSectionLink label="Pets" linkTo="/dashboard/pets" />
       <SingleSectionLink label="Owners" linkTo="/dashboard/owners" />
+      <SingleSectionLink label="Medicines" linkTo="/dashboard/medicines" />
       <SingleSectionLink label="Notes" linkTo="/dashboard/notes" />
     </DashboardSidepanelWrapper>
   );

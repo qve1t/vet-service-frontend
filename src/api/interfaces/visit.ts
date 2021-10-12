@@ -1,3 +1,5 @@
+import { MedicineInterface } from "./medicine";
+
 export interface VisitInterface {
   dateTime: Date;
   name: string;
@@ -7,6 +9,7 @@ export interface VisitInterface {
   healing: string | null;
   petOnVisit: { id: string; name: string; type: string };
   ownerOnVisit: { id: string; name: string; surname: string };
+  medicineOnVisit: { id: string; count: number; medicine: MedicineInterface[] };
 }
 
 export interface VisitRegisterInterface {
@@ -20,6 +23,11 @@ export interface VisitRegisterInterface {
   petId: string;
 }
 
+export interface VisitUpdateSingleMedicine {
+  medicineId: string;
+  count: number;
+}
+
 export interface VisitUPdateInterface {
   id: string;
   dateTime: Date;
@@ -28,6 +36,7 @@ export interface VisitUPdateInterface {
   interview?: string;
   description?: string;
   healing?: string;
+  medicines?: VisitUpdateSingleMedicine[];
 }
 
 export interface VisitGetQuery {

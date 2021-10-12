@@ -27,3 +27,14 @@ export const NotesSection = () => (
     <NavbarSectionLink to="/dashboard/notes/new">New note</NavbarSectionLink>
   </NavbarSectionWrapper>
 );
+
+export const MedicinesSection = () => (
+  <NavbarSectionWrapper>
+    <NavbarSectionLink to="/dashboard/medicines">
+      Medicines list
+    </NavbarSectionLink>
+    <NavbarSectionLink to="/dashboard/medicines/new">
+      New medicine
+    </NavbarSectionLink>
+  </NavbarSectionWrapper>
+);
