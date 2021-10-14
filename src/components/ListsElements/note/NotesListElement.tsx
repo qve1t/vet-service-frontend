@@ -1,9 +1,9 @@
-import { NoteListInterface } from "../../api/interfaces/note";
-import { deleteNoteApi } from "../../api/note";
+import { NoteListInterface } from "../../../api/interfaces/note";
+import { deleteNoteApi } from "../../../api/note";
 
-import Trash from "../../icons/trash.svg";
+import Trash from "../../../icons/trash.svg";
 
-import { UseDeletePopupActions } from "../../modules/DeletePopupModule";
+import { UseDeletePopupActions } from "../../../modules/DeletePopupModule";
 
 import {
   NoteElementWrapper,
@@ -12,7 +12,7 @@ import {
   ListElementLink,
   IconWrapper,
   DeleteIcon,
-} from "./styledComponents";
+} from "../styledComponents";
 
 interface NoteListElementInterface {
   listElement: NoteListInterface;

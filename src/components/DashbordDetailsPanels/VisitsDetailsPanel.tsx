@@ -1,8 +1,10 @@
 import { useEffect, useReducer, useState } from "react";
+import { useImmer } from "use-immer";
 import { SubmitHandler } from "react-hook-form";
 import { useHistory, useParams } from "react-router";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import {
+  SingleMedicineOnVisit,
   VisitInterface,
   VisitUPdateInterface,
 } from "../../api/interfaces/visit";
@@ -20,6 +22,7 @@ import ErrorComponent from "../ErrorComponent";
 import { EditVisitForm } from "../Forms";
 import { FormLabel } from "../Inputs";
 import {
+  MedicineDetailsListElement,
   OwnersDetailsListElement,
   PetsDetailsListElement,
 } from "../ListsElements";
@@ -28,6 +31,7 @@ import DataElement from "./Components/DataElement";
 import {
   ButtonsWrapper,
   ElementDataParagraph,
+  ListElementsWrapper,
   MultipleElementsWrapper,
   SingleElementWrapper,
   Wrapper,
@@ -41,6 +45,9 @@ const VisitsDetailsPanel = () => {
   const history = useHistory();
   const { id } = useParams<PathParamsInterface>();
   const [data, setData] = useState<VisitInterface | null>(null);
+  const [medicinesList, setMedicinesList] = useImmer<SingleMedicineOnVisit[]>(
+    [],
+  );
   const [loadingState, setLoadingState] = useState<LoadingStateInterface>({
     loading: true,
     error: "",
@@ -56,13 +63,16 @@ const VisitsDetailsPanel = () => {
       if (fetchedData.response) {
         setLoadingState({ loading: false, error: "" });
         setData(fetchedData.response);
+        setMedicinesList(
+          (draft) => (draft = fetchedData.response?.medicinesOnVisit || []),
+        );
       } else {
         setLoadingState({ loading: false, error: fetchedData.error });
       }
     };
 
     fetchData();
-  }, [id, ignored]);
+  }, [id, ignored]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onEditSubmit: SubmitHandler<VisitUPdateInterface> = async (
     data,
@@ -72,6 +82,14 @@ const VisitsDetailsPanel = () => {
     setLoadingState({ loading: false, error: "" });
     const registerResponse = await updateVisitAPI({
       ...data,
+      medicines: [
+        ...medicinesList.map((elem) => {
+          return {
+            medicineId: elem.medicine.id,
+            count: elem.count,
+          };
+        }),
+      ],
       id: id,
     });
     if (registerResponse.response) {
@@ -108,6 +126,8 @@ const VisitsDetailsPanel = () => {
           data={data}
           onCancel={() => setIsEdit(false)}
           onSubmit={onEditSubmit}
+          medicinesList={medicinesList}
+          setMedicinesList={setMedicinesList}
         />
       </>
     );
@@ -161,6 +181,17 @@ const VisitsDetailsPanel = () => {
           width="100%"
         />
         <DataElement label="Healing" displayData={data?.healing} width="100%" />
+        <ListElementsWrapper style={{ marginBottom: "30px" }}>
+          {data?.medicinesOnVisit.map((elem) => (
+            <MedicineDetailsListElement
+              key={elem.medicine.id}
+              id={elem.medicine.id}
+              count={elem.count}
+              name={elem.medicine.name}
+              width="auto"
+            />
+          ))}
+        </ListElementsWrapper>
         <DataElement label="Note" displayData={data?.note} width="100%" />
         <ButtonsWrapper>
           <StandardButton

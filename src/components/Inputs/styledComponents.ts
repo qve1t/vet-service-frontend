@@ -94,6 +94,7 @@ export const DatePickerWrapper = styled.div<{
 
 export const SelectCustom = styled(Select)<{ error?: string; width?: string }>`
   & .react-select__control {
+    min-width: 400px;
     width: ${({ width }) => (width ? width : "100%")};
     ${baseStyle}
     padding: 0px 12px;
@@ -118,6 +119,7 @@ export const SelectCustomAsync = styled(AsyncSelect)<{
   width?: string;
 }>`
   & .react-select__control {
+    min-width: 400px;
     width: ${({ width }) => (width ? width : "100%")};
     ${baseStyle}
     padding: 0px 12px;

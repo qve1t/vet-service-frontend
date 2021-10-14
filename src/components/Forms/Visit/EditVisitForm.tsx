@@ -1,3 +1,4 @@
+import { Updater } from "use-immer";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 
@@ -7,12 +8,14 @@ import {
   DatePickerWrapper,
   FormLabel,
   BaseTextArea,
+  SelectCustomAsync,
 } from "../../Inputs";
 import StandardButton from "../../Buttons/StandardButton";
 import { ButtonsWrapper, FormsWrapper } from "../styledComponents";
 
 import "react-datepicker/dist/react-datepicker.css";
 import {
+  SingleMedicineOnVisit,
   VisitInterface,
   VisitUPdateInterface,
 } from "../../../api/interfaces/visit";
@@ -21,23 +24,43 @@ import {
   SingleElementWrapper,
 } from "../../DashbordDetailsPanels/styledComponents";
 import {
+  MedicineDetailsEditListElement,
   OwnersDetailsListElement,
   PetsDetailsListElement,
 } from "../../ListsElements";
+import { selectTheme } from "../../../mainStyles/reactSelectTheme";
+import { loadMedicines } from "../../../api/selectListCalls/loadMedicines";
 
 interface NewVisitFormInterface {
   onSubmit: SubmitHandler<VisitUPdateInterface>;
   onCancel: () => void;
   data: VisitInterface | null;
+  medicinesList: SingleMedicineOnVisit[];
+  setMedicinesList: Updater<SingleMedicineOnVisit[]>;
 }
 
-const EditVisitForm = ({ onSubmit, onCancel, data }: NewVisitFormInterface) => {
+const EditVisitForm = ({
+  onSubmit,
+  onCancel,
+  data,
+  medicinesList,
+  setMedicinesList,
+}: NewVisitFormInterface) => {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<VisitUPdateInterface>();
+
+  const countChange = (index: number, value: string) => {
+    const intValue = parseInt(value);
+    if (!isNaN(intValue)) {
+      setMedicinesList((draft) => {
+        draft[index].count = intValue;
+      });
+    }
+  };
 
   return (
     <FormsWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -83,7 +106,7 @@ const EditVisitForm = ({ onSubmit, onCancel, data }: NewVisitFormInterface) => {
           <FormLabel>Pet</FormLabel>
           <PetsDetailsListElement
             listElement={data?.petOnVisit as any}
-            width="40%"
+            width="50%"
           />
         </SingleElementWrapper>
 
@@ -91,7 +114,7 @@ const EditVisitForm = ({ onSubmit, onCancel, data }: NewVisitFormInterface) => {
           <FormLabel>Owner</FormLabel>
           <OwnersDetailsListElement
             listElement={data?.ownerOnVisit as any}
-            width="40%"
+            width="50%"
           />
         </SingleElementWrapper>
       </MultipleElementsWrapper>
@@ -113,6 +136,45 @@ const EditVisitForm = ({ onSubmit, onCancel, data }: NewVisitFormInterface) => {
         defaultValue={data?.healing || ""}
         {...register("healing")}
       />
+      <SingleElementWrapper>
+        <SelectCustomAsync
+          classNamePrefix="react-select"
+          placeholder="Type a medicine name..."
+          width="40%"
+          cacheOptions
+          loadOptions={loadMedicines}
+          onChange={(option: any) => {
+            const index = medicinesList.findIndex(
+              (elem) => elem.medicine.id === option.value.id,
+            );
+            if (index === -1) {
+              setMedicinesList((draft) => {
+                draft.push({
+                  count: 0,
+                  medicine: { id: option.value.id, name: option.value.name },
+                });
+              });
+            }
+          }}
+          theme={selectTheme}
+        />
+      </SingleElementWrapper>
+      <SingleElementWrapper style={{ marginBottom: "30px" }}>
+        {medicinesList.map((elem, index) => (
+          <MedicineDetailsEditListElement
+            key={elem.medicine.id}
+            index={index}
+            count={elem.count}
+            name={elem.medicine.name}
+            onDelete={() =>
+              setMedicinesList((draft) => {
+                draft.splice(index, 1);
+              })
+            }
+            onCountChange={countChange}
+          />
+        ))}
+      </SingleElementWrapper>
       <FormLabel>Note</FormLabel>
       <BaseTextArea
         placeholder="Note..."
@@ -127,6 +189,7 @@ const EditVisitForm = ({ onSubmit, onCancel, data }: NewVisitFormInterface) => {
           onClick={(event) => {
             event.preventDefault();
             onCancel();
+            setMedicinesList((draft) => (draft = data?.medicinesOnVisit || []));
           }}
         />
       </ButtonsWrapper>

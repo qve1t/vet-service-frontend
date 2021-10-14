@@ -1,10 +1,10 @@
-import { VisitListInterface } from "../../api/interfaces/visit";
+import { VisitListInterface } from "../../../api/interfaces/visit";
 
 import {
   ListElementWrapperLink,
   ListElementMainText,
   ListElementSecondaryText,
-} from "./styledComponents";
+} from "../styledComponents";
 
 interface VisitsListElementInterface {
   listElement: VisitListInterface;

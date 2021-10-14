@@ -1,11 +1,11 @@
-import { PetListInterface } from "../../api/interfaces/pet";
+import { PetListInterface } from "../../../api/interfaces/pet";
 
 import {
   ListElementWrapperLink,
   ListElementMainText,
   ListElementSecondaryText,
   ListElementLink,
-} from "./styledComponents";
+} from "../styledComponents";
 
 interface PetListElementInterface {
   listElement: PetListInterface;

@@ -50,6 +50,23 @@ export const ListElementWrapper = styled.div`
   ${wrapperStyle}
 `;
 
+export const NoBackgroundWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 400px;
+  width: 30%;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  margin-top: 5px;
+  border-bottom: 1px solid ${colors.themeGreen};
+
+  &:hover > ${IconWrapper} {
+    opacity: 1;
+  }
+`;
+
 export const NoteElementWrapper = styled.div`
   ${wrapperStyle}
   position: relative;
@@ -73,9 +90,15 @@ export const ListElementWrapperLink = styled(Link)<{
   column?: boolean;
 }>`
   ${wrapperStyle}
+  position: relative;
+  min-width: 200px;
   width: ${({ width }) => (width ? width : "100%")};
   color: ${colors.fontMain};
   text-decoration: none;
+
+  &:hover > ${IconWrapper} {
+    opacity: 1;
+  }
 
   ${({ column }) =>
     column &&

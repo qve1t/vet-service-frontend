@@ -182,7 +182,7 @@ const PetsDetailsPanel = () => {
             .map((elem) => (
               <VisitsDetailsListElement
                 listElement={elem}
-                width="20%"
+                width="auto"
                 key={elem.id}
               />
             ))}

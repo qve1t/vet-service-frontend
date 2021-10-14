@@ -1,10 +1,10 @@
-import { OwnerListInterface } from "../../api/interfaces/owner";
+import { OwnerListInterface } from "../../../api/interfaces/owner";
 
 import {
   ListElementWrapperLink,
   ListElementMainText,
   ListElementSecondaryText,
-} from "./styledComponents";
+} from "../styledComponents";
 
 interface OwnersListElementInterface {
   listElement: OwnerListInterface;

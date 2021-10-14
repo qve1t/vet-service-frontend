@@ -1,10 +1,10 @@
-import { MedicineListInterface } from "../../api/interfaces/medicine";
+import { MedicineListInterface } from "../../../api/interfaces/medicine";
 
 import {
   ListElementWrapperLink,
   ListElementMainText,
   ListElementSecondaryText,
-} from "./styledComponents";
+} from "../styledComponents";
 
 interface MedicineListElementInterface {
   listElement: MedicineListInterface;
@@ -21,8 +21,8 @@ const MedicineListElement = ({
       width={width}
     >
       <ListElementMainText>{listElement.name}</ListElementMainText>
-      <ListElementSecondaryText>{`Count: ${listElement.count}`}</ListElementSecondaryText>
-      <ListElementSecondaryText>{`Magazine count: ${listElement.magazineCount}`}</ListElementSecondaryText>
+      <ListElementSecondaryText>{`Amount on supply: ${listElement.count}`}</ListElementSecondaryText>
+      <ListElementSecondaryText>{`Amount in magazine: ${listElement.magazineCount}`}</ListElementSecondaryText>
     </ListElementWrapperLink>
   );
 };

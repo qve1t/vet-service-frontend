@@ -2,7 +2,7 @@ import {
   ListElementWrapperLink,
   ListElementMainText,
   ListElementSecondaryText,
-} from "./styledComponents";
+} from "../styledComponents";
 
 interface PetDetailsListElementInterface {
   listElement: { id: string; name: string; type: string };
