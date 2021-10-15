@@ -20,9 +20,15 @@ const MedicineListElement = ({
       to={`/dashboard/medicines/${listElement?.id}`}
       width={width}
     >
-      <ListElementMainText>{listElement.name}</ListElementMainText>
-      <ListElementSecondaryText>{`Amount on supply: ${listElement.count}`}</ListElementSecondaryText>
-      <ListElementSecondaryText>{`Amount in magazine: ${listElement.magazineCount}`}</ListElementSecondaryText>
+      <ListElementMainText style={{ flex: 1 }}>
+        {listElement.name}
+      </ListElementMainText>
+      <ListElementSecondaryText
+        style={{ flex: 1 }}
+      >{`Supply: ${listElement.count}`}</ListElementSecondaryText>
+      <ListElementSecondaryText
+        style={{ flex: 4 }}
+      >{`Magazine: ${listElement.magazineCount}`}</ListElementSecondaryText>
     </ListElementWrapperLink>
   );
 };

@@ -14,11 +14,16 @@ interface PetListElementInterface {
 const PetListElement = ({ listElement }: PetListElementInterface) => {
   return (
     <ListElementWrapperLink to={`/dashboard/pets/${listElement?.id}`}>
-      <ListElementMainText>{listElement?.name}</ListElementMainText>
-      <ListElementSecondaryText>{listElement?.type}</ListElementSecondaryText>
+      <ListElementMainText style={{ flex: 1 }}>
+        {listElement?.name}
+      </ListElementMainText>
+      <ListElementSecondaryText style={{ flex: 1 }}>
+        {listElement?.type}
+      </ListElementSecondaryText>
       {listElement?.owner && (
         <ListElementLink
           to={`/dashboard/owners/${listElement?.owner?.id}`}
+          style={{ flex: 4 }}
         >{`${listElement?.owner?.name} ${listElement?.owner?.surname}`}</ListElementLink>
       )}
     </ListElementWrapperLink>

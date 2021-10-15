@@ -114,7 +114,9 @@ export const ListElementMainText = styled.h4`
   text-transform: capitalize;
 `;
 
-export const ListElementSecondaryText = styled.p``;
+export const ListElementSecondaryText = styled.p`
+  min-width: 80px;
+`;
 
 export const ListElementLink = styled(Link)`
   color: ${colors.fontMain};

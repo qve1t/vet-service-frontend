@@ -20,12 +20,14 @@ const VisitsListElement = ({
       to={`/dashboard/visits/${listElement?.id}`}
       width={width}
     >
-      <ListElementMainText>
+      <ListElementMainText style={{ flex: 1 }}>
         {new Date(listElement?.dateTime).toLocaleTimeString([], {
           timeStyle: "short",
         })}
       </ListElementMainText>
-      <ListElementSecondaryText>{listElement?.name}</ListElementSecondaryText>
+      <ListElementSecondaryText style={{ flex: 5 }}>
+        {listElement?.name}
+      </ListElementSecondaryText>
     </ListElementWrapperLink>
   );
 };

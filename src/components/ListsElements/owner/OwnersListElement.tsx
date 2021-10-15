@@ -20,8 +20,12 @@ const OwnersListElement = ({
       to={`/dashboard/owners/${listElement?.id}`}
       width={width}
     >
-      <ListElementMainText>{listElement?.surname}</ListElementMainText>
-      <ListElementSecondaryText>{listElement?.name}</ListElementSecondaryText>
+      <ListElementMainText style={{ flex: 1 }}>
+        {listElement?.surname}
+      </ListElementMainText>
+      <ListElementSecondaryText style={{ flex: 5 }}>
+        {listElement?.name}
+      </ListElementSecondaryText>
     </ListElementWrapperLink>
   );
 };
