@@ -8,11 +8,13 @@ import LoadingComponent from "../LoadingComponent";
 interface DataComponentInterface {
   loadingState: LoadingStateInterface;
   medicinesList: MedicineListInterface[];
+  customEmptyText?: string;
 }
 
 const MedicinesListComponent = ({
   loadingState,
   medicinesList,
+  customEmptyText,
 }: DataComponentInterface) => {
   if (loadingState.loading) {
     return <LoadingComponent />;
@@ -23,7 +25,9 @@ const MedicinesListComponent = ({
   }
 
   if (medicinesList.length <= 0) {
-    return <EmptyDataComponent textInInfo="medicines" />;
+    return (
+      <EmptyDataComponent textInInfo="medicines" customText={customEmptyText} />
+    );
   }
   return (
     <>

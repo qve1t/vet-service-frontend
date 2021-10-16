@@ -87,6 +87,7 @@ const OwnersListPanel = () => {
       <OwnersListComponent
         loadingState={loadingState}
         ownersList={ownersList}
+        customEmptyText="You have not registered any owners yet"
       />
       <PaginationComponent
         count={pageState.elementsCount}

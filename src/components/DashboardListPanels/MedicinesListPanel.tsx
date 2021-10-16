@@ -89,6 +89,7 @@ const MedicinesListPanel = () => {
       <MedicinesListComponent
         loadingState={loadingState}
         medicinesList={medicinesList}
+        customEmptyText="You do not have any medicines registeres"
       />
       <PaginationComponent
         count={pageState.elementsCount}

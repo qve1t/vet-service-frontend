@@ -84,7 +84,11 @@ const PetsListPanel = () => {
         onKeyPress={(event) => setTextOnEnter(event)}
       />
       <HorizontalDivider />
-      <PetsListComponent loadingState={loadingState} petsList={petsList} />
+      <PetsListComponent
+        loadingState={loadingState}
+        petsList={petsList}
+        customEmptyText="You have not registered any patients yet"
+      />
       <PaginationComponent
         count={pageState.elementsCount}
         currentPage={pageState.currentPage}

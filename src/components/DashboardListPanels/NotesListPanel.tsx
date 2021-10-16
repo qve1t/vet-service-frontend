@@ -90,6 +90,7 @@ const NotesListDefault = () => {
           forceUpdate={forceUpdate}
           loadingState={loadingState}
           notesList={notesList}
+          customEmptyText="You do not have any notes"
         />
       </HorizontalWrapper>
       <PaginationComponent

@@ -13,6 +13,7 @@ import {
   NotesListComponent,
   VisitsListComponent,
 } from "../../ListDisplayComponent";
+import LoadingComponent from "../../LoadingComponent";
 
 const DashboardMainPanel = () => {
   const [notesList, setNotesList] = useState<NoteListInterface[]>([]);
@@ -68,20 +69,30 @@ const DashboardMainPanel = () => {
     fetchVisitsData();
   }, [ignored]);
 
+  if (loadingNotesState.loading || loadingVisitsState.loading) {
+    return <LoadingComponent />;
+  }
+
   return (
     <>
-      <MainAreaHeader>Notes for Today</MainAreaHeader>
-      <HorizontalWrapper>
-        <NotesListComponent
-          forceUpdate={forceUpdate}
-          loadingState={loadingNotesState}
-          notesList={notesList}
-        />
-      </HorizontalWrapper>
+      {notesList.length > 0 && (
+        <>
+          <MainAreaHeader>Notes for Today</MainAreaHeader>
+          <HorizontalWrapper>
+            <NotesListComponent
+              forceUpdate={forceUpdate}
+              loadingState={loadingNotesState}
+              notesList={notesList}
+            />
+          </HorizontalWrapper>
+        </>
+      )}
+
       <MainAreaHeader>Visits for Today</MainAreaHeader>
       <VisitsListComponent
         loadingState={loadingVisitsState}
         visitsList={visitsList}
+        customEmptyText="You have a free day today :)"
       />
     </>
   );

@@ -8,11 +8,13 @@ import LoadingComponent from "../LoadingComponent";
 interface DataComponentInterface {
   loadingState: LoadingStateInterface;
   ownersList: OwnerListInterface[];
+  customEmptyText?: string;
 }
 
 const OwnersListComponent = ({
   loadingState,
   ownersList,
+  customEmptyText,
 }: DataComponentInterface) => {
   if (loadingState.loading) {
     return <LoadingComponent />;
@@ -23,7 +25,9 @@ const OwnersListComponent = ({
   }
 
   if (ownersList.length <= 0) {
-    return <EmptyDataComponent textInInfo="owners" />;
+    return (
+      <EmptyDataComponent textInInfo="owners" customText={customEmptyText} />
+    );
   }
   return (
     <>

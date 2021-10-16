@@ -55,6 +55,7 @@ const VisitsListPanel = () => {
       <VisitsListComponent
         loadingState={loadingState}
         visitsList={visitsList}
+        customEmptyText="There are no visits for this day."
       />
     </>
   );

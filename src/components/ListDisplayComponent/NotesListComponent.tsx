@@ -9,12 +9,14 @@ interface DataComponentInterface {
   loadingState: LoadingStateInterface;
   notesList: NoteListInterface[];
   forceUpdate: () => void;
+  customEmptyText?: string;
 }
 
 const NotesListComponent = ({
   loadingState,
   notesList,
   forceUpdate,
+  customEmptyText,
 }: DataComponentInterface) => {
   if (loadingState.loading) {
     return <LoadingComponent />;
@@ -25,7 +27,9 @@ const NotesListComponent = ({
   }
 
   if (notesList.length <= 0) {
-    return <EmptyDataComponent textInInfo="notes" />;
+    return (
+      <EmptyDataComponent textInInfo="notes" customText={customEmptyText} />
+    );
   }
   return (
     <>
