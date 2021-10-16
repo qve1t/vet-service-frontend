@@ -2,18 +2,13 @@ import { useState, useEffect } from "react";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { MedicineListInterface } from "../../api/interfaces/medicine";
 import { getMedicinesListApi } from "../../api/medicine";
+import { PageStateInterface } from "../../interfaces/PageStateInterface";
 import { UseLoggedUserState } from "../../modules/LoggedUserModule";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
-import { BaseInput } from "../Inputs";
+import SearchListInput from "../Inputs/SearchListInput";
 import { MedicinesListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
 import { HorizontalDivider } from "./styledComponents";
-
-interface PageStateInterface {
-  currentPage: number;
-  elementsCount: number;
-  searchText: string;
-}
 
 const MedicinesListPanel = () => {
   const { itemsPerPage } = UseLoggedUserState();
@@ -54,37 +49,10 @@ const MedicinesListPanel = () => {
     fetchData();
   }, [itemsPerPage, pageState.currentPage, pageState.searchText]);
 
-  const setPage = (page: number) => {
-    setPageState({
-      ...pageState,
-      currentPage: page,
-    });
-  };
-
-  const setText = (text: string) => {
-    setPageState({
-      ...pageState,
-      searchText: text,
-      currentPage: 0,
-    });
-  };
-
-  const setTextOnEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      setText((event.target as HTMLInputElement).value);
-    }
-  };
-
   return (
     <>
       <MainAreaHeader>List of medicines</MainAreaHeader>
-      <BaseInput
-        placeholder="Search..."
-        width="40%"
-        noMargin={true}
-        onBlur={(event) => setText(event.target.value)}
-        onKeyPress={(event) => setTextOnEnter(event)}
-      />
+      <SearchListInput pageState={pageState} setPageState={setPageState} />
       <HorizontalDivider />
       <MedicinesListComponent
         loadingState={loadingState}
@@ -93,8 +61,8 @@ const MedicinesListPanel = () => {
       />
       <PaginationComponent
         count={pageState.elementsCount}
-        currentPage={pageState.currentPage}
-        setPage={setPage}
+        pageState={pageState}
+        setPageState={setPageState}
       />
     </>
   );

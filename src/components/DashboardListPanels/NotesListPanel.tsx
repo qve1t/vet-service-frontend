@@ -2,18 +2,13 @@ import { useState, useEffect, useReducer } from "react";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { NoteListInterface } from "../../api/interfaces/note";
 import { getNotesListApi } from "../../api/note";
+import { PageStateInterface } from "../../interfaces/PageStateInterface";
 import { UseLoggedUserState } from "../../modules/LoggedUserModule";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
-import { BaseInput } from "../Inputs";
+import SearchListInput from "../Inputs/SearchListInput";
 import { NotesListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
 import { HorizontalDivider, HorizontalWrapper } from "./styledComponents";
-
-interface PageStateInterface {
-  currentPage: number;
-  elementsCount: number;
-  searchText: string;
-}
 
 const NotesListDefault = () => {
   const { itemsPerPage } = UseLoggedUserState();
@@ -53,37 +48,10 @@ const NotesListDefault = () => {
     fetchData();
   }, [itemsPerPage, pageState.currentPage, pageState.searchText, ignored]);
 
-  const setPage = (page: number) => {
-    setPageState({
-      ...pageState,
-      currentPage: page,
-    });
-  };
-
-  const setText = (text: string) => {
-    setPageState({
-      ...pageState,
-      searchText: text,
-      currentPage: 0,
-    });
-  };
-
-  const setTextOnEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      setText((event.target as HTMLInputElement).value);
-    }
-  };
-
   return (
     <>
       <MainAreaHeader>List of notes</MainAreaHeader>
-      <BaseInput
-        placeholder="Search..."
-        width="40%"
-        noMargin={true}
-        onBlur={(event) => setText(event.target.value)}
-        onKeyPress={(event) => setTextOnEnter(event)}
-      />
+      <SearchListInput pageState={pageState} setPageState={setPageState} />
       <HorizontalDivider />
       <HorizontalWrapper>
         <NotesListComponent
@@ -95,8 +63,8 @@ const NotesListDefault = () => {
       </HorizontalWrapper>
       <PaginationComponent
         count={pageState.elementsCount}
-        currentPage={pageState.currentPage}
-        setPage={setPage}
+        pageState={pageState}
+        setPageState={setPageState}
       />
     </>
   );

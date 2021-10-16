@@ -2,18 +2,13 @@ import { useState, useEffect } from "react";
 import { LoadingStateInterface } from "../../api/interfaces/fetch";
 import { PetListInterface } from "../../api/interfaces/pet";
 import { getPetsListAPI } from "../../api/pet";
+import { PageStateInterface } from "../../interfaces/PageStateInterface";
 import { UseLoggedUserState } from "../../modules/LoggedUserModule";
 import { MainAreaHeader } from "../Dashboard/MainArea/styledComponents";
-import { BaseInput } from "../Inputs";
+import SearchListInput from "../Inputs/SearchListInput";
 import { PetsListComponent } from "../ListDisplayComponent";
 import PaginationComponent from "../PaginationComponent";
 import { HorizontalDivider } from "./styledComponents";
-
-interface PageStateInterface {
-  currentPage: number;
-  elementsCount: number;
-  searchText: string;
-}
 
 const PetsListPanel = () => {
   const { itemsPerPage } = UseLoggedUserState();
@@ -52,37 +47,10 @@ const PetsListPanel = () => {
     fetchData();
   }, [itemsPerPage, pageState.currentPage, pageState.searchText]);
 
-  const setPage = (page: number) => {
-    setPageState({
-      ...pageState,
-      currentPage: page,
-    });
-  };
-
-  const setText = (text: string) => {
-    setPageState({
-      ...pageState,
-      searchText: text,
-      currentPage: 0,
-    });
-  };
-
-  const setTextOnEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      setText((event.target as HTMLInputElement).value);
-    }
-  };
-
   return (
     <>
       <MainAreaHeader>List of pets</MainAreaHeader>
-      <BaseInput
-        placeholder="Search..."
-        width="40%"
-        noMargin={true}
-        onBlur={(event) => setText(event.target.value)}
-        onKeyPress={(event) => setTextOnEnter(event)}
-      />
+      <SearchListInput pageState={pageState} setPageState={setPageState} />
       <HorizontalDivider />
       <PetsListComponent
         loadingState={loadingState}
@@ -91,8 +59,8 @@ const PetsListPanel = () => {
       />
       <PaginationComponent
         count={pageState.elementsCount}
-        currentPage={pageState.currentPage}
-        setPage={setPage}
+        pageState={pageState}
+        setPageState={setPageState}
       />
     </>
   );

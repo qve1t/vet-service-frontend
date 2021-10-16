@@ -1,3 +1,4 @@
+import { PageStateInterface } from "../../interfaces/PageStateInterface";
 import { UseLoggedUserState } from "../../modules/LoggedUserModule";
 import {
   PaginationWrapper,
@@ -7,30 +8,37 @@ import {
 
 interface PaginationComponentInterface {
   count: number;
-  currentPage: number;
-  setPage: (page: number) => void;
+  pageState: PageStateInterface;
+  setPageState: React.Dispatch<React.SetStateAction<PageStateInterface>>;
 }
 
 const PaginationComponent = ({
   count,
-  currentPage,
-  setPage,
+  pageState,
+  setPageState,
 }: PaginationComponentInterface) => {
   const { itemsPerPage } = UseLoggedUserState();
+
+  const setPage = (page: number) => {
+    setPageState({
+      ...pageState,
+      currentPage: page,
+    });
+  };
 
   const pagesNumber = Math.ceil(count / itemsPerPage) - 1;
   return (
     <PaginationWrapper>
       <PaginationButton
-        disabled={currentPage === 0}
-        onClick={() => setPage(currentPage - 1)}
+        disabled={pageState.currentPage === 0}
+        onClick={() => setPage(pageState.currentPage - 1)}
       >
         {"<"}
       </PaginationButton>
-      <PaginationCount>{currentPage + 1}</PaginationCount>
+      <PaginationCount>{pageState.currentPage + 1}</PaginationCount>
       <PaginationButton
-        disabled={pagesNumber < 0 || currentPage === pagesNumber}
-        onClick={() => setPage(currentPage + 1)}
+        disabled={pagesNumber < 0 || pageState.currentPage === pagesNumber}
+        onClick={() => setPage(pageState.currentPage + 1)}
       >
         {">"}
       </PaginationButton>
