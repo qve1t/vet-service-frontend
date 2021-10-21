@@ -1,4 +1,3 @@
-import { API_ADDRESS } from "../consts";
 import { FetchResponse } from "./interfaces/fetch";
 import { apiResponse, fetchError } from "../utils/apiResponse";
 import { refreshTokenWrapper } from "./refreshTokenWrapper";
@@ -23,7 +22,7 @@ export const getMedicinesListApi = async ({
   try {
     const response = await refreshTokenWrapper(() =>
       fetch(
-        `${API_ADDRESS}/medicine/?page=${page}&limit=${limit}&searchText=${searchText}`,
+        `${process.env.REACT_APP_API}/medicine/?page=${page}&limit=${limit}&searchText=${searchText}`,
         {
           method: "get",
           headers: {
@@ -47,7 +46,7 @@ export const getMedicineDetailsApi = async (
 ): Promise<FetchResponse<MedicineInterface | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/medicine/${medicineId}`, {
+      fetch(`${process.env.REACT_APP_API}/medicine/${medicineId}`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +67,7 @@ export const registerNewMedicineApi = async (
 ): Promise<FetchResponse<MedicineRegisterResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/medicine/register`, {
+      fetch(`${process.env.REACT_APP_API}/medicine/register`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -90,7 +89,7 @@ export const updateMEdicineApi = async (
 ): Promise<FetchResponse<MedicineUpdateResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/medicine/update`, {
+      fetch(`${process.env.REACT_APP_API}/medicine/update`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +111,7 @@ export const deleteMEdicineApi = async (
 ): Promise<FetchResponse<MedicineDeleteResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/medicine/delete/${medicineId}`, {
+      fetch(`${process.env.REACT_APP_API}/medicine/delete/${medicineId}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",

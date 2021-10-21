@@ -1,4 +1,3 @@
-import { API_ADDRESS } from "../consts";
 import { FetchResponse } from "./interfaces/fetch";
 import { apiResponse, fetchError } from "../utils/apiResponse";
 import {
@@ -19,13 +18,16 @@ export const getVisitsListAPI = async ({
 }: VisitGetQuery): Promise<FetchResponse<VisitListReponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/visit/?startDate=${startDate}&endDate=${endDate}`, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
+      fetch(
+        `${process.env.REACT_APP_API}/visit/?startDate=${startDate}&endDate=${endDate}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
         },
-        credentials: "include",
-      }),
+      ),
     );
     const jsonResponse = await response.json();
 
@@ -40,7 +42,7 @@ export const getVisitDetailsAPI = async (
 ): Promise<FetchResponse<VisitInterface | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/visit/${visitId}`, {
+      fetch(`${process.env.REACT_APP_API}/visit/${visitId}`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +63,7 @@ export const registerNewVisitAPI = async (
 ): Promise<FetchResponse<VisitRegisterResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/visit/register`, {
+      fetch(`${process.env.REACT_APP_API}/visit/register`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +85,7 @@ export const updateVisitAPI = async (
 ): Promise<FetchResponse<VisitUpdateResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/visit/update`, {
+      fetch(`${process.env.REACT_APP_API}/visit/update`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +107,7 @@ export const deleteVisitAPI = async (
 ): Promise<FetchResponse<VisitDeleteResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/visit/delete/${visitId}`, {
+      fetch(`${process.env.REACT_APP_API}/visit/delete/${visitId}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",

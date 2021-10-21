@@ -1,4 +1,3 @@
-import { API_ADDRESS } from "../consts";
 import { FetchResponse } from "./interfaces/fetch";
 import { GetUserResponse, RegisterUserInterface } from "./interfaces/user";
 import { apiResponse, fetchError } from "../utils/apiResponse";
@@ -9,7 +8,7 @@ export const registerUserAPI = async ({
   password,
 }: RegisterUserInterface): Promise<FetchResponse<GetUserResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/user/register`, {
+    const response = await fetch(`${process.env.REACT_APP_API}/user/register`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +31,7 @@ export const changePasswordAPI = async (
 ): Promise<FetchResponse<GetUserResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/user/change_password`, {
+      fetch(`${process.env.REACT_APP_API}/user/change_password`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",

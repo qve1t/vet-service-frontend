@@ -1,4 +1,3 @@
-import { API_ADDRESS } from "../consts";
 import { apiResponse, fetchError } from "../utils/apiResponse";
 import { FetchResponse } from "./interfaces/fetch";
 import {
@@ -19,13 +18,16 @@ export const getNotesListApi = async ({
 }: NoteQueryInterface): Promise<FetchResponse<NoteListResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/note/?page=${page}&limit=${limit}&text=${text}`, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
+      fetch(
+        `${process.env.REACT_APP_API}/note/?page=${page}&limit=${limit}&text=${text}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
         },
-        credentials: "include",
-      }),
+      ),
     );
 
     const jsonResponse = await response.json();
@@ -43,7 +45,7 @@ export const getDayNotesApi = async ({
   try {
     const response = await refreshTokenWrapper(() =>
       fetch(
-        `${API_ADDRESS}/note/day?startDate=${startDate}&endDate=${endDate}`,
+        `${process.env.REACT_APP_API}/note/day?startDate=${startDate}&endDate=${endDate}`,
         {
           method: "get",
           headers: {
@@ -67,7 +69,7 @@ export const registerNewNoteApi = async (
 ): Promise<FetchResponse<NoteRegisterResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/note/register`, {
+      fetch(`${process.env.REACT_APP_API}/note/register`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +91,7 @@ export const updateNoteApi = async (
 ): Promise<FetchResponse<NoteUpdateInterface | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/note/update`, {
+      fetch(`${process.env.REACT_APP_API}/note/update`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +113,7 @@ export const deleteNoteApi = async (
 ): Promise<FetchResponse<NoteDeleteResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/note/delete/${noteId}`, {
+      fetch(`${process.env.REACT_APP_API}/note/delete/${noteId}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",

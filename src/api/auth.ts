@@ -1,4 +1,3 @@
-import { API_ADDRESS } from "../consts";
 import { IsUserLoggedResponse, LoginUserInterface } from "./interfaces/auth";
 import { FetchResponse } from "./interfaces/fetch";
 import { apiResponse, fetchError } from "../utils/apiResponse";
@@ -9,7 +8,7 @@ export const isUserLoggedAPI = async (): Promise<
 > => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/auth/isLogged`, {
+      fetch(`${process.env.REACT_APP_API}/auth/isLogged`, {
         method: "get",
         credentials: "include",
       }),
@@ -28,7 +27,7 @@ export const loginUserAPI = async ({
   password,
 }: LoginUserInterface): Promise<FetchResponse<IsUserLoggedResponse | null>> => {
   try {
-    const response = await fetch(`${API_ADDRESS}/auth/login`, {
+    const response = await fetch(`${process.env.REACT_APP_API}/auth/login`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +51,7 @@ export const logoutUserAPI = async (): Promise<
 > => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/auth/logout`, {
+      fetch(`${process.env.REACT_APP_API}/auth/logout`, {
         method: "get",
         credentials: "include",
       }),

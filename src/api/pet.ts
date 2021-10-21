@@ -1,4 +1,3 @@
-import { API_ADDRESS } from "../consts";
 import { FetchResponse } from "./interfaces/fetch";
 import { apiResponse, fetchError } from "../utils/apiResponse";
 import {
@@ -22,13 +21,16 @@ export const getPetsListAPI = async ({
 }: PetQueryInterface): Promise<FetchResponse<PetListResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/pet/?page=${page}&limit=${limit}&name=${name}`, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
+      fetch(
+        `${process.env.REACT_APP_API}/pet/?page=${page}&limit=${limit}&name=${name}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
         },
-        credentials: "include",
-      }),
+      ),
     );
 
     const jsonResponse = await response.json();
@@ -44,7 +46,7 @@ export const getPetDetailsAPI = async (
 ): Promise<FetchResponse<PetInterface | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/pet/${petId}`, {
+      fetch(`${process.env.REACT_APP_API}/pet/${petId}`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +67,7 @@ export const registerNewPetAPI = async (
 ): Promise<FetchResponse<PetRegisterResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/pet/register`, {
+      fetch(`${process.env.REACT_APP_API}/pet/register`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +89,7 @@ export const updatePetAPI = async (
 ): Promise<FetchResponse<PetUpdateResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/pet/update`, {
+      fetch(`${process.env.REACT_APP_API}/pet/update`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +111,7 @@ export const deletePetAPI = async (
 ): Promise<FetchResponse<PetDeleteResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/pet/delete/${petId}`, {
+      fetch(`${process.env.REACT_APP_API}/pet/delete/${petId}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +135,7 @@ export const assignOwnerToPetAPI = async ({
 > => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/pet/assign-owner`, {
+      fetch(`${process.env.REACT_APP_API}/pet/assign-owner`, {
         method: "put",
         headers: {
           "Content-Type": "application/json",

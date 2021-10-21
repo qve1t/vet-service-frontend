@@ -1,4 +1,3 @@
-import { API_ADDRESS } from "../consts";
 import { FetchResponse } from "./interfaces/fetch";
 import { apiResponse, fetchError } from "../utils/apiResponse";
 import {
@@ -23,7 +22,7 @@ export const getOwnersListAPI = async ({
   try {
     const response = await refreshTokenWrapper(() =>
       fetch(
-        `${API_ADDRESS}/owner/?page=${page}&limit=${limit}&nameSurname=${nameSurname}`,
+        `${process.env.REACT_APP_API}/owner/?page=${page}&limit=${limit}&nameSurname=${nameSurname}`,
         {
           method: "get",
           headers: {
@@ -46,7 +45,7 @@ export const getOwnerDetailsAPI = async (
 ): Promise<FetchResponse<OwnerInterface | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/owner/${ownerId}`, {
+      fetch(`${process.env.REACT_APP_API}/owner/${ownerId}`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +66,7 @@ export const registerNewOwnerAPI = async (
 ): Promise<FetchResponse<OwnerRegisterResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/owner/register`, {
+      fetch(`${process.env.REACT_APP_API}/owner/register`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +88,7 @@ export const updateOwnerInfoAPI = async (
 ): Promise<FetchResponse<OwnerUpdateResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/owner/update`, {
+      fetch(`${process.env.REACT_APP_API}/owner/update`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +110,7 @@ export const deleteOwnerAPI = async (
 ): Promise<FetchResponse<OwnerDeleteResponse | null>> => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/owner/delete/${ownerId}`, {
+      fetch(`${process.env.REACT_APP_API}/owner/delete/${ownerId}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -135,7 +134,7 @@ export const assingPetToOwnerAPI = async ({
 > => {
   try {
     const response = await refreshTokenWrapper(() =>
-      fetch(`${API_ADDRESS}/pet/assign-pet`, {
+      fetch(`${process.env.REACT_APP_API}/pet/assign-pet`, {
         method: "put",
         headers: {
           "Content-Type": "application/json",
