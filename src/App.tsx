@@ -10,7 +10,6 @@ import NoPage from "./pages/NoPage";
 import RestrictedRoute from "./routes/RestrictedRoute";
 
 const App = () => {
-  console.log(process.env.REACT_APP_API);
   return (
     <div>
       <GlobalStyle />
