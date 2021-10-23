@@ -6,10 +6,10 @@ const userSuccessfullResponse: IsUserLoggedResponse = {
   email: "test@email.com",
 };
 
-// const userSuccessfullLogoutResponse: IsUserLoggedResponse = {
-//   isLogged: false,
-//   email: "",
-// };
+const userSuccessfullLogoutResponse: IsUserLoggedResponse = {
+  isLogged: false,
+  email: "",
+};
 
 export const userErrorMockResponse: FetchResponse<null> = {
   error: "Login error",
@@ -28,4 +28,10 @@ export const userSuccessLoginMockResponse: FetchResponse<IsUserLoggedResponse> =
   {
     error: null,
     response: userSuccessfullResponse,
+  };
+
+export const userSuccessLogoutMockResponse: FetchResponse<IsUserLoggedResponse> =
+  {
+    error: null,
+    response: userSuccessfullLogoutResponse,
   };

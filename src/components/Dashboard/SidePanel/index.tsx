@@ -8,12 +8,28 @@ const DashboardSidepanel = () => {
       <LogoWrapper>
         <LogoLight />
       </LogoWrapper>
-      <SingleSectionLink label="Home" linkTo="/dashboard" />
-      <SingleSectionLink label="Visits" linkTo="/dashboard/visits" />
-      <SingleSectionLink label="Pets" linkTo="/dashboard/pets" />
-      <SingleSectionLink label="Owners" linkTo="/dashboard/owners" />
-      <SingleSectionLink label="Medicines" linkTo="/dashboard/medicines" />
-      <SingleSectionLink label="Notes" linkTo="/dashboard/notes" />
+      <SingleSectionLink id="home-id" label="Home" linkTo="/dashboard" />
+      <SingleSectionLink
+        id="visits-id"
+        label="Visits"
+        linkTo="/dashboard/visits"
+      />
+      <SingleSectionLink id="pets-id" label="Pets" linkTo="/dashboard/pets" />
+      <SingleSectionLink
+        id="owners-id"
+        label="Owners"
+        linkTo="/dashboard/owners"
+      />
+      <SingleSectionLink
+        id="medicines-id"
+        label="Medicines"
+        linkTo="/dashboard/medicines"
+      />
+      <SingleSectionLink
+        id="notes-id"
+        label="Notes"
+        linkTo="/dashboard/notes"
+      />
     </DashboardSidepanelWrapper>
   );
 };
