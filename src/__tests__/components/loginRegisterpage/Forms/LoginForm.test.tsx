@@ -74,7 +74,7 @@ describe("<Login Form /", () => {
         .mockResolvedValue(userSuccessLoginMockResponse);
     });
 
-    it("shows error from api", async () => {
+    it("makes redirect to dashboard page", async () => {
       render(
         <Router history={history}>
           <LoggedUserModule>
