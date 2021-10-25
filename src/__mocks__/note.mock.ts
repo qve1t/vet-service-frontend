@@ -1,5 +1,5 @@
 import { FetchResponse } from "../api/interfaces/fetch";
-import { NoteListResponse } from "../api/interfaces/note";
+import { NoteDeleteResponse, NoteListResponse } from "../api/interfaces/note";
 
 const notesList: NoteListResponse = {
   results: [
@@ -28,5 +28,10 @@ export const GetNotesResponseMock: FetchResponse<NoteListResponse> = {
 
 export const GetNoNotesResponseMock: FetchResponse<NoteListResponse> = {
   response: { results: [], count: 0 },
+  error: null,
+};
+
+export const DeleteNoteSuccessMock: FetchResponse<NoteDeleteResponse> = {
+  response: { id: "testId", status: "ok" },
   error: null,
 };
